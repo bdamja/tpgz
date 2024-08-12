@@ -20,36 +20,17 @@ enum Phase {
 u8 phase = Phase::LADDER_START;
 int frameDelta = 0;
 s32 drop_1_start_frame;       // The frame the first drop started on.
-s32 drop_2_start_frame;         // The frame the second drop ended on.
+s32 drop_2_start_frame;       // The frame the second drop started on.
 bool game_paused;
 
-fopAc_ac_c* findLadderFreezard() {
-    node_class* node = g_fopAcTg_Queue.mpHead;
-    fopAc_ac_c* actorData = nullptr;
-    const int actorName = PROC_E_FB;
-    fopAc_ac_c* freezards[2] = {nullptr, nullptr};
+static void* searchLadderFreezard(void* i_actor, void* i_data) {
     const float LADDER_FREEZARD_Y_POS = 950.0f;
 
-    int foundFreezards = 0;
-    for (int i = 0; i < g_fopAcTg_Queue.mSize && foundFreezards < 2; i++) {
-        if (node != nullptr) {
-            create_tag_class* tag = (create_tag_class*)node;
-            actorData = static_cast<fopAc_ac_c*>(tag->mpTagData);
-
-            if (actorData != nullptr && (actorData->mBase.mProcName == actorName)) {
-                freezards[foundFreezards++] = actorData;
-            }
-            node = node->mpNextNode;
-        }
+    if (fopAcM_GetName(i_actor) == PROC_E_FB && static_cast<fopAc_ac_c*>(i_actor)->current.pos.y == LADDER_FREEZARD_Y_POS) {
+        return i_actor;
     }
 
-    for (int i = 0; i < 2; i++) {
-        if (freezards[i] != nullptr && freezards[i]->current.pos.y == LADDER_FREEZARD_Y_POS) {
-            return freezards[i];
-        }
-    }
-
-    return nullptr;
+    return NULL;
 }
 
 void checkOnLadder(daAlink_c* link) {
@@ -191,7 +172,7 @@ KEEP_FUNC void LFCChecker::execute() {
         return;
     }
 
-    fopAc_ac_c* ladder_freezard = findLadderFreezard();
+    fopAc_ac_c* ladder_freezard = (fopAc_ac_c*)fpcEx_Search(searchLadderFreezard, nullptr);
 
     if (!ladder_freezard) {
 #if DEBUG
