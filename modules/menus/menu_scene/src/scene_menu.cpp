@@ -36,6 +36,7 @@ KEEP_FUNC SceneMenu::SceneMenu(Cursor& cursor)
                         {"collision viewer", COLLISION_VIEW_INDEX, "Change Collision Viewer settings", false},
                         {"projection viewer", PROJECTION_VIEW_INDEX, "Change Projection Viewer settings", false},
                         {"trigger viewer", TRIGGER_VIEW_INDEX, "Change Trigger Viewer settings", false},
+                        {"sound test", SOUND_TEST_INDEX, "Play a specified sound effect", false},
                     } {}
 
 SceneMenu::~SceneMenu() {}
@@ -94,6 +95,9 @@ void SceneMenu::draw() {
             return;
         case TRIGGER_VIEW_INDEX:
             g_menuMgr->push(MN_TRIGGER_VIEW_INDEX);
+            return;
+        case SOUND_TEST_INDEX:
+            g_menuMgr->push(MN_SOUND_TEST_INDEX);
             return;
         }
     }

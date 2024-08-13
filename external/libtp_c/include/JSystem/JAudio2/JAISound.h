@@ -8,12 +8,31 @@
 
 class JAISoundID {
 public:
-    operator u32() const { return this->mId; }
-    JAISoundID(u32 pId) { mId = pId; };
+    operator u32() const { return this->mId.mFullId; }
+
+    JAISoundID(u32 pId) { mId.mFullId = pId; };
+
+    JAISoundID(JAISoundID const& other) { mId = other.mId; };
+
     JAISoundID() {}
 
-private:
-    u32 mId;
+    bool isAnonymous() { return mId.mFullId == 0xffffffff; }
+    void setAnonymous() { mId.mFullId = -1; }
+
+    union {
+        u32 mFullId;
+        struct {
+            u8 b0;
+            u8 b1;
+            u8 b2;
+            u8 b3;
+        } mBytes;
+        struct {
+            u16 mSoundType;
+            u16 mShortId;
+        } mAdvancedId;  // Debug doesn't have an inline for referencing the short ID so I assume
+                        // it's similar to this
+    } mId;
 };
 
 struct JASTrack {};

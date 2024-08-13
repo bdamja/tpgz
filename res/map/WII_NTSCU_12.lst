@@ -327,6 +327,9 @@
 
 80520e35:sPauseTimer
 
+// Z2AudioLib
+80521088:Z2SeMgr__mAudioMgrPtr
+
 CC008000:wgPipe
 
 80006920:SECallback_int__int_

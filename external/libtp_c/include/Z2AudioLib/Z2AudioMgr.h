@@ -12,6 +12,7 @@
 #include "Z2SoundStarter.h"
 #include "Z2SpeechMgr2.h"
 #include "Z2StatusMgr.h"
+#include "../defines.h"
 
 #ifdef GCN_PLATFORM
 class Z2AudioMgr {
@@ -62,8 +63,24 @@ public:
 };
 #endif
 
-/* inline Z2AudioMgr* Z2GetAudioMgr() {
-    return Z2AudioMgr::getInterface();
-} */
+#ifdef WII_PLATFORM
+#define mAudioMgrPtr Z2SeMgr__mAudioMgrPtr
+#else
+#define mAudioMgrPtr mAudioMgrPtr__10Z2AudioMgr
+#endif
+
+extern "C" Z2AudioMgr* mAudioMgrPtr;
+
+inline Z2AudioMgr* Z2GetAudioMgr() {
+    return mAudioMgrPtr;
+}
+
+LIBTP_DEFINE_FUNC(seStart__7Z2SeMgrF10JAISoundIDPC3VecUlScffffUc,
+                  Z2SeMgr__seStart_JAISoundID__Vec_const____unsigned_long__signed_char__float__float__float__float__unsigned_char_,
+                  bool, Z2SeMgr__seStart, (Z2SeMgr*, JAISoundID, Vec const*, u32, s8, f32, f32, f32, f32, u8))
+
+LIBTP_DEFINE_FUNC(seStop__7Z2SeMgrF10JAISoundIDUl,
+                  Z2SeMgr__seStop_JAISoundID__unsigned_long_,
+                  bool, Z2SeMgr__seStop, (Z2SeMgr*, JAISoundID, u32))
 
 #endif /* Z2AUDIOMGR_H */

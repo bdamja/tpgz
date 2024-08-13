@@ -13,11 +13,12 @@ extern "C" {
 extern mDoAud_zelAudio_c g_mDoAud_zelAudio;
 }
 
-// Functions
-#ifdef GCN_PLATFORM
-typedef void (*mDoAud_seStartLevel_t)(u32, Vec const*, u32, s8);
-#define mDoAud_seStartLevel ((mDoAud_seStartLevel_t)mDoAud_seStartLevel_addr)
+inline void mDoAud_seStart(u32 i_sfxID, const Vec* i_sePos, u32 param_2, s8 i_reverb) {
+    Z2SeMgr__seStart(&Z2GetAudioMgr()->mSeMgr, i_sfxID, i_sePos, param_2, i_reverb, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+}
 
-#endif
+inline void mDoAud_seStop(u32 i_sfxID, u32 param_2) {
+    Z2SeMgr__seStop(&Z2GetAudioMgr()->mSeMgr, i_sfxID, param_2);
+}
 
 #endif /* M_DO_M_DO_AUDIO_H */

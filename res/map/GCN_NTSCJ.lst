@@ -402,6 +402,9 @@
 
 8044b265:sPauseTimer
 
+// Z2AudioLib
+8044b4a8:mAudioMgrPtr__10Z2AudioMgr
+
 CC008000:wgPipe
 
 800056c0:version_check__Fv

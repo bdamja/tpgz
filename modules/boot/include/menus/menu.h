@@ -61,6 +61,7 @@ enum MenuIndex {
     MN_COLLISION_VIEW_INDEX,
     MN_PROJECTION_VIEW_INDEX,
     MN_TRIGGER_VIEW_INDEX,
+    MN_SOUND_TEST_INDEX,
     // Setting menu's sub menus
     MN_POS_SETTINGS_INDEX,
     MN_CREDITS_INDEX,
