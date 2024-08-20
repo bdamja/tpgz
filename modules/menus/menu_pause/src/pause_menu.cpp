@@ -1,7 +1,6 @@
 #include "menus/menu_pause/include/pause_menu.h"
 #include <cstdio>
 #include "libtp_c/include/d/com/d_com_inf_game.h"
-#include "libtp_c/include/m_Do/m_Do_printf.h"
 #include "libtp_c/include/utils.h"
 #include "gz_flags.h"
 #include "rels/include/defines.h"
@@ -40,7 +39,7 @@ KEEP_FUNC PauseMenu::PauseMenu(Cursor& cursor)
             {"wallet upgrade:", WALLET_INDEX, "Wallet Capacity", false, nullptr, MAX_WALLET_OPT},
             {"arrow capacity:", ARROW_CAPACITY_INDEX, "Arrow Quiver Capacity", false, nullptr,
              MAX_ARROW_CAPACITY_OPT},
-            {"scent:", SCENT_INDEX, "Current scent", false, nullptr},
+            {"scent:", SCENT_INDEX, "Current Scent", false, nullptr},
             {"ending blow:", ENDING_BLOW_INDEX, "Ending Blow", true, [](){return pauseData->l_ebFlag;}},
             {"shield bash:", SHIELD_BASH_INDEX, "Shield Bash", true, [](){return pauseData->l_sbFlag;}},
             {"backslice:", BACKSLICE_INDEX, "Backslice", true, [](){return pauseData->l_bsFlag;}},
@@ -277,8 +276,6 @@ void PauseMenu::setEquipment() {
 void PauseMenu::draw() {
     static bool init = false;
     cursor.setMode(Cursor::MODE_LIST);
-
-    OSReport("current scent: %d\n", dComIfGs_getCollectSmell());
 
     if (!init) {
         getEquipment();
