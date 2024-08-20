@@ -11,6 +11,7 @@ struct PauseData {
     uint8_t l_bombCap_idx;
     uint8_t l_wallet_idx;
     uint8_t l_arrowCap_idx;
+    uint8_t l_scent_idx;
     bool l_ebFlag;
     bool l_sbFlag;
     bool l_bsFlag;
@@ -31,13 +32,16 @@ enum PauseIndex {
     BOMB_CAPACITY_INDEX,
     WALLET_INDEX,
     ARROW_CAPACITY_INDEX,
+    SCENT_INDEX,
     ENDING_BLOW_INDEX,
     SHIELD_BASH_INDEX,
     BACKSLICE_INDEX,
     HELM_SPLITTER_INDEX,
     MORTAL_DRAW_INDEX,
     JUMP_STRIKE_INDEX,
-    GREAT_SPIN_INDEX
+    GREAT_SPIN_INDEX,
+
+    PAUSE_INDEX_COUNT
 };
 
 extern PauseData* pauseData;
@@ -49,7 +53,7 @@ public:
     virtual void draw();
 
 private:
-    Line lines[17];
+    Line lines[PAUSE_INDEX_COUNT];
 
     void resetIndex();
     void getEquipment();

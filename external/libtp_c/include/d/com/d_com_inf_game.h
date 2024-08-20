@@ -432,6 +432,9 @@ inline void dComIfGs_setLife(u16 amount) {
 inline void dComIfGs_setMaxLife(u8 max) {
     g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setMaxLife(max);
 }
+inline void dComIfGs_setCollectSmell(u8 smell_id) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusA().setSelectEquip(3, smell_id);
+}
 /*
 inline void dComIfGs_onDungeonItemBossKey(void) {
     g_dComIfG_gameInfo.info.getMemory().getBit().onDungeonItemBossKey();

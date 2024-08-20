@@ -1,6 +1,7 @@
 #include "menus/menu_pause/include/pause_menu.h"
 #include <cstdio>
 #include "libtp_c/include/d/com/d_com_inf_game.h"
+#include "libtp_c/include/m_Do/m_Do_printf.h"
 #include "libtp_c/include/utils.h"
 #include "gz_flags.h"
 #include "rels/include/defines.h"
@@ -16,6 +17,7 @@
 #define MAX_BOMB_CAPACITY_OPT 2
 #define MAX_WALLET_OPT 3
 #define MAX_ARROW_CAPACITY_OPT 3
+#define MAX_SCENT_OPT 6
 #define MAX_HIDDEN_SKILL_OPT 2
 
 KEEP_VAR PauseData* pauseData;
@@ -38,6 +40,7 @@ KEEP_FUNC PauseMenu::PauseMenu(Cursor& cursor)
             {"wallet upgrade:", WALLET_INDEX, "Wallet Capacity", false, nullptr, MAX_WALLET_OPT},
             {"arrow capacity:", ARROW_CAPACITY_INDEX, "Arrow Quiver Capacity", false, nullptr,
              MAX_ARROW_CAPACITY_OPT},
+            {"scent:", SCENT_INDEX, "Current scent", false, nullptr},
             {"ending blow:", ENDING_BLOW_INDEX, "Ending Blow", true, [](){return pauseData->l_ebFlag;}},
             {"shield bash:", SHIELD_BASH_INDEX, "Shield Bash", true, [](){return pauseData->l_sbFlag;}},
             {"backslice:", BACKSLICE_INDEX, "Backslice", true, [](){return pauseData->l_bsFlag;}},
@@ -59,6 +62,7 @@ void PauseMenu::resetIndex() {
     pauseData->l_bombCap_idx = 0;
     pauseData->l_wallet_idx = 0;
     pauseData->l_arrowCap_idx = 0;
+    pauseData->l_scent_idx = 0;
 }
 
 void PauseMenu::getEquipment() {
@@ -113,6 +117,27 @@ void PauseMenu::getEquipment() {
         pauseData->l_arrowCap_idx = 2;
     } else if (dComIfGs_getArrowMax() == 60) {
         pauseData->l_arrowCap_idx = 1;
+    }
+
+    switch (dComIfGs_getCollectSmell()) {
+    case 180:
+        pauseData->l_scent_idx = 1;
+        break;
+    case 176:
+        pauseData->l_scent_idx = 2;
+        break;
+    case 178:
+        pauseData->l_scent_idx = 3;
+        break;
+    case 179:
+        pauseData->l_scent_idx = 4;
+        break;
+    case 181:
+        pauseData->l_scent_idx = 5;
+        break;
+    default:
+        pauseData->l_scent_idx = 0;
+
     }
 }
 
@@ -227,11 +252,33 @@ void PauseMenu::setEquipment() {
         dComIfGs_setArrowMax(100);
         break;
     }
+
+    switch (pauseData->l_scent_idx) {
+    case 1:
+        dComIfGs_setCollectSmell(180);
+        break;
+    case 2:
+        dComIfGs_setCollectSmell(176);
+        break;
+    case 3:
+        dComIfGs_setCollectSmell(178);
+        break;
+    case 4:
+        dComIfGs_setCollectSmell(179);
+        break;
+    case 5:
+        dComIfGs_setCollectSmell(181);
+        break;
+    default:
+        dComIfGs_setCollectSmell(255);
+    }
 }
 
 void PauseMenu::draw() {
     static bool init = false;
     cursor.setMode(Cursor::MODE_LIST);
+
+    OSReport("current scent: %d\n", dComIfGs_getCollectSmell());
 
     if (!init) {
         getEquipment();
@@ -264,6 +311,7 @@ void PauseMenu::draw() {
     ListMember bombCap_opt[2] = {"30/15/10", "60/30/20"};
     ListMember wallet_opt[3] = {"300 Rupees", "600 Rupees", "1000 Rupees"};
     ListMember arrowCap_opt[3] = {"30 Arrows", "60 Arrows", "100 Arrows"};
+    ListMember scent_opt[6] = {"none", "youths' scent", "scent of ilia", "poe scent", "reekfish scent", "medicine scent"};
 
     switch (cursor.y) {
     case ORDON_SWORD_INDEX:
@@ -346,6 +394,14 @@ void PauseMenu::draw() {
             pauseData->l_arrowCap_idx = cursor.x;
         }
         break;
+    case SCENT_INDEX:
+        cursor.x = pauseData->l_scent_idx;
+        cursor.move(MAX_SCENT_OPT, MENU_LINE_NUM);
+
+        if (cursor.y == SCENT_INDEX) {
+            pauseData->l_scent_idx = cursor.x;
+        }
+        break;
     default:
         cursor.move(0, MENU_LINE_NUM);
         break;
@@ -389,6 +445,7 @@ void PauseMenu::draw() {
     lines[BOMB_CAPACITY_INDEX].printf(" <%s>", bombCap_opt[pauseData->l_bombCap_idx].member);
     lines[WALLET_INDEX].printf(" <%s>", wallet_opt[pauseData->l_wallet_idx].member);
     lines[ARROW_CAPACITY_INDEX].printf(" <%s>", arrowCap_opt[pauseData->l_arrowCap_idx].member);
+    lines[SCENT_INDEX].printf(" <%s>", scent_opt[pauseData->l_scent_idx].member);
 
     GZ_drawMenuLines(lines, cursor.y, MENU_LINE_NUM);
 }
