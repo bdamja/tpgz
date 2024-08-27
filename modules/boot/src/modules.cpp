@@ -76,6 +76,10 @@ KEEP_FUNC bool lfc_active() {
     return GZStng_getData(STNG_TOOLS_LFC, false);
 }
 
+KEEP_FUNC bool ee_active() {
+    return GZStng_getData(STNG_TOOLS_ELEVATOR_ESCAPE, false);
+}
+
 KEEP_FUNC bool mash_checker_active() {
     return GZStng_getData(STNG_TOOLS_MASH_CHECKER, false);
 }

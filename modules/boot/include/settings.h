@@ -105,6 +105,7 @@ enum GZSettingID : uint32_t {
     STNG_CMD_MOON_JUMP,
     // New Adds
     STNG_TOOLS_LFC,
+    STNG_TOOLS_ELEVATOR_ESCAPE,
 };
 
 struct GZSettingEntry {

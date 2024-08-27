@@ -16,20 +16,22 @@ const char l_descTemplates[CHECKERS_COUNT][100] = {
 KEEP_FUNC CheckersMenu::CheckersMenu(CheckersData& data)
     : Menu(data.cursor), lines{
 #ifdef WII_PLATFORM
-            {"bit checker", BIT_INDEX, "use " BACK_IN_TIME_TEXT " to warp to ordon bridge", true,
+            {"bit", BIT_INDEX, "use " BACK_IN_TIME_TEXT " to warp to ordon bridge", true,
              ACTIVE_FUNC(STNG_TOOLS_BIT)},
 #endif
-            {"coro td checker", COROTD_INDEX, "show frame info when doing coro td", true,
+            {"coro td", COROTD_INDEX, "show frame info when doing coro td", true,
              ACTIVE_FUNC(STNG_TOOLS_COROTD)},
-            {"gorge checker", GORGE_INDEX, "use " GORGE_VOID_TEXT " to warp to kakariko gorge",
+            {"elevator escape", ELEVATOR_ESCAPE_INDEX, "show frame info when doing elevator escape",
+             true, ACTIVE_FUNC(STNG_TOOLS_ELEVATOR_ESCAPE)},
+            {"gorge void", GORGE_INDEX, "use " GORGE_VOID_TEXT " to warp to kakariko gorge",
              true, ACTIVE_FUNC(STNG_TOOLS_GORGE)},
-            {"lfc checker", LFC_INDEX, "ladder freezard cancel checker",
+            {"ladder freezard cancel", LFC_INDEX, "ladder freezard cancel checker",
              true, ACTIVE_FUNC(STNG_TOOLS_LFC)},
-            {"mash checker", MASH_CHECKER_INDEX, "display A/B button mashing speeds", true,
+            {"a/b mash rate", MASH_CHECKER_INDEX, "display A/B button mashing speeds", true,
              ACTIVE_FUNC(STNG_TOOLS_MASH_CHECKER)},
-            {"roll checker", ROLL_INDEX, "frame counter for chaining rolls", true,
+            {"rolling", ROLL_INDEX, "frame counter for chaining rolls", true,
              ACTIVE_FUNC(STNG_TOOLS_ROLL)},
-            {"umd checker", UMD_INDEX, "practice snowpeak universal map delay timing", true,
+            {"universal map delay", UMD_INDEX, "practice snowpeak universal map delay timing", true,
              ACTIVE_FUNC(STNG_TOOLS_UMD)}} {
 }
 
@@ -39,9 +41,12 @@ GZSettingID l_mapping[] = {
 #ifdef WII_PLATFORM
     STNG_TOOLS_BIT,
 #endif
-    STNG_TOOLS_COROTD,      STNG_TOOLS_GORGE,
+    STNG_TOOLS_COROTD,      
+    STNG_TOOLS_ELEVATOR_ESCAPE,
+    STNG_TOOLS_GORGE,
     STNG_TOOLS_LFC,
-    STNG_TOOLS_MASH_CHECKER,STNG_TOOLS_ROLL,
+    STNG_TOOLS_MASH_CHECKER,
+    STNG_TOOLS_ROLL,
     STNG_TOOLS_UMD,
 };
 
