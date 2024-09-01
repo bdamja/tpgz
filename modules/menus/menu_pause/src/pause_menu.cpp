@@ -40,6 +40,7 @@ KEEP_FUNC PauseMenu::PauseMenu(Cursor& cursor)
             {"arrow capacity:", ARROW_CAPACITY_INDEX, "Arrow Quiver Capacity", false, nullptr,
              MAX_ARROW_CAPACITY_OPT},
             {"scent:", SCENT_INDEX, "Current Scent", false, nullptr},
+            {"golden bugs", GOLDEN_BUG_INDEX, "Golden Bugs", false, nullptr},
             {"ending blow:", ENDING_BLOW_INDEX, "Ending Blow", true, [](){return pauseData->l_ebFlag;}},
             {"shield bash:", SHIELD_BASH_INDEX, "Shield Bash", true, [](){return pauseData->l_sbFlag;}},
             {"backslice:", BACKSLICE_INDEX, "Backslice", true, [](){return pauseData->l_bsFlag;}},
@@ -406,6 +407,9 @@ void PauseMenu::draw() {
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
         switch (cursor.y) {
+        case GOLDEN_BUG_INDEX:
+            g_menuMgr->push(MN_GOLDEN_BUGS_INDEX);
+            break;
         case ENDING_BLOW_INDEX:
             setEventFlag(0x2904);
             break;

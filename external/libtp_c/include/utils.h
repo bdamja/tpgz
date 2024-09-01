@@ -7,6 +7,9 @@
 // Toggles save event flags
 void setEventFlag(u16 flag);
 
+// Toggles equipment items
+void setItemFirstBit(u8 item);
+
 // Set Savefile spawn info
 void setReturnPlace(const char* stage, s8 room, u8 spawn);
 

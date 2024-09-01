@@ -17,7 +17,7 @@ struct ListMember {
 
 struct Line {
     char line[50];
-    const uint32_t idx;
+    uint32_t idx;
     char description[MAX_DESCRIPTION_LENGTH];
     bool toggleable = false;
     bool (*active)();

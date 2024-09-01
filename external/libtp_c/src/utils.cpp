@@ -11,6 +11,15 @@ KEEP_FUNC void setEventFlag(u16 flag) {
     }
 }
 
+// Toggles equipment items
+KEEP_FUNC void setItemFirstBit(u8 item) {
+    if (dComIfGs_isItemFirstBit(item)) {
+        dComIfGs_offItemFirstBit(item);
+    } else {
+        dComIfGs_onItemFirstBit(item);
+    }
+}
+
 // Set Savefile spawn info
 KEEP_FUNC void setReturnPlace(const char* stage, s8 room, u8 spawn) {
     dSv_player_return_place_c__set(&g_dComIfG_gameInfo.info.getPlayer().mPlayerReturnPlace, stage,

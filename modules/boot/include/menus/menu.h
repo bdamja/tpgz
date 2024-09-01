@@ -70,6 +70,9 @@ enum MenuIndex {
     // Tools menu's sub menus
     MN_CHECKERS_INDEX,
 
+    // Pause menu's sub menus
+    MN_GOLDEN_BUGS_INDEX,
+
     // This entry is used only to get a count of the number of valid entries.
     MN_COUNT
 };
