@@ -31,6 +31,8 @@ KEEP_FUNC TriggerViewMenu::TriggerViewMenu(Cursor& cursor)
                          [](){return g_triggerViewFlags[VIEW_TRANSFORM_DISTS].active;}},
                          {"twilight gates", VIEW_TW_GATES, "view twilight gate triggers", true,
                          [](){return g_triggerViewFlags[VIEW_TW_GATES].active;}},
+                         {"leever ranges", VIEW_LEEVER_RANGE, "view leever ranges", true,
+                         [](){return g_triggerViewFlags[VIEW_LEEVER_RANGE].active;}},
                          {"opacity:", TRIGGER_VIEW_MAX, "the opacity of drawn geometry"},
                     } {}
 

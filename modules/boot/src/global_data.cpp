@@ -23,6 +23,7 @@ KEEP_VAR TriggerViewItem g_triggerViewFlags[TRIGGER_VIEW_MAX] = {
     {VIEW_TRANSFORM_DISTS, false},
     {VIEW_ATTN_DISTS, false},
     {VIEW_MIST_AVOID, false},
+    {VIEW_LEEVER_RANGE, false},
 };
 
 KEEP_VAR ProjectionLine g_ljaProjectionLine;

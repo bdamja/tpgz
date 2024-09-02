@@ -13,6 +13,7 @@ enum TriggerViewIndex {
     VIEW_SWITCH_AREAS,
     VIEW_TRANSFORM_DISTS,
     VIEW_TW_GATES,
+    VIEW_LEEVER_RANGE,
 
     TRIGGER_VIEW_MAX,
 };

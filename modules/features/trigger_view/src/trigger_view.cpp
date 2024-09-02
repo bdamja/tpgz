@@ -368,6 +368,30 @@ void drawPurpleMistAvoid(fopAc_ac_c* actor) {
     dDbVw_drawCubeXlu(tag->mTargetAvoidPos, cubeSize, cubeAngle, targetColor);
 }
 
+void drawLeeverData(fopAc_ac_c* actor) {
+    struct e_rb_class : public fopAc_ac_c {
+        u8 data[0xA66 - 0x568];
+        /* 0xA66 */ u8 mIsChild;
+        /* 0xA67 */ u8 field_0xa67;
+        /* 0xA68 */ u8 mAppearRange;
+        /* 0xA69 */ u8 mDisappearRange;
+    };
+    e_rb_class* leever = (e_rb_class*)actor;
+
+    if (!leever->mIsChild) {
+        GXColor color = {0xFF, 0x00, 0x00, g_geometryOpacity};
+        GXColor color2 = {0x00, 0x00, 0xFF, g_geometryOpacity};
+
+        cXyz pos(leever->current.pos);
+        if (pos.y < dComIfGp_getPlayer()->mLinkAcch.GetGroundH()) {
+            pos.y = dComIfGp_getPlayer()->mLinkAcch.GetGroundH() + 100.0f;
+        }
+
+        dDbVw_drawCircleXlu(pos, leever->mAppearRange * 100.0f, color, 1, 20);
+        dDbVw_drawCircleXlu(pos, leever->mDisappearRange * 100.0f, color2, 1, 20);
+    }
+}
+
 KEEP_FUNC void execute() {
     if (g_triggerViewFlags[VIEW_LOAD_ZONES].active) {
         searchActorForCallback(PROC_SCENE_EXIT, drawSceneExit);
@@ -412,6 +436,10 @@ KEEP_FUNC void execute() {
 
     if (g_triggerViewFlags[VIEW_MIST_AVOID].active) {
         searchActorForCallback(PROC_KYTAG08, drawPurpleMistAvoid);
+    }
+
+    if (g_triggerViewFlags[VIEW_LEEVER_RANGE].active) {
+        searchActorForCallback(PROC_E_RB, drawLeeverData);
     }
 }
 }  // namespace TriggerViewer
