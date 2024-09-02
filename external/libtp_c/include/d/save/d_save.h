@@ -783,6 +783,7 @@ public:
     dSv_memory_c& getMemory() { return mMemory; }
     dSv_zone_c* getZones() { return mZone; }
     dSv_player_c& getPlayer() { return mSavedata.getPlayer(); }
+    dSv_event_c& getEvent() { return mTmp; }
     dSv_event_c& getTmp() { return mTmp; }
 
     /* 0x000 */ dSv_save_c mSavedata;

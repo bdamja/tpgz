@@ -756,6 +756,20 @@ LIBTP_DEFINE_FUNC(dComIfGs_onOneZoneSwitch__Fii, dComIfGs_onOneZoneSwitch_int__i
 LIBTP_DEFINE_FUNC(dComIfGs_onZoneSwitch__Fii, dComIfGs_onZoneSwitch_int__int_,
                   void, dComIfGs_onZoneSwitch, (int, int))
 
+LIBTP_DEFINE_FUNC(setEventReg__11dSv_event_cFUsUc, dSv_event_c__setEventReg_unsigned_short__unsigned_char_, 
+                  void, dSv_event_c__setEventReg, (dSv_event_c*, u16, u8))
+
+LIBTP_DEFINE_FUNC(getEventReg__11dSv_event_cCFUs, dSv_event_c__getEventReg_unsigned_short__const, 
+                  u8, dSv_event_c__getEventReg, (dSv_event_c*, u16))
+
+inline void dComIfGs_setEventReg(u16 flag, u8 value) {
+    dSv_event_c__setEventReg(&g_dComIfG_gameInfo.info.getSavedata().getEvent(), flag, value);
+}
+
+inline u8 dComIfGs_getEventReg(u16 flag) {
+    return dSv_event_c__getEventReg(&g_dComIfG_gameInfo.info.getSavedata().getEvent(), flag); 
+}
+
 class dComIfAc_gameInfo {
 public:
     u8 field_0x0[4];

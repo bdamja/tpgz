@@ -11,6 +11,7 @@ KEEP_FUNC GeneralFlagsMenu::GeneralFlagsMenu(Cursor& cursor)
     : Menu(cursor),
       lines{
           {"boss flag", BOSS_FLAG_INDEX, "Sets the boss flag value", true, [](){return generalFlagsData->l_bossFlag;}},
+          {"donation amount:", DONATION_AMT_INDEX, "Sets the donation amount"},
           {"rupee cutscenes", RUPEE_CS_FLAG_INDEX, "Toggle rupee cutscenes being enabled", true,
            [](){return generalFlagsData->l_rupeeFlag;}},
           {"epona stolen", EPONA_STOLEN_INDEX, "Toggle flag for Epona being stolen", true,
@@ -34,6 +35,8 @@ KEEP_FUNC GeneralFlagsMenu::GeneralFlagsMenu(Cursor& cursor)
 GeneralFlagsMenu::~GeneralFlagsMenu() {}
 
 void GeneralFlagsMenu::draw() {
+    cursor.setMode(Cursor::MODE_LIST);
+
     if (!generalFlagsData) {
         return;
     }
@@ -50,6 +53,12 @@ void GeneralFlagsMenu::draw() {
     generalFlagsData->l_midnaRide = dComIfGs_isTransformLV(3);
     generalFlagsData->l_wolfSense = dComIfGs_isEventBit(0x4308);
 
+    // update donation amount
+    u8 high_bits = dComIfGs_getEventReg(0xf7ff);
+    u8 low_bits = dComIfGs_getEventReg(0xf8ff);
+
+    generalFlagsData->l_donationAmount = high_bits << 8 | low_bits;
+
     for (int i = BLUE_RUPEE; i <= SILVER_RUPEE; i++) {
         if (dComIfGs_isItemFirstBit(i)) {
             generalFlagsData->l_rupeeFlag = true;
@@ -62,6 +71,18 @@ void GeneralFlagsMenu::draw() {
         return;
     }
 
+    switch (cursor.y) {
+    case DONATION_AMT_INDEX:
+        Cursor::moveList(generalFlagsData->l_donationAmount);
+
+        u8 high_bits = (generalFlagsData->l_donationAmount >> 8) & 0xFF;
+        u8 low_bits = generalFlagsData->l_donationAmount & 0xFF;
+
+        dComIfGs_setEventReg(0xf7ff, high_bits);
+        dComIfGs_setEventReg(0xf8ff, low_bits);
+        break;
+    }
+
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
         switch (cursor.y) {
         case BOSS_FLAG_INDEX:
@@ -71,6 +92,7 @@ void GeneralFlagsMenu::draw() {
                 bossFlags = 255;
             }
             break;
+
         case RUPEE_CS_FLAG_INDEX:
             if (generalFlagsData->l_rupeeFlag) {
                 for (int i = BLUE_RUPEE; i <= SILVER_RUPEE; i++) {
@@ -116,6 +138,8 @@ void GeneralFlagsMenu::draw() {
             break;
         }
     }
+
+    lines[DONATION_AMT_INDEX].printf(" <%d>", generalFlagsData->l_donationAmount);
 
     cursor.move(0, MENU_LINE_NUM);
     GZ_drawMenuLines(lines, cursor.y, MENU_LINE_NUM);
