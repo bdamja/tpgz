@@ -8,6 +8,7 @@ KEEP_FUNC FlagsMenu::FlagsMenu(Cursor& cursor)
                         {"general flags", GENERAL_FLAGS_INDEX, "General flags", false},
                         {"dungeon flags", DUNGEON_FLAGS_INDEX, "Dungeon flags", false},
                         {"portal flags", PORTAL_FLAGS_INDEX, "Warp portal flags", false},
+                        {"rupee flags", RUPEE_FLAGS_INDEX, "Rupee related flags", false},
                         {"flag records", FLAG_RECORDS_INDEX, "Edit flag records", false},
                         {"flag log", FLAG_LOG_INDEX, "Toggle the flag log", false},
                     } {}
@@ -30,6 +31,9 @@ void FlagsMenu::draw() {
             return;
         case PORTAL_FLAGS_INDEX:
             g_menuMgr->push(MN_PORTAL_FLAGS_INDEX);
+            return;
+        case RUPEE_FLAGS_INDEX:
+            g_menuMgr->push(MN_RUPEE_FLAGS_INDEX);
             return;
         case FLAG_RECORDS_INDEX:
             g_menuMgr->push(MN_FLAG_RECORDS_INDEX);

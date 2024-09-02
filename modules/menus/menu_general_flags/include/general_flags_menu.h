@@ -3,13 +3,12 @@
 
 struct GeneralFlagsData {
     bool l_bossFlag;
-    u16 l_donationAmount;
-    bool l_rupeeFlag;
     bool l_midnaCharge;
     bool l_transformWarp;
     bool l_midnaZ;
     bool l_eponaStolen;
     bool l_eponaTamed;
+    bool l_maloMartCT;
     bool l_mapWarping;
     bool l_midnaHealed;
     bool l_midnaRide;
@@ -18,10 +17,9 @@ struct GeneralFlagsData {
 
 enum GeneralFlagsIndex {
     BOSS_FLAG_INDEX,
-    DONATION_AMT_INDEX,
-    RUPEE_CS_FLAG_INDEX,
     EPONA_STOLEN_INDEX,
     EPONA_TAMED_INDEX,
+    MALO_MART_CT_INDEX,
     MAP_WARPING_INDEX,
     MIDNA_CHARGE_INDEX,
     MIDNA_HEALTHY,

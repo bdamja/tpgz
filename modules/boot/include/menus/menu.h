@@ -38,6 +38,7 @@ enum MenuIndex {
     MN_GENERAL_FLAGS_INDEX,
     MN_DUNGEON_FLAGS_INDEX,
     MN_PORTAL_FLAGS_INDEX,
+    MN_RUPEE_FLAGS_INDEX,
     MN_FLAG_RECORDS_INDEX,
     MN_FLAG_LOG_INDEX,
     // Inventory menu's sub menus
