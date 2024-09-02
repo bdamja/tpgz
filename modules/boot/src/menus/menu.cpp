@@ -9,14 +9,15 @@ const char* g_menuPaths[MN_COUNT] = {
     "warp",             "general_flags",  "dungeon_flags",
     "portal_flags",     "rupee_flags",    "flag_records",
     "flag_log",         "item_wheel",     "pause",
-    "amounts",
+    "amounts",          "equipment",      "golden_bugs",
+    "hidden_skills",
     "watches",          "memory_editor",  "memfiles",
     "any_saves",        "any_bite_saves", "hundo_saves",
     "ad_saves",         "nosq_saves",     "glitchless_saves",
     "actor_spawn",      "actor_list",     "collision_view",
     "projection_view",  "trigger_view",   "sound_test",
     "pos_settings",     "credits",        "combo",
-    "checkers",         "golden_bugs"
+    "checkers",
 };
 
 KEEP_FUNC Menu::Menu(Cursor& cursor) : cursor(cursor) {}
