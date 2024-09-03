@@ -1,5 +1,5 @@
 #include <main.h>
-#include "menus/menu_tools/include/tools_menu.h"
+#include "menus/menu_tools_link/include/tools_link_menu.h"
 #include "events/draw_listener.h"
 #include "menus/utils/menu_mgr.h"
 #include "utils/draw.h"
@@ -10,7 +10,7 @@ void onDraw();
 void onUnload();
 void onDelete();
 
-ToolsMenu* l_toolsMenu;
+ToolsLinkMenu* l_toolsLinkMenu;
 
 namespace tpgz::modules {
 void main() {
@@ -28,23 +28,29 @@ void exit() {
 }  // namespace tpgz::modules
 
 void onCreate() {
+    g_menuMgr->setPersistentData(new ToolsLinkData());
     if (!g_menuMgr->getPermanentData<Cursor>()) {
         g_menuMgr->setPermanentData(new Cursor);
     }
 }
 
 void onLoad() {
-    l_toolsMenu = new ToolsMenu(*g_menuMgr->getPermanentData<Cursor>());
+    l_toolsLinkMenu = new ToolsLinkMenu(*g_menuMgr->getPermanentData<Cursor>(),
+                                *g_menuMgr->getPersistentData<ToolsLinkData>());
     g_drawListener->addListener(onDraw);
 }
 
 void onDraw() {
-    l_toolsMenu->draw();
+    l_toolsLinkMenu->draw();
 }
 
 void onUnload() {
     g_drawListener->removeListener(onDraw);
-    delete l_toolsMenu;
+    delete l_toolsLinkMenu;
 }
 
-void onDelete() {}
+void onDelete() {
+    auto data = g_menuMgr->getPersistentData<ToolsLinkData>();
+    delete data;
+    g_menuMgr->setPersistentData<ToolsLinkData>(nullptr);
+}

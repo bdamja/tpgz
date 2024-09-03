@@ -1,5 +1,5 @@
 #include <main.h>
-#include "menus/menu_tools/include/tools_menu.h"
+#include "menus/menu_tools_scene/include/tools_scene_menu.h"
 #include "events/draw_listener.h"
 #include "menus/utils/menu_mgr.h"
 #include "utils/draw.h"
@@ -10,7 +10,7 @@ void onDraw();
 void onUnload();
 void onDelete();
 
-ToolsMenu* l_toolsMenu;
+ToolsSceneMenu* l_toolsSceneMenu;
 
 namespace tpgz::modules {
 void main() {
@@ -34,17 +34,17 @@ void onCreate() {
 }
 
 void onLoad() {
-    l_toolsMenu = new ToolsMenu(*g_menuMgr->getPermanentData<Cursor>());
+    l_toolsSceneMenu = new ToolsSceneMenu(*g_menuMgr->getPermanentData<Cursor>());
     g_drawListener->addListener(onDraw);
 }
 
 void onDraw() {
-    l_toolsMenu->draw();
+    l_toolsSceneMenu->draw();
 }
 
 void onUnload() {
     g_drawListener->removeListener(onDraw);
-    delete l_toolsMenu;
+    delete l_toolsSceneMenu;
 }
 
 void onDelete() {}

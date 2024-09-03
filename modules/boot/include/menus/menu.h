@@ -71,11 +71,12 @@ enum MenuIndex {
     MN_POS_SETTINGS_INDEX,
     MN_CREDITS_INDEX,
     MN_COMBO_INDEX,
-
     // Tools menu's sub menus
-    MN_CHECKERS_INDEX,
-
-
+    MN_TOOLS_CHECKERS_INDEX,
+    MN_TOOLS_CONTROLLER_INDEX,
+    MN_TOOLS_LINK_INDEX,
+    MN_TOOLS_SCENE_INDEX,
+    MN_TOOLS_TIMERS_INDEX,
 
     // This entry is used only to get a count of the number of valid entries.
     MN_COUNT

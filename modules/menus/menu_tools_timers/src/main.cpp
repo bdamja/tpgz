@@ -1,5 +1,5 @@
 #include <main.h>
-#include "menus/menu_tools/include/tools_menu.h"
+#include "menus/menu_tools_timers/include/tools_timers_menu.h"
 #include "events/draw_listener.h"
 #include "menus/utils/menu_mgr.h"
 #include "utils/draw.h"
@@ -10,7 +10,7 @@ void onDraw();
 void onUnload();
 void onDelete();
 
-ToolsMenu* l_toolsMenu;
+ToolsTimersMenu* l_toolsTimersMenu;
 
 namespace tpgz::modules {
 void main() {
@@ -34,17 +34,17 @@ void onCreate() {
 }
 
 void onLoad() {
-    l_toolsMenu = new ToolsMenu(*g_menuMgr->getPermanentData<Cursor>());
+    l_toolsTimersMenu = new ToolsTimersMenu(*g_menuMgr->getPermanentData<Cursor>());
     g_drawListener->addListener(onDraw);
 }
 
 void onDraw() {
-    l_toolsMenu->draw();
+    l_toolsTimersMenu->draw();
 }
 
 void onUnload() {
     g_drawListener->removeListener(onDraw);
-    delete l_toolsMenu;
+    delete l_toolsTimersMenu;
 }
 
 void onDelete() {}

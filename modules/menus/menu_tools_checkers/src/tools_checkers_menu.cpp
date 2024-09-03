@@ -1,4 +1,4 @@
-#include "menus/menu_checkers/include/checkers_menu.h"
+#include "menus/menu_tools_checkers/include/tools_checkers_menu.h"
 #include "menus/utils/menu_mgr.h"
 
 const char l_descTemplates[CHECKERS_COUNT][100] = {
@@ -6,6 +6,7 @@ const char l_descTemplates[CHECKERS_COUNT][100] = {
     "use %s to warp to ordon bridge",
 #endif
     "show frame info when doing coro td",
+    "show frame info when doing elevator escape",
     "use %s to warp to kakariko gorge",
     "ladder freezard cancel checker",
     "display A/B button mashing speeds",
@@ -67,16 +68,16 @@ void CheckersMenu::draw() {
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
         GZSettingEntry* stng = nullptr;
-        if (cursor.y < CHECKERS_COUNT) {
-            stng = GZStng_get(l_mapping[cursor.y]);
-            if (!stng) {
-                stng = new GZSettingEntry{l_mapping[cursor.y], sizeof(bool), new bool};
-                g_settings.push_back(stng);
-            }
+
+        stng = GZStng_get(l_mapping[cursor.y]);
+        
+        if (!stng) {
+            stng = new GZSettingEntry{l_mapping[cursor.y], sizeof(bool), new bool};
+            g_settings.push_back(stng);
         }
-        if (stng) {
+
+        if (stng)
             *(bool*)stng->data = !*(bool*)stng->data;
-        }
     }
 
     char buf[100];
