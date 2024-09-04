@@ -851,6 +851,9 @@ LIBTP_DEFINE_FUNC(onSwitch__10dSv_info_cFii, dSv_info_c__onSwitch_int__int_,
 LIBTP_DEFINE_FUNC(offSwitch__10dSv_info_cFii, dSv_info_c__offSwitch_int__int_,
                   void, dSv_info_c__offSwitch, (void* addr, int i_no, int i_roomNo))
 
+LIBTP_DEFINE_FUNC(isSwitch__10dSv_info_cCFii, dSv_info_c__isSwitch_int__int__const,
+                  BOOL, dSv_info_c__isSwitch, (void* addr, int i_no, int i_roomNo))
+
 LIBTP_DEFINE_FUNC(isSwitch__12dSv_memBit_cCFi, dSv_memBit_c__isSwitch_int__const,
                   bool, dSv_memBit_c__isSwitch, (void* addr, int i_no))
 

@@ -159,6 +159,8 @@ void onSwitchHook(void* addr, int pFlag, int i_roomNo) {
     if (g_flagLogEnabled) {
         if (pFlag < 0x80) {
             snprintf(buf, sizeof(buf), "%s[%d] : %d | ON", "Memory Switch", tmp >> 5, tmp & 0x1F);
+            OSReport("pFlag: %d\n", pFlag);
+            OSReport("roomNo: %d\n", i_roomNo);
         } else if (pFlag < 0xC0) {
             tmp -= 0x80;
             snprintf(buf, sizeof(buf), "%s[%d] : %d | ON", "Dan Switch", tmp >> 5, tmp & 0x1F);

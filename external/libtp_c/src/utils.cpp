@@ -4,20 +4,17 @@
 
 // Toggles save event flags
 KEEP_FUNC void setEventFlag(u16 flag) {
-    if (dComIfGs_isEventBit(flag)) {
-        dComIfGs_offEventBit(flag);
-    } else {
-        dComIfGs_onEventBit(flag);
-    }
+    dComIfGs_isEventBit(flag) ? dComIfGs_offEventBit(flag) : dComIfGs_onEventBit(flag);
 }
 
 // Toggles equipment items
 KEEP_FUNC void setItemFirstBit(u8 item) {
-    if (dComIfGs_isItemFirstBit(item)) {
-        dComIfGs_offItemFirstBit(item);
-    } else {
-        dComIfGs_onItemFirstBit(item);
-    }
+    dComIfGs_isItemFirstBit(item) ? dComIfGs_offItemFirstBit(item) : dComIfGs_onItemFirstBit(item);
+}
+
+// Toggle dungeon switches
+KEEP_FUNC void setDungeonSwitch(int pFlag, int i_roomNo) {
+    dComIfGs_isSwitch(pFlag, i_roomNo) ? dComIfGs_offSwitch(pFlag, i_roomNo) : dComIfGs_onSwitch(pFlag, i_roomNo);
 }
 
 // Set Savefile spawn info

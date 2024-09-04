@@ -10,6 +10,9 @@ void setEventFlag(u16 flag);
 // Toggles equipment items
 void setItemFirstBit(u8 item);
 
+// Toggle dungeon switches
+void setDungeonSwitch(int pFlag, int i_roomNo);
+
 // Set Savefile spawn info
 void setReturnPlace(const char* stage, s8 room, u8 spawn);
 

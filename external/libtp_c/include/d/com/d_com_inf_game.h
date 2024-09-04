@@ -622,6 +622,10 @@ inline void dComIfGs_offSwitch(int i_no, int i_roomNo) {
     dSv_info_c__offSwitch(&g_dComIfG_gameInfo.info, i_no, i_roomNo);
 }
 
+inline BOOL dComIfGs_isSwitch(int i_no, int i_roomNo) {
+    return dSv_info_c__isSwitch(&g_dComIfG_gameInfo.info, i_no, i_roomNo);
+}
+
 inline void dComIfGs_putSave(int i_stageNo) {
     tp_putSave(&g_dComIfG_gameInfo.info, i_stageNo);
 }
