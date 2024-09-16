@@ -3,6 +3,7 @@
 #include "settings.h"
 #include "libtp_c/include/d/com/d_com_inf_game.h"
 #include "libtp_c/include/f_op/f_op_actor_mng.h"
+#include "libtp_c/include/f_pc/f_pc_stdcreate_req.h"
 #include "libtp_c/include/m_Do/m_Do_printf.h"
 #include "gz_flags.h"
 #include "pos_settings.h"
@@ -57,10 +58,19 @@ KEEP_FUNC ActorSpawnMenu::ActorSpawnMenu(ActorSpawnData& data)
 
 ActorSpawnMenu::~ActorSpawnMenu() {}
 
-void actorFastCreateAtLink(short id, uint32_t parameters, int8_t subtype) {
-    fopAcM_create(id, parameters, &dComIfGp_getPlayer()->current.pos,
-                  dComIfGp_getPlayer()->current.roomNo, &dComIfGp_getPlayer()->current.angle,
-                  nullptr, subtype);
+void actorFastCreateAtLink(s16 id, u32 parameters, s8 subtype) {
+    fopAcM_prm_class* appen = fopAcM_CreateAppend();
+    if (appen != NULL) {
+        appen->mParameter = parameters;
+        appen->mPos = dComIfGp_getPlayer()->current.pos;
+        appen->mAngle = dComIfGp_getPlayer()->current.angle;
+        appen->mEnemyNo = 0xFFFF;
+        appen->mSubtype = subtype;
+        appen->mRoomNo = dComIfGp_getPlayer()->current.roomNo;
+        
+        layer_class* curLayer = fpcLy_CurrentLayer();
+        fpcSCtRq_Request(curLayer, id, nullptr, nullptr, appen);
+    }
 }
 
 void ActorSpawnMenu::loadActorName(s16& i_procName) {

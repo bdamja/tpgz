@@ -272,6 +272,9 @@ LIBTP_DEFINE_FUNC(fopAcM_seenActorAngleY__FPC10fopAc_ac_cPC10fopAc_ac_c, fopAcM_
 LIBTP_DEFINE_FUNC(gndCheck__11fopAcM_gc_cFPC4cXyz, fopAcM_gc_c__gndCheck_cXyz_const___,
                   bool, fopAcM_gc_c__gndCheck, (const cXyz*))
 
+LIBTP_DEFINE_FUNC(fopAcM_CreateAppend__Fv, fopAcM_CreateAppend_void_,
+                  fopAcM_prm_class*, fopAcM_CreateAppend, (void))
+
 #define tp_fopAcM_gc_c__mGroundY_addr 0x80450cd0
 #define tp_fopAcM_gc_c__mGroundY (*(f32*)(tp_fopAcM_gc_c__mGroundY_addr))
 
