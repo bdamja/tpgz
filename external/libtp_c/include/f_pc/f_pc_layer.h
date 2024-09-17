@@ -21,4 +21,7 @@ typedef struct layer_class {
     } counts;
 } layer_class;
 
+LIBTP_DEFINE_FUNC(fpcLy_CurrentLayer__Fv, fpcLy_CurrentLayer_void_,
+                  layer_class*, fpcLy_CurrentLayer, (void))
+
 #endif
