@@ -7,6 +7,9 @@
 // Toggles save event flags
 void setEventFlag(u16 flag);
 
+// Toggles temp event flags
+void setTempEventFlag(u16 flag);
+
 // Toggles equipment items
 void setItemFirstBit(u8 item);
 

@@ -11,6 +11,8 @@ KEEP_FUNC GeneralFlagsMenu::GeneralFlagsMenu(Cursor& cursor)
     : Menu(cursor),
       lines{
           {"boss flag", BOSS_FLAG_INDEX, "Sets the boss flag value", true, [](){return generalFlagsData->l_bossFlag;}},
+          {"coro td", CORO_TD_INDEX, "Toggle temporary flag for Coro text displacement", true,
+           [](){return generalFlagsData->l_coroTD;}},
           {"epona stolen", EPONA_STOLEN_INDEX, "Toggle flag for Epona being stolen", true,
            [](){return generalFlagsData->l_eponaStolen;}},
           {"epona tamed", EPONA_TAMED_INDEX, "Toggle flag for Epona being tamed", true,
@@ -26,6 +28,8 @@ KEEP_FUNC GeneralFlagsMenu::GeneralFlagsMenu(Cursor& cursor)
            true, [](){return generalFlagsData->l_midnaRide;}},
           {"midna available", MIDNA_Z_INDEX, "Toggle flag for being able to call Midna", true,
            [](){return generalFlagsData->l_midnaZ;}},
+          {"rusl td", RUSL_TD_INDEX, "Toggle temporary flag for Rusl text displacement", true,
+           [](){return generalFlagsData->l_ruslTD;}},
           {"transform/warp", TRANSFORM_WARP_INDEX, "Toggle flag for transforming/warping", true,
            [](){return generalFlagsData->l_transformWarp;}},
           {"wolf sense", WOLF_SENSE_INDEX, "Toggle flag for wolf sense", true, [](){return generalFlagsData->l_wolfSense;}},
@@ -40,6 +44,8 @@ void GeneralFlagsMenu::draw() {
 
     // update flags
     generalFlagsData->l_bossFlag = bossFlags > 0;
+    generalFlagsData->l_coroTD = dComIfGs_isTmpBit(0x0002);
+    generalFlagsData->l_ruslTD = dComIfGs_isTmpBit(0x0006);
     generalFlagsData->l_midnaCharge = dComIfGs_isEventBit(0x0501);
     generalFlagsData->l_transformWarp = dComIfGs_isEventBit(0x0D04);
     generalFlagsData->l_midnaZ = dComIfGs_isEventBit(0x0C10);
@@ -50,6 +56,7 @@ void GeneralFlagsMenu::draw() {
     generalFlagsData->l_midnaHealed = dComIfGs_isEventBit(0x1E08);
     generalFlagsData->l_midnaRide = dComIfGs_isTransformLV(3);
     generalFlagsData->l_wolfSense = dComIfGs_isEventBit(0x4308);
+    
 
     if (GZ_getButtonTrig(BACK_BUTTON)) {
         g_menuMgr->pop();
@@ -64,6 +71,9 @@ void GeneralFlagsMenu::draw() {
             } else {
                 bossFlags = 255;
             }
+            break;
+        case CORO_TD_INDEX:
+            setTempEventFlag(0x0002);
             break;
         case EPONA_STOLEN_INDEX:
             setEventFlag(0x0580);
@@ -89,6 +99,9 @@ void GeneralFlagsMenu::draw() {
             break;
         case MIDNA_Z_INDEX:
             setEventFlag(0x0C10);
+            break;
+        case RUSL_TD_INDEX:
+            setTempEventFlag(0x0006);
             break;
         case TRANSFORM_WARP_INDEX:
             setEventFlag(0x0D04);

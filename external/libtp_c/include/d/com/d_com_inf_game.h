@@ -707,6 +707,18 @@ inline void dComIfGs_offEventBit(u16 flag) {
     dSv_event_c__offEventBit(&g_dComIfG_gameInfo.info.mSavedata.mEvent, flag);
 }
 
+inline bool dComIfGs_isTmpBit(u16 flag) {
+    return dSv_event_c__isEventBit(&g_dComIfG_gameInfo.info.mTmp, flag);
+}
+
+inline void dComIfGs_onTmpBit(u16 flag) {
+    dSv_event_c__onEventBit(&g_dComIfG_gameInfo.info.mTmp, flag);
+}
+
+inline void dComIfGs_offTmpBit(u16 flag) {
+    dSv_event_c__offEventBit(&g_dComIfG_gameInfo.info.mTmp, flag);
+}
+
 inline void dComIfGs_setKeyNum(u8 num) {
     g_dComIfG_gameInfo.info.getMemory().getBit().setKeyNum(num);
 }
