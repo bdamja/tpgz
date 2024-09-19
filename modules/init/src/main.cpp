@@ -45,6 +45,7 @@ void main() {
     g_drawListener->addListener(GZ_renderMenuTitle);
     g_drawListener->addListener(GZ_renderFifoQueue);
     g_drawListener->addListener(GZ_displayLinkInfo);
+    g_drawListener->addListener(GZ_displayStageInfo);
     g_drawListener->addListener(GZ_drawHeapInfo);
     g_drawListener->addListener(Timer::drawTimer);
     g_drawListener->addListener(Timer::drawLoadTimer);
@@ -122,6 +123,7 @@ void GZ_PosSettings_initDefaults() {
 #endif
     GZStng_add(STNG_SPRITES_MENU, new Vec2{25.f, 60.f}, sizeof(Vec2));
     GZStng_add(STNG_SPRITES_DEBUG_INFO, new Vec2{450.0f, 200.f}, sizeof(Vec2));
+    GZStng_add(STNG_SPRITES_STAGE_INFO, new Vec2{145.0f, 350.f}, sizeof(Vec2));
     GZStng_add(STNG_SPRITES_TIMER_SPR, new Vec2{450.0f, 420.f}, sizeof(Vec2));
     GZStng_add(STNG_SPRITES_LOAD_TIMER_SPR, new Vec2{450.0f, 30.f}, sizeof(Vec2));
     GZStng_add(STNG_SPRITES_IGT_TIMER_SPR, new Vec2{35.0f, 30.f}, sizeof(Vec2));

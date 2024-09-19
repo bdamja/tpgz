@@ -106,6 +106,8 @@ enum GZSettingID : uint32_t {
     // New Adds
     STNG_TOOLS_LFC,
     STNG_TOOLS_ELEVATOR_ESCAPE,
+    STNG_TOOLS_STAGE_INFO,
+    STNG_SPRITES_STAGE_INFO,
 };
 
 struct GZSettingEntry {

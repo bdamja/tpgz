@@ -82,6 +82,56 @@ KEEP_FUNC void GZ_displayLinkInfo() {
     }
 }
 
+KEEP_FUNC void GZ_displayStageInfo() {
+    if (!GZStng_getData(STNG_TOOLS_STAGE_INFO, false)) {
+        return;
+    }
+
+    Vec2 spriteOffset = GZ_getSpriteOffset(STNG_SPRITES_STAGE_INFO);
+
+    char cur_stage[15];
+    char cur_room[10];
+    char cur_point[11];
+    char cur_layer[10];
+
+    snprintf(cur_stage, sizeof(cur_stage), "Stage: %s", g_dComIfG_gameInfo.play.mStartStage.mStage);
+    snprintf(cur_room, sizeof(cur_room), "Room: %d", dStage_roomControl_c__mStayNo);
+    snprintf(cur_point, sizeof(cur_point), "Point: %d", g_dComIfG_gameInfo.play.mStartStage.mPoint);
+    snprintf(cur_layer, sizeof(cur_layer), "Layer: %d", dComIfG_play_c__getLayerNo(0));
+
+    Font::GZ_drawStr(cur_stage, spriteOffset.x,
+                        spriteOffset.y + 20.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+    Font::GZ_drawStr(cur_room, spriteOffset.x,
+                        spriteOffset.y + 40.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+    Font::GZ_drawStr(cur_point, spriteOffset.x,
+                        spriteOffset.y + 60.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+    Font::GZ_drawStr(cur_layer, spriteOffset.x,
+                        spriteOffset.y + 80.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+
+
+    char save_stage[20];
+    char save_room[15];
+    char save_point[16];
+
+    snprintf(save_stage, sizeof(save_stage), "Save Stage: %s", g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().mName);
+    snprintf(save_room, sizeof(save_room), "Save Room: %d", g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().mRoomNo);
+    snprintf(save_point, sizeof(save_point), "Save Point: %d", g_dComIfG_gameInfo.info.getPlayer().getPlayerReturnPlace().mPlayerStatus);
+
+    Font::GZ_drawStr(save_stage, spriteOffset.x + 150.0f,
+                        spriteOffset.y + 20.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+    Font::GZ_drawStr(save_room, spriteOffset.x + 150.0f,
+                        spriteOffset.y + 40.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+    Font::GZ_drawStr(save_point, spriteOffset.x + 150.0f,
+                        spriteOffset.y + 60.0f, 0xFFFFFFFF,
+                        GZ_checkDropShadows());
+}
+
 KEEP_FUNC void GZ_setTunicColor() {
     static int16_t cycle_r = 0;
     static int16_t cycle_g = 0;

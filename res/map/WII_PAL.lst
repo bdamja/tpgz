@@ -260,6 +260,8 @@
 // Z2AudioLib
 80521848:Z2SeMgr__mAudioMgrPtr
 
+8052115C:dStage_roomControl_c__mStayNo
+
 CC008000:wgPipe
 
 80006920:SECallback_int__int_

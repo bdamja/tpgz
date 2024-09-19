@@ -24,13 +24,16 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
           {"deku toad", HND_TOAD_INDEX, "Lakebed Temple miniboss"},
           {"kargorok flight", HND_KARG_INDEX, "Clip OoB with trumpet bird"},
           {"lanayru twilight", HND_LANAYRU_TWILIGHT_INDEX, "Lanayru Twilight tears"},
+          {"coro td", HND_COROTD_INDEX, "Text Displacement with Coro"},
+          {"early ele", HND_EARLY_ELE_INDEX, "OoB LJA to Death Mountain Elevator"},
+          {"goron mines", HND_GM_INDEX, "The Goron Mines segment"},
+          {"dangoro", HND_DANGORO_INDEX, "Goron Mines miniboss"},
+          {"fyrus", HND_FYRUS_INDEX, "Goron Mines boss"},
+          {"waterfall sidehop", HND_WATERFALL_SIDEHOP_INDEX, "Waterfall sidehop after Rutela skip"},
           {"boss bug", HND_BOSS_BUG_INDEX, "Lanayru Twilight boss bug"},
           {"kb2 skip", HND_KB_2_INDEX, "Clip to skip King Bulblin 2"},
           {"wagon escort", HND_ESCORT_INDEX, "Telma wagon escort"},
-          {"coro td", HND_COROTD_INDEX, "Text Displacement with Coro"},
-          {"goron mines", HND_GM_INDEX, "The Goron Mines segment"},
-          {"dangoro", HND_DANGORO_INDEX, "Goron Mines miniboss"},
-          {"post gm", HND_POST_GM_INDEX, "The segment after Goron Mines"},
+          {"eldin collection", HND_ELDIN_COLLECT_INDEX, "Eldin Field collection segment"},
           {"lakebed bk skip", HND_LAKEBED_BK_SKIP_INDEX, "Boss Key skip in Lakebed Temple"},
           {"morpheel", HND_MORPHEEL_INDEX, "Lakebed Temple boss"},
           {"mdh tower", HND_MDH_TOWER_INDEX, "MDH tower climb"},
@@ -48,7 +51,7 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
           {"post ag", HND_POST_AG_INDEX, "Collection cycle after Arbiter's"},
           {"snowpeak", HND_SPR_INDEX, "The Snowpeak Ruins segment"},
           {"darkhammer", HND_DARK_HAMMER_INDEX, "Snowpeak Ruins miniboss"},
-          {"spr superjump", HND_SPR_SUPERJUMP_INDEX, "SPR Super Jump to 2nd floor"},
+          {"spr 2", HND_SPR_2_INDEX, "The 2nd half of Snowpeak Ruins"},
           {"spr bk lja", HND_SPR_BK_LJA_INDEX, "LJA to Snowpeak Boss Key room"},
           {"spr bk room", HND_SPR_BK_ROOM_INDEX, "Snowpeak Boss Key room"},
           {"blizzeta", HND_BLIZZETA_INDEX, "Snowpeak Ruins boss"},
@@ -64,7 +67,9 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
           {"post tot", HND_POST_TOT_INDEX, "Collection cycle after Temple of Time"},
           {"hotspring minigame", HND_HOTSPRING_INDEX, "Goron hotspring water minigame"},
           {"gorge arc", HND_GORGE_ARC_INDEX, "Gorge / South Faron collection"},
+          {"silver rupee", HND_SILVER_RUPEE_INDEX, "Getting the Kakariko Silver Rupee"},
           {"ice puzzle", HND_PUZZLE_INDEX, "The Ice Puzzle segment"},
+          {"iza 2", HND_IZA2_INDEX, "Iza River Ride minigame"},
           {"hugo archery", HND_ARCHERY_INDEX, "Archery in Hidden Village"},
           {"city 1", HND_CITY_1_INDEX, "The 1st City in the Sky segment"},
           {"aeralfos skip", HND_AERALFOS_INDEX, "the city in the sky miniboss"},
@@ -94,13 +99,16 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
 HundoSavesMenu::~HundoSavesMenu() {}
 
 void HundoSavesMenu::draw() {
-    special HundoSpecials[HND_SPECIALS_AMNT] = {
+    special HundoSpecials[] = {
         special(HND_GOATS_1_INDEX, SaveMngSpecial_Goats1, nullptr),
         special(HND_MIST_INDEX, SaveMngSpecial_PurpleMist, nullptr),
         special(HND_KARG_INDEX, SaveMngSpecial_KargOoB, nullptr),
+        special(HND_EARLY_ELE_INDEX, SaveMngSpecial_EarlyEle, nullptr),
         special(HND_KB_2_INDEX, SaveMngSpecial_KB2Skip, nullptr),
         special(HND_ESCORT_INDEX, SaveMngSpecial_Escort, SaveMngSpecial_EscortKeys),
+        special(HND_ELDIN_COLLECT_INDEX, SaveMngSpecial_EldinCollection, nullptr),
         special(HND_DANGORO_INDEX, nullptr, SaveMngSpecial_Dangoro),
+        special(HND_WATERFALL_SIDEHOP_INDEX, SaveMngSpecial_WaterfallSidehop, nullptr),
         special(HND_LAKEBED_BK_SKIP_INDEX, SaveMngSpecial_LakebedBKSkip, nullptr),
         special(HND_MORPHEEL_INDEX, nullptr, SaveMngSpecial_Morpheel),
         special(HND_IZA_1_SKIP_INDEX, SaveMngSpecial_Iza1Skip, nullptr),
@@ -128,7 +136,7 @@ void HundoSavesMenu::draw() {
     }
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
-        SaveManager::triggerLoad(cursor.y, "hundo", HundoSpecials, HND_SPECIALS_AMNT);
+        SaveManager::triggerLoad(cursor.y, "hundo", HundoSpecials, ARRAY_COUNT(HundoSpecials));
         g_menuMgr->hide();
     }
 

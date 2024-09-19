@@ -188,6 +188,8 @@
 // Z2AudioLib
 80451368:mAudioMgrPtr__10Z2AudioMgr
 
+80450d64:dStage_roomControl_c__mStayNo
+
 CC008000:wgPipe
 
 800056c0:version_check__Fv

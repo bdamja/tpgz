@@ -3,11 +3,12 @@
 #include "settings.h"
 #include "libtp_c/include/dolphin/mtx/vec.h"
 
-#define SPRITES_AMNT 10
+#define SPRITES_AMNT 11
 enum SpritesIndex {
     MENU_INDEX,
     VIEWER_INDEX,
     DEBUG_INFO_INDEX,
+    STAGE_INFO_INDEX,
     TIMER_SPR_INDEX,
     LOAD_TIMER_SPR_INDEX,
     IGT_TIMER_SPR_INDEX,

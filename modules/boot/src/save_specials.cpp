@@ -110,6 +110,21 @@ KEEP_FUNC void SaveMngSpecial_WaterfallSidehop() {
     g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 10.0f;  // link spawns swimming forward
 }
 
+KEEP_FUNC void SaveMngSpecial_EarlyEle() {
+    gSaveManager.injectDefault_during();
+    dComIfGs_onTmpBit(0x0002);
+}
+
+KEEP_FUNC void SaveMngSpecial_HorseSpawn() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1;  // spawn on epona
+}
+
+KEEP_FUNC void SaveMngSpecial_EldinCollection() {
+    SaveMngSpecial_HorseSpawn();
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 42.0f;
+}
+
 KEEP_FUNC void SaveMngSpecial_KB2Skip() {
     gSaveManager.injectDefault_during();
     setNextStageLayer(3);
@@ -231,8 +246,8 @@ KEEP_FUNC void SaveMngSpecial_HugoArchery() {
 
 KEEP_FUNC void SaveMngSpecial_CityPoeCycle() {
     gSaveManager.injectDefault_during();
-    gSaveManager.setSaveAngle(71);
-    gSaveManager.setSavePosition(-14005.31f, 3000.0f, -15854.05f);
+    gSaveManager.setSaveAngle(0);
+    gSaveManager.setSavePosition(-13990.0f, 3000.0f, -16200.0f);
     gSaveManager.setLinkInfo();
 }
 

@@ -14,6 +14,11 @@ void SaveMngSpecial_PurpleMist();
 void SaveMngSpecial_KargOoB();
 void SaveMngSpecial_WaterfallSidehop();
 
+void SaveMngSpecial_EarlyEle();
+
+void SaveMngSpecial_HorseSpawn();
+void SaveMngSpecial_EldinCollection();
+
 void SaveMngSpecial_KB2Skip();
 void SaveMngSpecial_Escort();
 void SaveMngSpecial_EscortKeys();
