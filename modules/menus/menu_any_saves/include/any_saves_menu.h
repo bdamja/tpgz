@@ -127,10 +127,5 @@ public:
     virtual void draw();
 
 private:
-#ifdef GCN_PLATFORM
     Line lines[ANY_SAVES_COUNT];
-#endif
-#ifdef WII_PLATFORM
-    Line lines[ANY_SAVES_COUNT];
-#endif
 };

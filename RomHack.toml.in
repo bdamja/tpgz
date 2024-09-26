@@ -25,8 +25,8 @@ iso = "@TPGZ_CFG_BLD_ISO@"
 "tpgz/save_files/any" = "../@TPGZ_CFG_SAVE_ANY_PATH@/any"
 
 # any% bite saves
-"tpgz/save_files/any_bite.bin" = "../res/save_files/any_bite.bin"
-"tpgz/save_files/any_bite" = "../res/save_files/any_bite"
+"tpgz/save_files/any_bite.bin" = "../@TPGZ_CFG_SAVE_ANY_PATH@/any_bite.bin"
+"tpgz/save_files/any_bite" = "../@TPGZ_CFG_SAVE_ANY_PATH@/any_bite"
 
 # 100% saves
 "tpgz/save_files/hundo.bin" = "../res/save_files/hundo.bin"

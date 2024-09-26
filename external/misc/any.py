@@ -138,7 +138,7 @@ def main(args=None):
             "arealfos",
             "cits_2",
             "cits_tower",
-            "argarok",
+            "argorok",
             "palace_1",
             "palace_2",
             "early_platform",
@@ -153,14 +153,20 @@ def main(args=None):
     any_p = [{**copy.deepcopy(default_entry), "id": i, "filename": name}
              for i, name in enumerate(file_names)]
 
-    file_dict = {e: i for i, e in enumerate(file_names)}
+    file_dict = {}
+    for i, e in enumerate(file_names):
+        if not e in file_dict:
+            file_dict[e] = [i]
+        else:
+            file_dict[e].append(i)
 
-    def update_entry(filename, data):
-        if filename in file_names:
-            any_p[file_dict[filename]] = {**any_p[file_dict[filename]], **data}
+    def update_entry(filename, data, n = 1):
+        count = sum(1 for entry in any_p if entry["filename"] == filename)
+        if n <= count and n > 0:
+            any_p[file_dict[filename][n - 1]] = {**any_p[file_dict[filename][n - 1]], **data}
 
     # ordon gate clip
-    update_entry("ordon_gate_clip", {
+    update_entry("ordon_gate_clip", n = 1, data = {
         'requirements': Requirements.POS | Requirements.CAM,
         'pos': (827.450012, 216.490097, -4533.90625),
         'angle': 498,
@@ -172,12 +178,16 @@ def main(args=None):
     })
 
     if args.platform is Platform.GCN:
-        any_p[1]["requirements"] = Requirements.POS | Requirements.CAM
-        any_p[1]["pos"] = (466.622467, 319.770752, -11651.3867)
-        any_p[1]["angle"] = 52540
-        any_p[1]["cam"]["pos"] = (735.525391, 524.418701, -11576.4746)
-        any_p[1]["cam"]["target"] = (465.674622, 421.052704, -11651.0684)
-        any_p[1]["counter"] = 10
+        update_entry("ordon_gate_clip", n = 2, data = {
+            'requirements': Requirements.POS | Requirements.CAM,
+            'pos': (466.622467, 319.770752, -11651.3867),
+            'angle': 52540,
+            'cam': {
+                'pos': (735.525391, 524.418701, -11576.4746),
+                'target': (465.674622, 421.052704, -11651.0684)
+            },
+            'counter': 10
+        })
 
     # back in time
     update_entry("bit", {
