@@ -6,9 +6,7 @@ A *Twilight Princess* ROM hack for speedrun practice and research.
 
 ## Download
 ### Web
-Patch your TP (GameCube) rom on the web using our website [tpgz.io](https://tpgz.io).
-- This uses a lot of memory, so it requires a decent computer.
-- The Wii version is currently not supported for web patching. Please follow the offline patching guide.
+Patch your TP (GameCube/Wii) rom on the web using our website [tpgz.io](https://tpgz.io).
 
 ### Offline
 To patch your rom offline, please follow our [guide](./docs/CreatingAnIso.md).
