@@ -20,6 +20,13 @@ jobs:
       with:
         role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
         aws-region: ${{ secrets.AWS_REGION }}
+    - name: Download existing meta.json
+      run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/patches/meta.json meta.json
+    - name: Update meta.json
+      run: |
+        python3 external/misc/meta.py
+    - name: Upload updated meta.json to S3
+      run: aws s3 cp meta.json s3://${{ secrets.AWS_S3_BUCKET }}/patches/meta.json --acl public-read
     - name: Sync directory to S3
       run: |
           aws s3 sync patches/ s3://${{ secrets.AWS_S3_BUCKET }}/patches/ --acl public-read
