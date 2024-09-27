@@ -12,7 +12,7 @@ class JKRHeap;
 
 
 #if defined(WII_PLATFORM) || defined(GCN_PAL)
-class dScnLogo_c_wii {
+class dScnLogo_c {
 public:
     /* 0x000*/ u8 field_0x00[0x20c];
     /* 0x20C */ u8 mExecCommand;

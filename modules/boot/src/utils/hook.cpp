@@ -60,8 +60,8 @@ HOOK_DEF(void, daAlink_c__setCutJumpSpeed, (daAlink_c*, int));
 HOOK_DEF(void, daAlink_c__posMove, (daAlink_c*));
 
 #ifdef WII_PLATFORM
-HOOK_DEF(void, dScnLogo_c__create, (dScnLogo_c_wii*));
-HOOK_DEF(void, dScnLogo_c__dvdWaitDraw, (dScnLogo_c_wii*));
+HOOK_DEF(void, dScnLogo_c__create, (dScnLogo_c*));
+HOOK_DEF(void, dScnLogo_c__dvdWaitDraw, (dScnLogo_c*));
 HOOK_DEF(int, mDoGph_gInf_c__startFadeOut, (int));
 #else
 HOOK_DEF(void, dScnLogo_c__warningInDraw, (dScnLogo_c*));
@@ -236,12 +236,12 @@ void daAlink_c__setCutJumpSpeedHook(daAlink_c* i_this, int i_air) {
 
 #ifdef WII_PLATFORM
 // Skip intro logos (Wii)
-void dScnLogo_c__create(dScnLogo_c_wii* i_this) {
+void dScnLogo_c__create(dScnLogo_c* i_this) {
     dScnLogo_c__createTrampoline(i_this);
     i_this->mExecCommand = 14; // dScnLogo_c::EXEC_DVD_WAIT
 }
 
-void dScnLogo_c__dvdWaitDraw(dScnLogo_c_wii* i_this) {
+void dScnLogo_c__dvdWaitDraw(dScnLogo_c* i_this) {
     dScnLogo_c__dvdWaitDrawTrampoline(i_this);
 }
 
@@ -471,8 +471,8 @@ void f_dBgS_Acch__CrrPos(dBgS_Acch*, dBgS&);
 void f_daAlink_c__setCutJumpSpeed(daAlink_c*, int);
 void f_daAlink_c__posMove(daAlink_c*);
 #ifdef WII_PLATFORM
-void f_dScnLogo_c__create(dScnLogo_c_wii*);
-void f_dScnLogo_c__dvdWaitDraw(dScnLogo_c_wii*);
+void f_dScnLogo_c__create(dScnLogo_c*);
+void f_dScnLogo_c__dvdWaitDraw(dScnLogo_c*);
 void f_mDoGph_gInf_c__startFadeOut(int);
 #else
 void f_dScnLogo_c__warningInDraw(dScnLogo_c*);
