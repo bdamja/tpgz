@@ -241,6 +241,10 @@ void dScnLogo_c__create(dScnLogo_c* i_this) {
     i_this->mExecCommand = dScnLogo_c::EXEC_DVD_WAIT;
 }
 
+int mDoGph_gInf_c__startFadeOut(int i) {
+    return mDoGph_gInf_c__startFadeOutTrampoline(i);
+}
+
 void dScnLogo_c__dvdWaitDraw(dScnLogo_c* i_this) {
     dScnLogo_c__dvdWaitDrawTrampoline(i_this);
 }
