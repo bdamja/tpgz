@@ -238,7 +238,7 @@ void daAlink_c__setCutJumpSpeedHook(daAlink_c* i_this, int i_air) {
 // Skip intro logos (Wii)
 void dScnLogo_c__create(dScnLogo_c* i_this) {
     dScnLogo_c__createTrampoline(i_this);
-    i_this->mExecCommand = 14; // dScnLogo_c::EXEC_DVD_WAIT
+    i_this->mExecCommand = dScnLogo_c::EXEC_DVD_WAIT;
 }
 
 void dScnLogo_c__dvdWaitDraw(dScnLogo_c* i_this) {

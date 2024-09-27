@@ -14,6 +14,25 @@ class JKRHeap;
 #if defined(WII_PLATFORM) || defined(GCN_PAL)
 class dScnLogo_c {
 public:
+    enum {
+        /* 0x0 */ EXEC_WARNING_IN,
+        /* 0x1 */ EXEC_WARNING_DISP,
+        /* 0x2 */ EXEC_WARNING_OUT,
+        /* 0x3 */ EXEC_NINTENDO_IN,
+        /* 0x4 */ EXEC_NINTENDO_OUT,
+        /* 0x5 */ EXEC_DOLBY_IN,
+        /* 0x6 */ EXEC_DOLBY_OUT,
+        /* 0x7 */ EXEC_DOLBY_OUT2,
+        /* 0x8 */ EXEC_PROG_IN,
+        /* 0x9 */ EXEC_PROG_SEL,
+        /* 0xA */ EXEC_PROG_OUT,
+        /* 0xB */ EXEC_PROG_SET,
+        /* 0xC */ EXEC_PROG_SET2,
+        /* 0xD */ EXEC_PROG_CHANGE,
+        /* 0xE */ EXEC_DVD_WAIT,
+        /* 0xF */ EXEC_SCENE_CHANGE,
+    };
+    
     /* 0x000*/ u8 field_0x00[0x20c];
     /* 0x20C */ u8 mExecCommand;
     /* 0x20D */ u8 field_0x209;
