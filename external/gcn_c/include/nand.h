@@ -10,6 +10,10 @@
 #define NAND_OPEN_WRITE 0x02
 #define NAND_OPEN_RW (NAND_OPEN_READ | NAND_OPEN_WRITE)
 
+#define NAND_SEEK_BEG 0
+#define NAND_SEEK_CUR 1
+#define NAND_SEEK_END 2
+
 typedef struct NANDInfo {
     uint8_t unk[0x90];
 } NANDInfo;

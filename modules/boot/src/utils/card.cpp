@@ -36,18 +36,27 @@ int32_t GZ_storageWrite(Storage* storage, void* data, int32_t size, int32_t offs
     int32_t read_bytes = 0;
 
     while (result == Ready && size > 0) {
-        StorageRead(*storage, buf, sector_size, (offset & ~(sector_size - 1)));
-        if (result != Ready) {
+        OSReport("GZ_storageWrite: Writing 0x%x bytes to offset 0x%x\n", MIN(size, sector_size), offset);
+        StorageSeek(storage, (offset & ~(sector_size - 1)), STORAGE_SEEK_BEG);
+        StorageRead(*storage, buf, sector_size);
+        if (storage->result != Ready) {
+            result = IoError;
             break;
         }
         int32_t rem_size = sector_size - (offset & (sector_size - 1));
         memcpy(buf + (offset & (sector_size - 1)), (void*)((uint32_t)data + read_bytes),
                MIN(rem_size, size));
-        StorageWrite(*storage, buf, sector_size, (offset & ~(sector_size - 1)));
+        StorageSeek(storage, (offset & ~(sector_size - 1)), STORAGE_SEEK_BEG);
+        StorageWrite(*storage, buf, sector_size);
+        if (storage->result != Ready) {
+            result = IoError;
+            break;
+        }
         read_bytes += MIN(rem_size, size);
         size -= rem_size;
         offset += rem_size;
     }
+    OSReport("GZ_storageWrite: Done Writing\n");
     delete[] buf;
     return result;
 }
@@ -62,7 +71,8 @@ int32_t GZ_storageRead(Storage* storage, void* data, int32_t size, int32_t offse
     int32_t read_bytes = 0;
 
     while (result == Ready && size > 0) {
-        StorageRead(*storage, buf, sector_size, (offset & ~(sector_size - 1)));
+        StorageSeek(storage, (offset & ~(sector_size - 1)), STORAGE_SEEK_BEG);
+        StorageRead(*storage, buf, sector_size);
         if (result != Ready) {
             break;
         }
@@ -244,7 +254,11 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
     posData.cam.target = matrixInfo.matrix_info->target;
     posData.cam.pos = matrixInfo.matrix_info->pos;
     posData.angle = dComIfGp_getPlayer()->shape_angle.y;
-    uint32_t file_size = (uint32_t)(ceil((double)sizeof(dSv_info_c) / (double)storage.sector_size) *
+    OSReport("GZ_storeMemfile: position: {%f, %f, %f}\n", posData.link.x, posData.link.y, posData.link.z);
+    OSReport("GZ_storeMemfile: angle: %f\n", posData.angle);
+    OSReport("GZ_storeMemfile: cam target: {%f, %f, %f}\n", posData.cam.target.x, posData.cam.target.y, posData.cam.target.z);
+    OSReport("GZ_storeMemfile: cam pos: {%f, %f, %f}\n", posData.cam.pos.x, posData.cam.pos.y, posData.cam.pos.z);
+    uint32_t file_size = (uint32_t)(ceil((double)(sizeof(dSv_info_c) + 1 + sizeof(PositionData)) / (double)storage.sector_size) *
                                     storage.sector_size);
 
     storage.result = StorageDelete(0, storage.file_name_buffer);
@@ -258,10 +272,13 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
             setReturnPlace(g_dComIfG_gameInfo.play.mStartStage.mStage,
                            g_dComIfG_gameInfo.play.mEvent.field_0x12c, 0);
 
-            storage.result = GZ_storageWrite(&storage, &g_dComIfG_gameInfo, sizeof(dSv_info_c), 0,
+            uint8_t* data = new (-32) uint8_t[sizeof(dSv_info_c) + 1 + sizeof(PositionData)];
+            memcpy(data, &g_dComIfG_gameInfo, sizeof(dSv_info_c));
+            memcpy(&data[sizeof(dSv_info_c) + 1], &posData, sizeof(PositionData));
+            storage.result = GZ_storageWrite(&storage, data, sizeof(dSv_info_c) + 1 + sizeof(PositionData), 0,
                                              storage.sector_size);
-            storage.result = GZ_storageWrite(&storage, &posData, sizeof(posData),
-                                             sizeof(dSv_info_c) + 1, storage.sector_size);
+            OSReport("GZ_storeMemfile: data write result: %d\n", storage.result);
+            delete[] data;
             if (storage.result == Ready) {
                 FIFOQueue::push("saved memfile!", Queue);
             } else {
@@ -332,7 +349,13 @@ KEEP_FUNC void GZ_loadMemfile(Storage& storage) {
     storage.result = StorageOpen(0, storage.file_name_buffer, &storage.info, OPEN_MODE_RW);
     if (storage.result == Ready) {
         PositionData posData;
+        OSReport("GZ_loadMemfile: reading position data at 0x%x\n", sizeof(dSv_info_c) + 1);
         storage.result = GZ_readMemfile(&storage, posData, storage.sector_size);
+        OSReport("GZ_loadMemfile: result: %d\n", storage.result);
+        OSReport("GZ_loadMemfile: position: {%f, %f, %f}\n", posData.link.x, posData.link.y, posData.link.z);
+        OSReport("GZ_loadMemfile: angle: %f\n", posData.angle);
+        OSReport("GZ_loadMemfile: cam target: {%f, %f, %f}\n", posData.cam.target.x, posData.cam.target.y, posData.cam.target.z);
+        OSReport("GZ_loadMemfile: cam pos: {%f, %f, %f}\n", posData.cam.pos.x, posData.cam.pos.y, posData.cam.pos.z);
         if (storage.result == Ready) {
             FIFOQueue::push("loaded memfile!", Queue);
             SaveManager::injectDefault_before();

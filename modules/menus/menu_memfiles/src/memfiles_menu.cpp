@@ -11,8 +11,6 @@
 
 #define MAX_SAVE_SLOTS 20
 
-PositionData memfile_posdata;
-
 KEEP_FUNC MemfilesMenu::MemfilesMenu(MemfilesData& data)
     : Menu(data.cursor), l_fileNo(data.l_fileNo), lines{
     {"file slot:", MEMFILE_SLOT_INDEX, "Select memfile slot"},

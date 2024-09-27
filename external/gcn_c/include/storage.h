@@ -10,6 +10,9 @@
 #define OPEN_MODE_READ
 #define OPEN_MODE_WRITE
 #define OPEN_MODE_RW
+#define STORAGE_SEEK_BEG 0
+#define STORAGE_SEEK_CUR 1
+#define STORAGE_SEEK_END 2
 #else  // WII_PLATFORM
 #include "nand.h"
 #define STORAGE_FILENAME_MAX NAND_FILENAME_MAX
@@ -17,6 +20,9 @@
 #define OPEN_MODE_READ NAND_OPEN_READ
 #define OPEN_MODE_WRITE NAND_OPEN_WRITE
 #define OPEN_MODE_RW NAND_OPEN_RW
+#define STORAGE_SEEK_BEG NAND_SEEK_BEG
+#define STORAGE_SEEK_CUR NAND_SEEK_CUR
+#define STORAGE_SEEK_END NAND_SEEK_END
 #endif  // WII_PLATFORM
 
 enum StorageError {
@@ -45,6 +51,7 @@ typedef struct Storage {
     int32_t result;
     char file_name_buffer[STORAGE_FILENAME_MAX * 2];
     uint32_t result_size;
+    uint32_t position;
 } Storage;
 
 #ifndef WII_PLATFORM
@@ -52,10 +59,26 @@ typedef struct Storage {
 #define StorageDelete(ch, fileName) CARDDelete(ch, fileName)
 #define StorageOpen(ch, fileName, fileInfo, mode) CARDOpen(ch, fileName, fileInfo)
 #define StorageClose(fileInfo) CARDClose(fileInfo)
-#define StorageRead(storage, data, length, offset)                                                 \
-    ({ (storage).result = CARDRead(&(storage).info, data, length, offset); })
-#define StorageWrite(storage, data, length, offset)                                                \
-    ({ (storage).result = CARDWrite(&(storage).info, data, length, offset); })
+#define StorageRead(storage, data, length)                                                         \
+    ({ (storage).result = CARDRead(&(storage).info, data, length, (storage).position); (storage).position += length; (storage).result; })
+#define StorageWrite(storage, data, length)                                                        \
+    ({ (storage).result = CARDWrite(&(storage).info, data, length, (storage).position); (storage).position += length; (storage).result; })
+inline int32_t StorageSeek(Storage* storage, int32_t offset, int32_t whence) {
+    switch (whence) {
+        case STORAGE_SEEK_BEG:
+            storage->position = (uint32_t)offset;
+            break;
+        case STORAGE_SEEK_CUR:
+            storage->position += offset;
+            break;
+        case STORAGE_SEEK_END:
+            storage->position = storage->info.length + offset;
+            break;
+        default:
+            return IoError;
+    }
+    return storage->position;
+}
 #else  // WII_PLATFORM
 #define StorageCreate(ch, fileName, size, fileBuffer)                                              \
     ({                                                                                             \
@@ -66,20 +89,17 @@ typedef struct Storage {
 #define StorageDelete(ch, fileName) NANDDelete(fileName)
 #define StorageOpen(ch, fileName, fileInfo, mode) NANDOpen(fileName, fileInfo, mode)
 #define StorageClose(fileInfo) NANDClose(fileInfo)
-#define StorageRead(storage, data, length, offset)                                                 \
+#define StorageRead(storage, data, length)                                                         \
     ({                                                                                             \
-        (storage).result = NANDSeek(&(storage).info, offset, 0);                                   \
-        if ((storage).result == Ready) {                                                           \
-            (storage).result_size = NANDRead(&(storage).info, data, length);                       \
-        }                                                                                          \
+        (storage).result_size = NANDRead(&(storage).info, data, length);                           \
+        (storage).result = Ready;                                                                  \
     })
-#define StorageWrite(storage, data, length, offset)                                                \
+#define StorageWrite(storage, data, length)                                                        \
     ({                                                                                             \
-        (storage).result = NANDSeek(&(storage).info, offset, 0);                                   \
-        if ((storage).result == Ready) {                                                           \
-            (storage).result_size = NANDWrite(&(storage).info, data, length);                      \
-        }                                                                                          \
+        (storage).result_size = NANDWrite(&(storage).info, data, length);                          \
+        (storage).result = Ready;                                                                  \
     })
+#define StorageSeek(storage, offset, whence) NANDSeek(&(*(storage)).info, offset, whence)
 #endif  // WII_PLATFORM
 
 #endif  // __STORAGE_H__
