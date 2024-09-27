@@ -3,7 +3,7 @@
 
 struct DungeonFlagsData {
     bool init_once = false;
-    bool l_introFlag;
+    // bool l_introFlag;
     bool l_mapFlag;
     bool l_compassFlag;
     bool l_bosskeyFlag;
@@ -16,7 +16,7 @@ struct DungeonFlagsData {
 enum DungeonFlagsIndex {
     SELECT_DUNGEON_INDEX,
     SMALL_KEY_FLAG_INDEX,
-    INTRO_CS_FLAG_INDEX,
+    // INTRO_CS_FLAG_INDEX,
     MAP_FLAG_INDEX,
     COMPASS_FLAG_INDEX,
     BOSS_KEY_FLAG_INDEX,

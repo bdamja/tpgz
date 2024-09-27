@@ -16,8 +16,8 @@ KEEP_FUNC DungeonFlagsMenu::DungeonFlagsMenu(Cursor& cursor)
           {"dungeon:", SELECT_DUNGEON_INDEX, "Selected dungeon flags", false, nullptr,
            MAX_DUNGEON_OPTIONS},
           {"small keys", SMALL_KEY_FLAG_INDEX, "Selected dungeon small keys", false, nullptr, 5},
-          {"intro cutscene", INTRO_CS_FLAG_INDEX, "Toggle selected dungeon intro cutscene", true,
-             [](){return dungeonFlagsData->l_introFlag;}},
+        //   {"intro cutscene", INTRO_CS_FLAG_INDEX, "Toggle selected dungeon intro cutscene", true,
+        //      [](){return dungeonFlagsData->l_introFlag;}},
           {"have map", MAP_FLAG_INDEX, "Give selected dungeon map", true, [](){return dungeonFlagsData->l_mapFlag;}},
           {"have compass", COMPASS_FLAG_INDEX, "Give selected dungeon compass", true,
            [](){return dungeonFlagsData->l_compassFlag;}},
@@ -140,35 +140,35 @@ void DungeonFlagsMenu::draw() {
     }
 
     // update flags
-    switch (area_id) {
-        case dSv_memory_c::FOREST_TEMPLE:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 105);
-            break;
-        case dSv_memory_c::GORON_MINES:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 85);
-            break;
-        case dSv_memory_c::LAKEBED:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 120);
-            break;
-        case dSv_memory_c::ARBITERS:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 124);
-            break;
-        case dSv_memory_c::SNOWPEAK_RUINS:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 120);
-            break;
-        case dSv_memory_c::TEMPLE_OF_TIME:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 21);
-            break;
-        case dSv_memory_c::CITY:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 111);
-            break;
-        case dSv_memory_c::PALACE:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 1);
-            break;
-        case dSv_memory_c::HYRULE_CASTLE:
-            dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 98);
-            break;
-    }
+    // switch (area_id) {
+    //     case dSv_memory_c::FOREST_TEMPLE:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 105);
+    //         break;
+    //     case dSv_memory_c::GORON_MINES:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 85);
+    //         break;
+    //     case dSv_memory_c::LAKEBED:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 120);
+    //         break;
+    //     case dSv_memory_c::ARBITERS:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 124);
+    //         break;
+    //     case dSv_memory_c::SNOWPEAK_RUINS:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 120);
+    //         break;
+    //     case dSv_memory_c::TEMPLE_OF_TIME:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 21);
+    //         break;
+    //     case dSv_memory_c::CITY:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 111);
+    //         break;
+    //     case dSv_memory_c::PALACE:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 1);
+    //         break;
+    //     case dSv_memory_c::HYRULE_CASTLE:
+    //         dungeonFlagsData->l_introFlag = getDungeonMemSwitch(area_id, 98);
+    //         break;
+    // }
 
     dungeonFlagsData->l_mapFlag = getSaveDungeonItem(area_id, dSv_memBit_c::MAP);
     dungeonFlagsData->l_compassFlag = getSaveDungeonItem(area_id, dSv_memBit_c::COMPASS);
@@ -178,37 +178,37 @@ void DungeonFlagsMenu::draw() {
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
         switch (cursor.y) {
-        case INTRO_CS_FLAG_INDEX:
-            switch (area_id) {
-            case dSv_memory_c::FOREST_TEMPLE:
-                setDungeonMemSwitch(area_id, 105);
-                break;
-            case dSv_memory_c::GORON_MINES:
-                setDungeonMemSwitch(area_id, 85);
-                break;
-            case dSv_memory_c::LAKEBED:
-                setDungeonMemSwitch(area_id, 120);
-                break;
-            case dSv_memory_c::ARBITERS:
-                setDungeonMemSwitch(area_id, 124);
-                break;
-            case dSv_memory_c::SNOWPEAK_RUINS:
-                setDungeonMemSwitch(area_id, 120);
-                break;
-            case dSv_memory_c::TEMPLE_OF_TIME:
-                setDungeonMemSwitch(area_id, 21);
-                break;
-            case dSv_memory_c::CITY:
-                setDungeonMemSwitch(area_id, 111);
-                break;
-            case dSv_memory_c::PALACE:
-                setDungeonMemSwitch(area_id, 1);
-                break;
-            case dSv_memory_c::HYRULE_CASTLE:
-                setDungeonMemSwitch(area_id, 98);
-                break;
-            }
-            break;
+        // case INTRO_CS_FLAG_INDEX:
+        //     switch (area_id) {
+        //     case dSv_memory_c::FOREST_TEMPLE:
+        //         setDungeonMemSwitch(area_id, 105);
+        //         break;
+        //     case dSv_memory_c::GORON_MINES:
+        //         setDungeonMemSwitch(area_id, 85);
+        //         break;
+        //     case dSv_memory_c::LAKEBED:
+        //         setDungeonMemSwitch(area_id, 120);
+        //         break;
+        //     case dSv_memory_c::ARBITERS:
+        //         setDungeonMemSwitch(area_id, 124);
+        //         break;
+        //     case dSv_memory_c::SNOWPEAK_RUINS:
+        //         setDungeonMemSwitch(area_id, 120);
+        //         break;
+        //     case dSv_memory_c::TEMPLE_OF_TIME:
+        //         setDungeonMemSwitch(area_id, 21);
+        //         break;
+        //     case dSv_memory_c::CITY:
+        //         setDungeonMemSwitch(area_id, 111);
+        //         break;
+        //     case dSv_memory_c::PALACE:
+        //         setDungeonMemSwitch(area_id, 1);
+        //         break;
+        //     case dSv_memory_c::HYRULE_CASTLE:
+        //         setDungeonMemSwitch(area_id, 98);
+        //         break;
+        //     }
+        //     break;
         case MAP_FLAG_INDEX:
             setSaveDungeonItem(area_id, dSv_memBit_c::MAP);
             break;
