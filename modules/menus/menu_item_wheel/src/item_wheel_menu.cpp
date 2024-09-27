@@ -8,7 +8,7 @@
 #include "menus/utils/menu_mgr.h"
 
 #define ITEM_WHEEL_SLOTS 24
-#define MAX_ITEMS 58
+#define MAX_ITEMS ARRAY_COUNT(l_lookupTbl)
 
 #ifdef GCN_PLATFORM
 #define DEFAULT_BTN_TXT "Z"
@@ -90,11 +90,11 @@ const uint8_t l_defaultItems[ITEM_WHEEL_SLOTS] = {
     BOOMERANG,     KANTERA,      SPINNER,          HVY_BOOTS,    BOW,
     HAWK_EYE,      IRONBALL,     NO_ITEM,          COPY_ROD,     HOOKSHOT,
     W_HOOKSHOT,    EMPTY_BOTTLE, EMPTY_BOTTLE,     EMPTY_BOTTLE, EMPTY_BOTTLE,
-    BOMB_BAG_LV1,  BOMB_BAG_LV1, BOMB_BAG_LV1,     DUNGEON_EXIT, RAFRELS_MEMO,
+    NORMAL_BOMB,   WATER_BOMB,   POKE_BOMB,        DUNGEON_EXIT, RAFRELS_MEMO,
     FISHING_ROD_1, HORSE_FLUTE,  ANCIENT_DOCUMENT, PACHINKO,
 };
 
-const ItemLookup l_lookupTbl[MAX_ITEMS] = {
+const ItemLookup l_lookupTbl[] = {
     {NO_ITEM, "n/a"},
     {ANCIENT_DOCUMENT, "ancient sky book (empty)"},
     {ANCIENT_DOCUMENT2, "ancient sky book (filled)"},
@@ -157,7 +157,7 @@ const ItemLookup l_lookupTbl[MAX_ITEMS] = {
 
 void ItemWheelMenu::updateListIdx() {
     uint8_t item_id = dComIfGs_getSavedata().getPlayer().getItem().mItems[cursor.y];
-    for (int i = 0; i < MAX_ITEMS; i++) {
+    for (unsigned int i = 0; i < MAX_ITEMS; i++) {
         if (item_id == l_validItems[i]) {
             l_listIdx = i;
         }
@@ -193,14 +193,14 @@ void ItemWheelMenu::draw() {
     for (size_t slot_no = 0; slot_no < MENU_LINE_NUM; slot_no++) {
         int item_id = dComIfGs_getItem(slot_no, false);
 
-        for (int j = 0; j < MAX_ITEMS; j++) {
+        for (unsigned int j = 0; j < MAX_ITEMS; j++) {
             if (l_lookupTbl[j].item_id == item_id) {
                 lines[slot_no].printf(" <%s>", item_id != NO_ITEM ? l_lookupTbl[j].name : "n/a");
             }
 
             if (l_lookupTbl[j].item_id == l_defaultItems[slot_no]) {
                 snprintf(lines[slot_no].description, sizeof(lines[slot_no].description),
-                         "Slot %d default: %s. Press " DEFAULT_BTN_TXT " to set to default; " RESET_BTN_TXT " to reset.",
+                         "Slot %d default: %s. " DEFAULT_BTN_TXT ": set default; " RESET_BTN_TXT ": reset.",
                          slot_no, l_lookupTbl[j].name);
             } else {
                 continue;

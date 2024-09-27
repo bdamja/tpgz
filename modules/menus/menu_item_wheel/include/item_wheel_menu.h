@@ -4,7 +4,7 @@
 #define ITEM_WHEEL_SLOTS 24
 
 struct ItemWheelData {
-    int l_listIdx;
+    unsigned int l_listIdx;
 };
 
 struct ItemLookup {
@@ -21,7 +21,7 @@ public:
     void fixSpecialItems(int i);
 
 private:
-    int& l_listIdx;
+    unsigned int& l_listIdx;
 
     Line lines[ITEM_WHEEL_SLOTS];
 };
