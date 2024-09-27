@@ -11,7 +11,7 @@ class JKRExpHeap;
 class JKRHeap;
 
 
-#ifdef WII_PLATFORM
+#if defined(WII_PLATFORM) || defined(GCN_PAL)
 class dScnLogo_c_wii {
 public:
     /* 0x000*/ u8 field_0x00[0x20c];
