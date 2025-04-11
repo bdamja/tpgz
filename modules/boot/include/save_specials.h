@@ -53,3 +53,4 @@ void BeastGanonSpecial_setLayer();
 void SaveMngSpecial_emptyLake();
 
 void SaveMngSpecial_NoSQAeralfos();
+void SaveMngSpecial_Lakebed1();

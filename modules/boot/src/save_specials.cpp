@@ -279,6 +279,11 @@ KEEP_FUNC void SaveMngSpecial_emptyLake() {
     bossFlags = 0xFF;
 }
 
+KEEP_FUNC void SaveMngSpecial_Lakebed1() {
+    gSaveManager.injectDefault_during();
+    dComIfGs_onSwitch(122, 1);  // dungeon intro cs on
+}
+
 KEEP_FUNC void SaveMngSpecial_NoSQAeralfos() {
     gSaveManager.injectDefault_during();
     dComIfGs_setLife(4);  // one heart
