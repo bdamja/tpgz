@@ -8,12 +8,11 @@
 #include "libtp_c/include/d/d_procname.h"
 #include "libtp_c/include/SSystem/SComponent/c_counter.h"
 
-u16 previous_action;        // Tracks the previous action for adjusting the frame timing window, because some actions like land dive cut the beginning of the roll short
-bool game_paused;           // Whether the game is paused or not. Used to determine if the roll start frame should be incremented.
-char msg_buffer[20];        // Buffer for the message to be printed.
-s32 early_roll_frame;
-s32 late_roll_frame;
-s32 target_frame;
+u16 previous_action;        // Tracks the previous action
+char msg_buffer[20];        // Buffer for the message to be printed
+s32 early_roll_frame;       // Frame where the early roll happened
+s32 late_roll_frame;        // Frame where the late roll happened
+s32 target_frame;           // Frame where the roll *should* happen to get the trick
 const u8 metamorphose_anm_length = 56; // length of the metamorphose animation in frames
 s32 metamorphose_start_frame; // frame that the metamorphose animation starts on
 
@@ -75,11 +74,12 @@ void checkRollFrame(daAlink_c* link) {
 }
 
 KEEP_FUNC void EEChecker::execute() {
-    // Retrieve player pointer
     daAlink_c* link = dComIfGp_getPlayer();
 
-    // Early return if player pointer is invalid
     if (!link) {
+#if DEBUG
+        OSReport("Player is not loaded\n");
+#endif
         return;
     }
 
@@ -93,15 +93,15 @@ KEEP_FUNC void EEChecker::execute() {
     if (link->current.pos.x > -1400.0f || link->current.pos.x < -1600.0f) {
 #if DEBUG
         OSReport("Player is not in the correct x position\n");
-        return;
 #endif
+        return;
     }
 
     if (link->current.pos.z < 4000.0f || link->current.pos.z > 4400.0f) {
 #if DEBUG
         OSReport("Player is not in the correct z position\n");
-        return;
 #endif
+        return;
     }
 
     checkRollFrame(link);
