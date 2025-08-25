@@ -34,7 +34,7 @@ KEEP_FUNC ADSavesMenu::ADSavesMenu(Cursor& cursor)
                         {"mdh", AD_MDH_INDEX, "Midna's Desperate Hour segment"},
                         {"bulblin camp", AD_CAMP_INDEX, "Bulblin camp segment"},
                         {"arbiter's grounds", AD_AG_INDEX, "The Arbiter's Grounds segment"},
-                        {"poe 1 skip", AD_POE_SKIP_INDEX, "The pillar jump in Arbiter's Grounds"},
+                        {"poe gate skip", AD_PGS_INDEX, "Bouncin' with Bonnie"},
                         {"death sword", AD_DSS_INDEX, "Arbiter's Grounds miniboss"},
                         {"stallord", AD_STALLORD_INDEX, "Arbiter's Grounds boss"},
                         {"faron bomb boost", AD_FARON_BOOST_INDEX, "Bomb boost to Sacred Grove"},
@@ -56,13 +56,15 @@ KEEP_FUNC ADSavesMenu::ADSavesMenu(Cursor& cursor)
 ADSavesMenu::~ADSavesMenu() {}
 
 void ADSavesMenu::draw() {
-    special ADSpecials[AD_SPECIALS_AMNT] = {
+    special ADSpecials[] = {
         special(AD_HUGO_INDEX, SaveMngSpecial_Hugo, SaveMngSpecial_SpawnHugo),
         special(AD_BK_SKIP_INDEX, SaveMngSpecial_LakebedBKSkip, nullptr),
         special(AD_MORPHEEL_INDEX, nullptr, SaveMngSpecial_Morpheel),
         special(AD_STALLORD_INDEX, SaveMngSpecial_Stallord, nullptr),
         special(AD_PILLAR_CLIP_INDEX, SaveMngSpecial_BossFlags, nullptr),
         special(AD_LAKEBED_1_INDEX, SaveMngSpecial_BossFlags, nullptr),
+        special(AD_TOAD_INDEX, SaveMngSpecial_BossFlags, nullptr),
+        special(AD_PGS_INDEX, nullptr, SaveMngSpecial_SpawnPGS),
         special(AD_ARGOROK_INDEX, SaveMngSpecial_Argorok, nullptr),
         special(AD_PALACE_1_INDEX, SaveMngSpecial_Palace1, nullptr),
         special(AD_PALACE_2_INDEX, nullptr, SaveMngSpecial_Palace2),
@@ -74,7 +76,7 @@ void ADSavesMenu::draw() {
     }
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
-        SaveManager::triggerLoad(cursor.y, "ad", ADSpecials, AD_SPECIALS_AMNT);
+        SaveManager::triggerLoad(cursor.y, "ad", ADSpecials, ARRAY_COUNT(ADSpecials));
         g_menuMgr->hide();
     }
 

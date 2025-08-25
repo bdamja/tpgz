@@ -1,7 +1,5 @@
 #include "menus/menu.h"
 
-#define AD_SPECIALS_AMNT 9
-
 enum ADPracticeIndex {
     AD_ORDON_GATE_CLIP_INDEX,
     AD_BIT_INDEX,
@@ -29,7 +27,7 @@ enum ADPracticeIndex {
     AD_MDH_INDEX,
     AD_CAMP_INDEX,
     AD_AG_INDEX,
-    AD_POE_SKIP_INDEX,
+    AD_PGS_INDEX,
     AD_DSS_INDEX,
     AD_STALLORD_INDEX,
     AD_FARON_BOOST_INDEX,

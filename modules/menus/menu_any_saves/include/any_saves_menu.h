@@ -1,7 +1,6 @@
 #include "menus/menu.h"
 
 #ifdef GCN_PLATFORM
-#define ANY_SPECIALS_AMNT 21
 
 enum AnyPracticeIndex {
     ORDON_GATE_CLIP_INDEX,
@@ -35,7 +34,7 @@ enum AnyPracticeIndex {
     DARK_HAMMER_INDEX,
     BULBLIN_CAMP_INDEX,
     AG_INDEX,
-    POE_1_SKIP_INDEX,
+    PGS_INDEX,
     DSS_INDEX,
     STALLORD_INDEX,
     STALLORD2_INDEX,
@@ -60,7 +59,6 @@ enum AnyPracticeIndex {
 };
 #endif
 #ifdef WII_PLATFORM
-#define ANY_SPECIALS_AMNT 12
 enum AnyPracticeIndex {
     ORDON_GATE_CLIP_INDEX,
     BACK_IN_TIME_INDEX,
@@ -92,7 +90,7 @@ enum AnyPracticeIndex {
     MDH_BRIDGE_INDEX,
     BULBLIN_CAMP_INDEX,
     AG_INDEX,
-    POE_1_SKIP_INDEX,
+    PGS_INDEX,
     DSS_INDEX,
     STALLORD_INDEX,
     SPR_INDEX,
