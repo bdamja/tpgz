@@ -18,58 +18,58 @@ s32 metamorphose_start_frame; // frame that the metamorphose animation starts on
 
 void checkRollFrame(daAlink_c* link) {
     switch (link->mActionID) {
-        case daAlink_c::PROC_TALK:
-            previous_action = daAlink_c::PROC_TALK;
-            break;
-        case daAlink_c::PROC_METAMORPHOSE:
-            if (previous_action == daAlink_c::PROC_TALK) {
-                metamorphose_start_frame = cCt_getFrameCount();
-            }
+    case daAlink_c::PROC_TALK:
+        previous_action = daAlink_c::PROC_TALK;
+        break;
+    case daAlink_c::PROC_METAMORPHOSE:
+        if (previous_action == daAlink_c::PROC_TALK) {
+            metamorphose_start_frame = cCt_getFrameCount();
+        }
 
 #if DEBUG
-            OSReport("previous action: %d\n", previous_action);
-            OSReport("metamorphose start frame: %d\n", metamorphose_start_frame);
-            OSReport("Current metamorphose frame: %d\n", (cCt_getFrameCount() - metamorphose_start_frame));
+        OSReport("previous action: %d\n", previous_action);
+        OSReport("metamorphose start frame: %d\n", metamorphose_start_frame);
+        OSReport("Current metamorphose frame: %d\n", (cCt_getFrameCount() - metamorphose_start_frame));
 #endif
             
-            if (GZ_getButtonPressed(A) && !GZ_getButtonHold(A)) {
-                early_roll_frame = cCt_getFrameCount();
-                snprintf(msg_buffer, sizeof(msg_buffer), "early by %df", metamorphose_anm_length - (cCt_getFrameCount() - metamorphose_start_frame));
-                FIFOQueue::push(msg_buffer, Queue, 0x0000CC00);
-            }
+        if (GZ_getButtonPressed(A) && !GZ_getButtonHold(A)) {
+            early_roll_frame = cCt_getFrameCount();
+            snprintf(msg_buffer, sizeof(msg_buffer), "early by %df", metamorphose_anm_length - (cCt_getFrameCount() - metamorphose_start_frame));
+            FIFOQueue::push(msg_buffer, Queue, 0x0000CC00);
+        }
 
-            previous_action = daAlink_c::PROC_METAMORPHOSE;
-            break;
+        previous_action = daAlink_c::PROC_METAMORPHOSE;
+        break;
 
-        case daAlink_c::PROC_WAIT:
-            late_roll_frame = 0;
-            target_frame = cCt_getFrameCount();
-            break;
-        case daAlink_c::PROC_MOVE:
-        case daAlink_c::PROC_WAIT_TURN:
-        case daAlink_c::PROC_MOVE_TURN:
-            if (GZ_getButtonPressed(A) && !GZ_getButtonHold(A)) {
-                late_roll_frame = cCt_getFrameCount();
-            }
-            break;
-        case daAlink_c::PROC_FRONT_ROLL:
+    case daAlink_c::PROC_WAIT:
+        late_roll_frame = 0;
+        target_frame = cCt_getFrameCount();
+        break;
+    case daAlink_c::PROC_MOVE:
+    case daAlink_c::PROC_WAIT_TURN:
+    case daAlink_c::PROC_MOVE_TURN:
+        if (GZ_getButtonPressed(A) && !GZ_getButtonHold(A)) {
+            late_roll_frame = cCt_getFrameCount();
+        }
+        break;
+    case daAlink_c::PROC_FRONT_ROLL:
 #if DEBUG
             OSReport("Front roll, last action: %d\n", previous_action);
             OSReport("Early roll frame: %d\n", early_roll_frame);
             OSReport("Late roll frame: %d\n", late_roll_frame);
 #endif
-            if (late_roll_frame == 0 && previous_action != daAlink_c::PROC_FRONT_ROLL) {
-                FIFOQueue::push("<3", Queue, 0x00CC0000);
-            } else if (previous_action != daAlink_c::PROC_FRONT_ROLL) {
-                snprintf(msg_buffer, sizeof(msg_buffer), "late by %df", late_roll_frame - target_frame);
-                FIFOQueue::push(msg_buffer, Queue, 0xCC000000);
-            }
+        if (late_roll_frame == 0 && previous_action != daAlink_c::PROC_FRONT_ROLL) {
+            FIFOQueue::push("<3", Queue, 0x00CC0000);
+        } else if (previous_action != daAlink_c::PROC_FRONT_ROLL) {
+            snprintf(msg_buffer, sizeof(msg_buffer), "late by %df", late_roll_frame - target_frame);
+            FIFOQueue::push(msg_buffer, Queue, 0xCC000000);
+        }
 
-            previous_action = daAlink_c::PROC_FRONT_ROLL;
-            break;
-        default:
-            early_roll_frame = 0;
-            late_roll_frame = 0;
+        previous_action = daAlink_c::PROC_FRONT_ROLL;
+        break;
+    default:
+        early_roll_frame = 0;
+        late_roll_frame = 0;
     }
 }
 
