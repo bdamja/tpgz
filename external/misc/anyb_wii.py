@@ -1,10 +1,8 @@
-import copy
 import struct
-from enum import IntEnum
+from enum import IntEnum, unique
 
-class Requirements(IntEnum):
-    POS = 1
-    CAM = 2
+REQ_POS = 1
+REQ_CAM = 2
 
 default_entry = {
     "requirements": 0,
@@ -14,57 +12,73 @@ default_entry = {
     "counter": 0,
 }
 
+class Requirements(IntEnum):
+    POS = 1
+    CAM = 2
+
 # order matters
 file_names = [
     "ordon_gate_clip",
     "ordon_gate_clip",
+    "seam_clip",
     "goats",
     "hugo",
     "faron_twilight",
     "ems",
     "purple_mist",
-    "forest_bit",
-    "forest_escape",
-    "lanayru_gate_clip",
-    "pillar_clip",
-    "lakebed_1",
-    "deku_toad",
-    "karg",
+    "bite",
     "kb1",
     "eldin_twilight",
+    "bombhouse_skip",
+    "epona_oob_to_flight_by_fowl",
+    "kargarok_fight",
+    "kargarok_flight",
     "lanayru_twilight",
     "waterfall_sidehop",
+    "boss_bug",
     "iza",
-    "spr_warp",
-    "spr",
-    "darkhammer",
+    "plumm_oob",
+    "enter_lakebed",
+    "lakebed_1",
+    "pot_push",
+    "deku_toad",
     "lakebed_bk_skip",
-    "onebomb",
+    "morpheel",
     "mdh_tower",
     "mdh_bridge",
-    "camp",
+    "messenger_skip",
+    "snowpeak_ruins_mbbb",
+    "freezard_skip",
+    "dark_hammer",
+    "bulblin_camp",
     "ag",
     "poe_gate_skip",
-    "death_sword_skip",
+    "early_boss_key",
+    "death_sword",
     "stallord",
     "stallord",
-    "silver_rupee",
-    "cits_early",
-    "cits_1",
+    "early_city",
+    "cits",
     "aeralfos_skip",
+    "cits_2",
     "fan_tower",
     "argorok",
-    "palace_1",
-    "palace_2",
-    "early_platform",
+    "pot1",
+    "stupidroom",
+    "pot2",
+    "pot_bk",
+    "earlypf",
     "zant",
     "hc",
-    "hc_tower",
+    "kb4",
+    "darknut",
+    "hc_aeralfos",
+    "towerclimb",
     "beast_ganon",
-    "horseback_ganon",
+    "horseback",
 ]
 
-anyb_p = [{**copy.deepcopy(default_entry), "id": i, "filename": file_names[i]} for i in range(len(file_names))]
+anyb_p = [{**default_entry, "id": i, "filename": file_names[i]} for i in range(len(file_names))]
 
 file_dict = {}
 for i, e in enumerate(file_names):
@@ -77,6 +91,7 @@ def update_entry(filename, data, n = 1):
     count = sum(1 for entry in anyb_p if entry["filename"] == filename)
     if n <= count and n > 0:
         anyb_p[file_dict[filename][n - 1]] = {**anyb_p[file_dict[filename][n - 1]], **data}
+
 
 # ordon gate clip
 update_entry("ordon_gate_clip", n = 1, data = {
@@ -96,6 +111,14 @@ update_entry("ordon_gate_clip", n = 2, data = {
     'counter': 10,
 })
 
+# seam clip
+update_entry("seam_clip", data = {
+    'requirements': Requirements.POS,
+    'pos': (-46261.4805, -7473.1777, 98200.4141),
+    'angle': 31612,
+    'counter': 30,
+})
+
 # hugo
 update_entry("hugo", data = {
     'requirements': Requirements.POS | Requirements.CAM,
@@ -112,6 +135,54 @@ update_entry("purple_mist", data = {
     'counter': 30,
 })
 
+update_entry("kb1", data = {
+    'requirements': Requirements.POS,
+    'pos': (-9717.6035, 337.0316, 97.9661),
+    'angle': 16384,
+    'counter': 30,
+})
+
+update_entry("boss_bug", data = {
+    'requirements': Requirements.POS,
+    'pos': (-87517.1562, -18789.2812, 38927.0820),
+    'angle': 41851,
+    'counter': 30,
+})
+
+update_entry("plumm_oob", data = {
+    'requirements': Requirements.POS,
+    'pos': (-104271.3750, -18470.0, 52661.7812),
+    'angle': 45103,
+    'counter': 30,
+})
+
+update_entry("mdh_tower", data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (25362.3184, -3028.7673, 10060.8379),
+    'angle': 29327,
+    'counter': 30,
+})
+
+update_entry("mdh_bridge", data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (27436.0391, 1300.0, 6575.3115),
+    'angle': 32768,
+    'counter': 30,
+})
+
+update_entry("freezard_skip", data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (-125.9265, 33.8123, -3688.0295),
+    'angle': 32768,
+    'counter': 30,
+})
+
+update_entry("dark_hammer", data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (0.7448, 0.0, 1330.9711),
+    'angle': 32768,
+    'counter': 20,
+})
 
 # forest escape
 update_entry("forest_escape", data = {
@@ -140,6 +211,14 @@ update_entry("eldin_twilight", data = {
     'counter': 10,
 })
 
+# epona oob to lanayru
+update_entry("epona_oob_to_flight_by_fowl", data = {
+    'requirements': Requirements.POS,
+    'pos': (16501.3535, 3304.0415, 34706.0977),
+    'angle': 61639,
+    'counter': 10,
+})
+
 # iza
 update_entry("iza", data = {
     'requirements': Requirements.POS,
@@ -148,7 +227,7 @@ update_entry("iza", data = {
 })
 
 # snowpeak messenger skip
-update_entry("spr_warp", data = {
+update_entry("messenger_skip", data = {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (-9294.87988, 980.0, -11712.3838),
     'angle': 346,
@@ -163,31 +242,62 @@ update_entry("spr", data = {
     'angle': 33768,
 })
 
-# bk skip
-update_entry("lakebed_bk_skip", data = {
-    'requirements': Requirements.POS | Requirements.CAM,
-    'pos': (71.9835968, 1500.0, 2839.01587),
-    'angle': 32767,
-    'cam': {'pos': (71.9835968, 1719.93542, 2969.04565), 'target': (71.9835968, 1660.0, 2839.01587)},
-    'counter': 30,
-})
-
 # morpheel
-update_entry('onebomb', data = {
+update_entry('morpheel', data = {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (-1193.0, -23999.00, -770.0),
     'angle': 10754,
     'counter': 20,
 })
 
-# poe gate skip
-update_entry('poe_gate_skip', data = {
+# poe 1 skip
+update_entry('poe_1_skip', data = {
     'requirements': Requirements.POS | Requirements.CAM,
-    'pos': (-749.9980, 50.0000, -3265.0000),
-    'angle': 16384,
-    'cam': {'pos': (-549.9980, 200.0000, -3265.0000), 'target': (-749.9980, 50.0000, -3265.0000)},
+    'pos': (-2046.97168, 0.0, -587.304871),
+    'angle': 49030,
+    'cam': {'pos': (-1779.00293, 213.707397, -584.686768), 'target': (-2047.97168, 130.16568, -587.317139)},
     'counter': 10,
 })
+
+# elh bomb boost
+update_entry('enter_lakebed', data = {
+    'requirements': Requirements.POS,
+    'pos': (-87645.3203, -21052.0078, 38436.0898),
+    'angle': 45767,
+    'counter': 10,
+})
+
+# pot push
+update_entry('pot_push', data = {
+    'requirements': Requirements.POS,
+    'pos': (7296.9878, -50.0000, -0.6072),
+    'angle': 16374,
+    'counter': 20,
+})
+
+# lakebed bk skip
+update_entry('lakebed_bk_skip', data = {
+    'requirements': Requirements.POS,
+    'pos': (63.3586, 1500.0000, 3139.0151),
+    'angle': 32727,
+    'counter': 10,
+})
+
+# light sword
+update_entry('pot2', data = {
+    'requirements': Requirements.POS,
+    'pos': (250.0000, -200.0000, 11000.0000),
+    'angle': 0,
+    'counter': 10,
+}) 
+
+# kb4
+update_entry('kb4', data = {
+    'requirements': Requirements.POS,
+    'pos': (-8593.0000, 52.0000, -4873.0000),
+    'angle': 24354,
+    'counter': 20,
+})               
 
 file = open("any_bite.bin", "wb")
 
