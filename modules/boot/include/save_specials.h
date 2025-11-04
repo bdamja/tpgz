@@ -2,6 +2,8 @@
 
 void SaveMngSpecial_OrdonRock();
 
+void SaveMngSpecial_ZantFinal();
+
 void SaveMngSpecial_BossFlags();
 
 void SaveMngSpecial_Goats1();

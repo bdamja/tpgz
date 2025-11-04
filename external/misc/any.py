@@ -22,12 +22,70 @@ class Requirements(IntEnum):
     CAM = 2
 
 
+<<<<<<< Updated upstream
 def main(args=None):
     parser = argparse.ArgumentParser(
         sys.argv[0], description="A tool to generate the metadata file for the any% save files.")
     parser.add_argument(
         "-p", "--platform", type=str.upper, choices=[e.name for e in Platform], default=Platform.GCN.name, help="The platform to generate for.")
     args = parser.parse_args()
+=======
+# order matters
+file_names = [
+    "ordon_gate_clip",
+    "ordon_gate_clip",
+    "goats",
+    "hugo",
+    "ems",
+    "purple_mist",
+    "forest_bit",
+    "forest_escape",
+    "gorge_void",
+    "rupee_roll",
+    "lanayru_gate_clip",
+    "karg",
+    "eldin_twilight",
+    "bomb_house_skip",
+    "lanayru_twilight",
+    "waterfall_sidehop",
+    "boss_bug",
+    "iza",
+    "plumm_oob",
+    "elh",
+    "lakebed_1",
+    "deku_toad",
+    "lakebed_bk_skip",
+    "onebomb",
+    "mdh_tower",
+    "mdh_bridge",
+    "spr_warp",
+    "spr",
+    "darkhammer",
+    "camp",
+    "ag",
+    "poe_gate_skip",
+    "death_sword_skip",
+    "stallord",
+    "stallord",
+    "cits_early",
+    "cits_1",
+    "aeralfos_skip",
+    "cits_2",
+    "fan_tower",
+    "argorok",
+    "palace_1",
+    "palace_2",
+    "early_platform",
+    "zant",
+    "zant_final",
+    "hc",
+    "darknut",
+    "hc_tower",
+    "beast_ganon",
+    "horseback_ganon",
+    "ganondorf",
+]
+>>>>>>> Stashed changes
 
     args.platform = Platform[args.platform]
 

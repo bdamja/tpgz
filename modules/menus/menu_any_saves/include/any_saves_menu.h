@@ -49,6 +49,7 @@ enum AnyPracticeIndex {
     PALACE_2_INDEX,
     EARLY_PLATFORM_INDEX,
     ZANT_INDEX,
+    ZANT_FINAL_INDEX,
     HC_INDEX,
     DARKNUT_INDEX,
     HC_TOWER_INDEX,

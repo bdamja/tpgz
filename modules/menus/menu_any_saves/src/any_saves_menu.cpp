@@ -53,6 +53,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"palace 2", PALACE_2_INDEX, "The 2nd Palace of Twilight segment"},
           {"early platform", EARLY_PLATFORM_INDEX, "Early platform in Palace of Twilight"},
           {"zant", ZANT_INDEX, "Palace of Twilight boss"},
+          {"zant final", ZANT_FINAL_INDEX, "Palace of Twilight boss final phase"},
           {"hyrule castle", HC_INDEX, "The Hyrule Castle segment"},
           {"darknut fight", DARKNUT_INDEX, "The 1st Darknut fight in Hyrule Castle"},
           {"final tower climb", HC_TOWER_INDEX, "The tower climb before Ganondorf"},
@@ -150,6 +151,7 @@ void AnySavesMenu::draw() {
             special(BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
             special(ELH_INDEX, SaveMngSpecial_emptyLake, nullptr),
             special(IZA_INDEX, SaveMngSpecial_BossFlags, nullptr),
+            special(ZANT_FINAL_INDEX, nullptr, SaveMngSpecial_ZantFinal),
         };
 #endif
 #ifdef WII_PLATFORM

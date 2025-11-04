@@ -59,6 +59,30 @@ KEEP_FUNC void SaveMngSpecial_BossFlags() {
     bossFlags = 0xFF;
 }
 
+KEEP_FUNC void SaveMngSpecial_ZantFinal() {
+    class daB_ZANT_c {
+    public:
+        /* 0x0000 */ fopEn_enemy_c base;
+        /* 0x05AC */ u8 field_0x5ac[0x6d4 - 0x5ac];
+        /* 0x06D4 */ int mAction;
+        /* 0x06D8 */ int field_0x6d8;
+        /* 0x06DC */ int mMode;
+        /* 0x06E0 */ u8 field_0x6e0[0x1b];
+        /* 0x06FB */ u8 mFightPhase;
+    };
+
+    // Find zant in the actor list
+    daB_ZANT_c* actorData = (daB_ZANT_c*)find_actor([](auto& act) { return act.mBase.mProcName == PROC_B_ZANT; });
+
+    // Set his action, fight phase and mode to trigger the transition demo
+    if (actorData != NULL) {
+        // Set Zant's state
+        actorData->mAction = 23;      // ACT_ROOM_CHANGE
+        actorData->mFightPhase = 5;   // PHASE_YO
+        actorData->mMode = 0;         // MODE_START_DEMO
+    }
+}
+
 KEEP_FUNC void SaveMngSpecial_Goats1() {
     gSaveManager.injectDefault_during();
     setNextStageLayer(5);
