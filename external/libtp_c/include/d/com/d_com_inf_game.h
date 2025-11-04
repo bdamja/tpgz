@@ -469,6 +469,12 @@ inline u8 dComIfGs_getPachinkoNum() {
 inline u8 dComIfGs_getPachinkoMax(void) {
     return 50;
 }
+
+inline void dComIfGs_setRestartRoom(const cXyz& i_position, s16 i_angle, s8 i_roomNo) {
+    g_dComIfG_gameInfo.info.getRestart().setRoom(i_position, i_angle, i_roomNo);
+}
+
+
 /*
 inline void dComIfGs_setEmptyBombBag(void) {
     g_dComIfG_gameInfo.info.getSavedata().getItem().setEmptyBombBag();
