@@ -2962,4 +2962,6 @@ LIBTP_DEFINE_FUNC(posMove__9daAlink_cFv, daAlink_c__posMove_void_, void, daAlink
 
 LIBTP_DEFINE_FUNC(getGroundAngle__9daAlink_cFP13cBgS_PolyInfos, daAlink_c__getGroundAngle_cBgS_PolyInfo____short_, s16, daAlink_c__getGroundAngle, (daAlink_c*, cBgS_PolyInfo*, s16))
 
+LIBTP_DEFINE_FUNC(swordEquip__9daAlink_cFi, daAlink_c__swordEquip_int_, void, daAlink_c__swordEquip, (daAlink_c*, s32))
+
 #endif /* D_A_D_A_ALINK_H */

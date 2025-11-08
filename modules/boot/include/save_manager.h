@@ -110,6 +110,17 @@ public:
     }
 
     void setSaveAngle(int16_t angle) { mPracticeSaveInfo.angle = angle; }
+
+    void setSaveCamera(float camPosX, float camPosY, float camPosZ,
+                       float camTargetX, float camTargetY, float camTargetZ) {
+        mPracticeSaveInfo.cam_pos.x = camPosX;
+        mPracticeSaveInfo.cam_pos.y = camPosY;
+        mPracticeSaveInfo.cam_pos.z = camPosZ;
+
+        mPracticeSaveInfo.cam_target.x = camTargetX;
+        mPracticeSaveInfo.cam_target.y = camTargetY;
+        mPracticeSaveInfo.cam_target.z = camTargetZ;
+    }
 };
 
 extern SaveManager gSaveManager;

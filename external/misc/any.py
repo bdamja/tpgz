@@ -19,10 +19,14 @@ default_entry = {
 }
 
 # order matters
+# must be the .bin filenames
 file_names = [
     "ordon_gate_clip",
     "ordon_gate_clip",
     "goats",
+    "sewers",
+    "sewers_tower",
+    "rooftops",
     "hugo",
     "ems",
     "purple_mist",
@@ -31,11 +35,17 @@ file_names = [
     "gorge_void",
     "rupee_roll",
     "lanayru_gate_clip",
+    "karg_fight",
     "karg",
     "eldin_twilight",
+    "basement_bugs",
+    "eld_inn",
     "bomb_house_skip",
     "lanayru_twilight",
+    "inner_zd_bug",
     "waterfall_sidehop",
+    "ct_bug",
+    "dock_bug",
     "boss_bug",
     "iza",
     "plumm_oob",
@@ -43,30 +53,58 @@ file_names = [
     "lakebed_1",
     "deku_toad",
     "lakebed_bk_skip",
-    "onebomb",
+    "morpheel",
+    "louise_glitch",
+    "rope_skip",
     "mdh_tower",
     "mdh_bridge",
+    "post_mdh",
+    "snowpeak_cave",
     "spr_warp",
+    "blind_snowboarding",
     "spr",
+    "lfc",
     "darkhammer",
+    "fence_clip",
     "camp",
     "ag",
     "poe_gate_skip",
+    "pgs_ebmb",
+    "ag_early_bk",
+    "ag_tss",
     "death_sword_skip",
+    "epic_spinner",
     "stallord",
     "stallord",
+    "stallord",
+    "stallord",
+    "stallord",
+    "mirror_chamber",
     "cits_early",
     "cits_1",
+    "arg_cs_skip",
+    "city_east_wing",
     "aeralfos_skip",
     "cits_2",
+    "city_bk_clip",
     "fan_tower",
     "argorok",
     "palace_1",
+    "pz1",
+    "stupid_room",
+    "smart_room",
+    "pz2",
     "palace_2",
+    "pot_bk",
     "early_platform",
     "zant",
+    "zant_dangoro",
+    "zant_final",
+    "hc_mailman",
     "hc",
+    "kb4",
     "darknut",
+    "hc_aeralfos",
     "hc_tower",
     "beast_ganon",
     "horseback_ganon",
@@ -89,6 +127,7 @@ def update_entry(filename, data, n = 1):
         any_p[file_dict[filename][n - 1]] = {**any_p[file_dict[filename][n - 1]], **data}
 
 # ordon gate clip
+# for each of these, the angle is unsigned. putting a negative for the angle will crash when loading the saves and all saves after
 update_entry("ordon_gate_clip", n = 1, data = {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (827.450012, 216.490097, -4533.90625),
@@ -123,6 +162,26 @@ update_entry("bit", {
     'counter': 10
 })
 
+# sewers tower
+update_entry("sewers_tower", {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (25524, -3010, 8087),
+    'angle': 32737,
+    'cam': {
+        'pos': (25771.3672, -2753.22388, 7785.64941),
+        'target': (25535.5352, -2890, 8078.35254)
+    },
+    'counter': 30
+})
+
+# sewers rooftops
+update_entry("rooftops", {
+    'requirements': Requirements.POS,
+    'pos': (27441, 2930, 6796),
+    'angle': 32465,
+    'counter': 30
+})
+
 # hugo
 update_entry("hugo", {
     'requirements': Requirements.POS | Requirements.CAM,
@@ -145,8 +204,8 @@ update_entry("purple_mist", {
 # forest escape
 update_entry("forest_escape", {
     'requirements': Requirements.POS | Requirements.CAM,
-    'pos': (-12433.6016, -235.969193, -17103.998),
-    'angle': 29553,
+    'pos': (-13485.0713, -72, -15362.1299),
+    'angle': 27375,
     'cam': {
         'pos': (-12552.8252, -53.5801048, -16729.5313),
         'target': (-12433.2979, -106.667023, -17104.9512)
@@ -185,6 +244,14 @@ update_entry("lanayru_gate_clip", {
     'counter': 15
 })
 
+# kargarok rider fight
+update_entry("karg_fight", {
+    'requirements': Requirements.POS,
+    'pos': (-107015.05, -23436.449, 47115.9219),
+    'angle': 52164,
+    'counter': 30
+})
+
 # eldin twilight
 update_entry("eldin_twilight", {
     'requirements': Requirements.POS | Requirements.CAM,
@@ -195,6 +262,25 @@ update_entry("eldin_twilight", {
         'target': (482.515137, -39.9999771, 11558.5283)
     },
     'counter': 10
+})
+
+# inner zd bug
+update_entry("inner_zd_bug", {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (0, -8.27449322, -2750),
+    'angle': 32768,
+    'cam': {
+        'pos': (-280.019684, 76.9521179, -2899.97949),
+        'target': (8.7422813, 86.7255249, -2740)
+    },
+    'counter': 30
+})
+
+# ct bug
+update_entry("ct_bug", {
+    'requirements': Requirements.POS,
+    'pos': (2185.91479, -725, 6443.65088),
+    'angle': 19198,
 })
 
 # boss bug
@@ -217,8 +303,8 @@ update_entry("spr_warp", {
     'pos': (-9294.87988, 980.0, -11712.3838),
     'angle': 346,
     'cam': {
-        'pos': (-9309.65137, 1280.4469, -12130.7695),
-        'target': (-9294.2207, 1180.0, -11692.3945)
+        'pos': (-9256.47559, 1200, -11842.25),
+        'target': (-9256.6748, 1140, -11712.25)
     },
     'counter': 10
 })
@@ -246,29 +332,140 @@ update_entry("lakebed_bk_skip", {
 update_entry("morpheel", {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (-1193.0, -23999.00, -770.0),
-    'angle': 10754,
-    '10754': 20
+    'angle': 10754
+})
+
+# louise glitch
+update_entry("louise_glitch", {
+    'requirements': Requirements.POS,
+    'pos': (2861.78076, -1150, 4507.41846),
+    'angle': 32750,
+})
+
+# rope skip
+# this spawns outside of telma's bar, because the save being in telma's bar will always set it to the wrong layer (4) for some reason
+update_entry("rope_skip", {
+    'requirements': Requirements.POS,
+    'pos': (3159.06836, -500, 5492.82129),
+    'angle': 33276,
 })
 
 # poe gate skip
 update_entry('poe_gate_skip', data = {
     'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (0, -19.55, -600),
+    'angle': 32768
+})
+
+# poe gate skip ending blow moon boots
+update_entry('pgs_ebmb', data = {
+    'requirements': Requirements.POS | Requirements.CAM,
     'pos': (-749.9980, 50.0000, -3265.0000),
     'angle': 16384,
-    'cam': {'pos': (-549.9980, 200.0000, -3265.0000), 'target': (-749.9980, 50.0000, -3265.0000)},
+    'cam': {
+        'pos': (-549.9980, 200.0000, -3265.0000), 
+        'target': (-749.9980, 50.0000, -3265.0000)
+    },
     'counter': 10,
+})
+
+# triple stalfos skip
+update_entry('ag_tss', data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (-4673.3042, -1700, -2881.75537),
+    'angle': 15916,
+    'cam': {
+        'pos': (-4833.16895, -1480, -2907.09399), 
+        'target': (-4703.30225, -1540, -2901.21313)
+    },
+    'counter': 30,
+})
+
+# snowpeak connection cave
+update_entry("snowpeak_cave", {
+    'requirements': Requirements.POS,
+    'pos': (-4615.54688, -1243.95117, -10858.0576),
+    'angle': 55644,
+})
+
+# blind snowboarding
+update_entry("blind_snowboarding", {
+    'requirements': Requirements.POS,
+    'pos': (-14476.7305, 1814.04504, -9606.24609),
+    'angle': 36106,
+})
+
+# ladder freezard cancel
+update_entry("lfc", {
+    'requirements': Requirements.POS,
+    'pos': (-2645.54785, 0, -4794.21094),
+    'angle': 32768,
+})
+
+# desert fence clip
+update_entry("fence_clip", {
+    'requirements': Requirements.POS,
+    'pos': (3885.38916, -732.859985, 18491.7715),
+    'angle': 40266,
+})
+
+# ag epic spinner forwards
+update_entry('epic_spinner', data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (-4813.71777, -1700, -2830.35278),
+    'angle': 49152,
+    'counter': 10
+})
+
+# mirror chamber portal
+update_entry('mirror_chamber', {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (5336.63672, 4392.44238, -20123.7754),
+    'angle': 54828,
+    'cam': {
+        'pos': (5772.17188, 4685.60254, -20415.6738),
+        'target': (5344.75195, 4542.44629, -20157.0879)
+    },
+    'counter': 10
 })
 
 # city 1
 update_entry("cits_1", {
-    'requirements': Requirements.POS | Requirements.CAM,
+    'requirements': Requirements.POS,
     'pos': (1309.60645, -240.0, 5533.43848),
     'angle': 16384,
-    'cam': {
-        'pos': (1027.53259, -108.096123, 5605.23047),
-        'target': (1313.54285, -234.203003, 5545.16846)
-    },
     'counter': 10
+})
+
+# city east wing inside 1
+update_entry('city_east_wing', data = {
+    'requirements': Requirements.POS,
+    'pos': (10650.8516, 0, -12425),
+    'angle': 16384
+})
+
+# city bk clip aka kai clip
+update_entry('city_bk_clip', data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (1094.59277, 1312.70996, -11795.959),
+    'angle': 52312,
+    'cam': {
+        'pos': (1660.85669, 1466.8136, -12006.7412),
+        'target': (1096.87207, 1362.71021, -11830.5078)
+    },
+    'counter': 30
+})
+
+# pot right wing inside 2
+update_entry('smart_room', data = {
+    'requirements': Requirements.POS | Requirements.CAM,
+    'pos': (3999.17676, -725, 249.467438),
+    'angle': 32768,
+    'cam': {
+        'pos': (4036.18408, -505, 378.042297),
+        'target': (4026.32227, -565, 248.41687)
+    },
+    'counter': 30
 })
 
 # Wii specific entries

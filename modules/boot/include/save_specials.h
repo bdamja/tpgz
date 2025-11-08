@@ -13,6 +13,8 @@ void SaveMngSpecial_SpawnPGS();
 
 void SaveMngSpecial_PurpleMist();
 
+void SaveMngSpecial_ForestBit();
+
 void SaveMngSpecial_KargOoB();
 void SaveMngSpecial_WaterfallSidehop();
 
@@ -41,6 +43,18 @@ void SaveMngSpecial_AnyPlummOoB();
 void SaveMngSpecial_Stallord();
 void SaveMngSpecial_Stallord2();
 void SaveMngSpecial_Stallord2_init();
+void SaveMngSpecial_StallordCad();
+void SaveMngSpecial_StallordWallClip();
+void SaveMngSpecial_StallordBombBoost();
+
+void SaveMngSpecial_DeathSword();
+void SaveMngSpecial_ArgorokCSSkip();
+void SaveMngSpecial_Aeralfos();
+void SaveMngSpecial_PalaceBossKey();
+void SaveMngSpecial_EarlyPlatform();
+void SaveMngSpecial_ZantDangoro();
+void SaveMngSpecial_ZantFinal();
+void SaveMngSpecial_KB4();
 
 void SaveMngSpecial_ToTEarlyPoe();
 void SaveMngSpecial_ToTEarlyHP();
