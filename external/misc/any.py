@@ -128,6 +128,7 @@ def update_entry(filename, data, n = 1):
 
 # ordon gate clip
 # for each of these, the angle is unsigned. putting a negative for the angle will crash when loading the saves and all saves after
+# the camera stuff seems to be dysfunctional
 update_entry("ordon_gate_clip", n = 1, data = {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (827.450012, 216.490097, -4533.90625),
@@ -453,7 +454,7 @@ update_entry('city_bk_clip', data = {
         'pos': (1660.85669, 1466.8136, -12006.7412),
         'target': (1096.87207, 1362.71021, -11830.5078)
     },
-    'counter': 30
+    'counter': 30 
 })
 
 # pot right wing inside 2

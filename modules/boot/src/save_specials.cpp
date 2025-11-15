@@ -6,7 +6,6 @@
 #include "libtp_c/include/f_op/f_op_actor_iter.h"
 #include "libtp_c/include/rel/d/a/b/d_a_b_ds.h"
 #include "libtp_c/include/d/a/d_a_e_zs.h"
-#include "libtp_c/include/d/a/d_a_b_zant.h"
 #include "libtp_c/include/rel/d/a/obj/d_a_obj_lv4sand.h"
 #include "libtp_c/include/d/d_procname.h"
 #include "rels/include/defines.h"
@@ -499,6 +498,6 @@ KEEP_FUNC void SaveMngSpecial_KB4() {
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
     gSaveManager.setSaveAngle(24548);
     gSaveManager.setSavePosition(-8567.7666f, 52.0f, -4893.16992f);
-    gSaveManager.setSaveCamera(-8804.90332f, 225.034332f, -4658.11719f, -8567.05664f, 160.653625f, -4893.875f);
+    gSaveManager.setSaveCamera(-8804.90332f, 225.034332f, -4658.11719f, -8567.05664f, 160.653625f, -4893.875f); // does not work
     gSaveManager.setPositionCamera();
 }
