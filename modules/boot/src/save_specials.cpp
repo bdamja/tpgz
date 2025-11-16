@@ -82,7 +82,7 @@ KEEP_FUNC void SaveMngSpecial_SpawnHugo() {
     gSaveManager.setSavePosition(2.9385, 396.9580, -18150.087);
     gSaveManager.setLinkInfo();
 
-    cXyz position(-43, 369, -17970);
+    cXyz position(-289.9785, 401.5400, -18533.078);
 
     // Find hugo in the actor list
     fopAc_ac_c* actorData =
@@ -90,7 +90,7 @@ KEEP_FUNC void SaveMngSpecial_SpawnHugo() {
 
     if (actorData != NULL) {
         actorData->current.pos = position;
-        actorData->shape_angle.y = 39000;
+        actorData->shape_angle.y = 5880;
     }
 }
 
