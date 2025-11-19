@@ -288,3 +288,73 @@ KEEP_FUNC void SaveMngSpecial_NoSQAeralfos() {
     gSaveManager.injectDefault_during();
     dComIfGs_setLife(4);  // one heart
 }
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define BUBBLE_ACTOR_ID 489
+#else
+#define BUBBLE_ACTOR_ID 491
+#endif
+
+KEEP_FUNC void SaveMngSpecial_SpawnPGS() {
+    dComIfGs_setLife(2); // half heart
+    gSaveManager.setSaveAngle(16384);
+    gSaveManager.setSavePosition(-749.9980, 50.0, -3265.0000);
+    gSaveManager.setLinkInfo();
+
+    cXyz position1(-277.2082, 500.0000, -3598.5154);
+    cXyz position2(-277.2082, 500.0000, -3698.5154);
+
+    // Find bubble in the actor list
+    fopAc_ac_c* actorData1 =
+        find_actor([](auto& act) { return act.mBase.mProcName == BUBBLE_ACTOR_ID && act.current.pos.x == -1425; });
+
+    fopAc_ac_c* actorData2 =
+        find_actor([](auto& act) { return act.mBase.mProcName == BUBBLE_ACTOR_ID && act.current.pos.x == -1225; });
+        
+    if (actorData1 != NULL) {
+        actorData1->current.pos = position1;
+        actorData1->shape_angle.y = 0;
+    }
+
+    if (actorData2 != NULL) {
+        actorData2->current.pos = position2;
+        actorData2->shape_angle.y = 0;
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_ZantFinal() {
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSaveAngle(0);
+    gSaveManager.setSavePosition(0.0f, 0.0f, 0.0f);
+    gSaveManager.setLinkInfo();
+
+    class daB_ZANT_c {
+    public:
+        /* 0x0000 */ fopEn_enemy_c base;
+        /* 0x05AC */ u8 field_0x5ac[0x6d4 - 0x5ac];
+        /* 0x06D4 */ int mAction;
+        /* 0x06D8 */ int field_0x6d8;
+        /* 0x06DC */ int mMode;
+        /* 0x06E0 */ u8 field_0x6e0[0x1b];
+        /* 0x06FB */ u8 mFightPhase;
+    };
+
+    // Find zant in the actor list
+    daB_ZANT_c* actorData = (daB_ZANT_c*)find_actor([](auto& act) { return act.mBase.mProcName == PROC_B_ZANT; });
+
+    // Set his action, fight phase and mode to trigger the transition demo
+    if (actorData != nullptr) {
+        // Set Zant's state
+        actorData->mAction = 23;      // ACT_ROOM_CHANGE
+        actorData->mFightPhase = 5;   // PHASE_YO
+        actorData->mMode = 0;         // MODE_START_DEMO
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
+    gSaveManager.injectDefault_during();
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSaveAngle(0);
+    gSaveManager.setSavePosition(0.0f, -500.0f, 0.0f);
+    gSaveManager.setLinkInfo();
+}

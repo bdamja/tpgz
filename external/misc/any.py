@@ -110,6 +110,8 @@ def main(args=None):
             "deku_toad",
             "lakebed_bk_skip",
             "morpheel",
+            "louise_glitch",
+            "rope_skip",
             "mdh_tower",
             "mdh_bridge",
             "messenger_skip",
@@ -118,7 +120,8 @@ def main(args=None):
             "dark_hammer",
             "bulblin_camp",
             "ag",
-            "poe_1_skip",
+            "poe_gate_skip",
+            "pgs_ebmb",
             "early_boss_key",
             "death_sword",
             "stallord",
@@ -135,6 +138,8 @@ def main(args=None):
             "pot_bk",
             "earlypf",
             "zant",
+            "zant_dangoro",
+            "zant_final",
             "hc",
             "kb4",
             "darknut",
@@ -329,12 +334,37 @@ def main(args=None):
         'counter': 20,
     })
 
-    # poe 1 skip
-    update_entry('poe_1_skip', data = {
+    # louise glitch
+    update_entry("louise_glitch", {
+        'requirements': Requirements.POS,
+        'pos': (2861.78076, -1150, 4507.41846),
+        'angle': 32750,
+    })
+
+    # rope skip
+    # this spawns outside of telma's bar, because the save being in telma's bar will always set it to the wrong layer (4) for some reason
+    update_entry("rope_skip", {
+        'requirements': Requirements.POS,
+        'pos': (3159.06836, -500, 5492.82129),
+        'angle': 33276,
+    })
+
+    # poe gate skip
+    update_entry('poe_gate_skip', data = {
         'requirements': Requirements.POS | Requirements.CAM,
-        'pos': (-2046.97168, 0.0, -587.304871),
-        'angle': 49030,
-        'cam': {'pos': (-1779.00293, 213.707397, -584.686768), 'target': (-2047.97168, 130.16568, -587.317139)},
+        'pos': (0, -19.55, -600),
+        'angle': 32768
+    })
+
+    # poe gate skip ending blow moon boots
+    update_entry('pgs_ebmb', data = {
+        'requirements': Requirements.POS | Requirements.CAM,
+        'pos': (-749.9980, 50.0000, -3265.0000),
+        'angle': 16384,
+        'cam': {
+            'pos': (-549.9980, 200.0000, -3265.0000), 
+            'target': (-749.9980, 50.0000, -3265.0000)
+        },
         'counter': 10,
     })
 

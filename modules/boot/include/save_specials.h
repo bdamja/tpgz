@@ -54,3 +54,7 @@ void SaveMngSpecial_emptyLake();
 
 void SaveMngSpecial_NoSQAeralfos();
 void SaveMngSpecial_Lakebed1();
+
+void SaveMngSpecial_SpawnPGS();
+void SaveMngSpecial_ZantDangoro();
+void SaveMngSpecial_ZantFinal();
