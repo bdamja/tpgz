@@ -86,7 +86,10 @@ def main(args=None):
         file_names = [
             "ordon_gate_clip",
             "ordon_gate_clip",
+            "faron_gate_clip_1",
             "seam_clip",
+            "oob_to_gorge",
+            "faron_gate_clip_2",
             "goats",
             "hugo",
             "faron_twilight",
@@ -123,13 +126,19 @@ def main(args=None):
             "poe_gate_skip",
             "pgs_ebmb",
             "early_boss_key",
+            "triple_stalfos_skip",
             "death_sword",
+            "epic_spinner",
             "stallord",
             "stallord",
             "early_city",
             "cits",
+            "arg_cs_skip",
+            "cits_west_inside",
             "aeralfos_skip",
             "cits_2",
+            "cits_bk_clip",
+            "fanless",
             "fan_tower",
             "argorok",
             "pot1",
@@ -184,9 +193,9 @@ def main(args=None):
     # seam clip
     update_entry("seam_clip", data = {
         'requirements': Requirements.POS,
-        'pos': (-46261.4805, -7473.1777, 98200.4141),
-        'angle': 31612,
-        'counter': 30,
+        'pos': (-45726.7188, -7515.41748, 97416.9766),
+        'angle': 52884,
+        'counter': 10,
     })
 
     # hugo
@@ -406,7 +415,39 @@ def main(args=None):
         'pos': (-8593.0000, 52.0000, -4873.0000),
         'angle': 24354,
         'counter': 20,
-    })               
+    })
+
+    # city 1
+    update_entry("cits", {
+        'requirements': Requirements.POS,
+        'pos': (1309.60645, -240.0, 5533.43848),
+        'angle': 16384,
+        'counter': 10
+    })
+
+    # epic spinner
+    update_entry("epic_spinner", {
+        'requirements': Requirements.POS,
+        'pos': (-4815.0, -1700.0, -2848.0),
+        'angle': 49152,
+        'counter': 10
+    })           
+
+    # triple stalfos skip
+    update_entry("triple_stalfos_skip", {
+        'requirements': Requirements.POS,
+        'pos': (-4603.0, -1700.0, -2895.0),
+        'angle': 16119,
+        'counter': 10
+    }) 
+
+    # kargarok rider fight
+    update_entry("kargarok_fight", data = {
+        'requirements': Requirements.POS,
+        'pos': (-107158.469, -23433.293, 46868.5273),
+        'angle': 64976,
+        'counter': 30
+    })
 
     file = open("any.bin", "wb")
 

@@ -358,3 +358,46 @@ KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
     gSaveManager.setSavePosition(0.0f, -500.0f, 0.0f);
     gSaveManager.setLinkInfo();
 }
+
+KEEP_FUNC void SaveMngSpecial_Sword() {
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+}
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define EPONA_ACTOR_ID 236
+#else
+#define EPONA_ACTOR_ID 238
+#endif
+
+KEEP_FUNC void SaveMngSpecial_HorseSpawn() {
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1;
+}
+
+KEEP_FUNC void SaveMngSpecial_HorseSpawnRunning() {
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1;
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 42.0f;
+}
+
+KEEP_FUNC void SaveMngSpecial_MoveEpona(float x, float y, float z) {
+    cXyz new_pos(x, y, z);
+
+    // Find epona in the actor list
+    fopAc_ac_c* actorData =
+        find_actor([](auto& act) { return act.mBase.mProcName == EPONA_ACTOR_ID; });
+        
+    if (actorData != NULL) {
+        actorData->current.pos = new_pos;
+    }
+}
+
+KEEP_FUNC void SaveMngSpecial_OobToGorge() {
+    SaveMngSpecial_MoveEpona(-47534.7, -8099.5, 91469.8);
+}
+
+KEEP_FUNC void SaveMngSpecial_FaronGate1() {
+    SaveMngSpecial_MoveEpona(-14513.4, 26.7, -14480.5);
+}
+
+KEEP_FUNC void SaveMngSpecial_FaronGate2() {
+    SaveMngSpecial_MoveEpona(-41000.0, -6960.0, 108800.0);
+}
