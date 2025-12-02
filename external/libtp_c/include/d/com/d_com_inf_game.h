@@ -344,6 +344,9 @@ extern TitleScreenInfo l_fpcNdRq_Queue;
 LIBTP_DEFINE_FUNC(getLayerNo_common_common__14dComIfG_play_cFPCcii, dComIfG_play_c__getLayerNo_common_common_char_const____int__int_,
                   int, tp_getLayerNo, (const char* stageName, int roomId, int layerOverride))
 
+LIBTP_DEFINE_FUNC(getLayerNo__14dComIfG_play_cFi, dComIfG_play_c__getLayerNo_int_,
+                  int, dComIfG_play_c__getLayerNo, (int))                  
+
 inline dBgS* dComIfG_Bgsp() {
     return &g_dComIfG_gameInfo.play.mDBgS;
 }

@@ -103,6 +103,8 @@ enum GZSettingID : uint32_t {
     STNG_CMD_BIT, // Wii only, but we reserve the id anyway
     STNG_CMD_GORGE_VOID,
     STNG_CMD_MOON_JUMP,
+    STNG_TOOLS_STAGE_INFO,
+    STNG_SPRITES_STAGE_INFO,
 };
 
 struct GZSettingEntry {
