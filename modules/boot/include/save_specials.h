@@ -65,3 +65,6 @@ void SaveMngSpecial_MoveEpona();
 void SaveMngSpecial_OobToGorge();
 void SaveMngSpecial_FaronGate1();
 void SaveMngSpecial_FaronGate2();
+
+void SaveMngSpecial_reBiTE();
+void SaveMngSpecial_PotPush2();

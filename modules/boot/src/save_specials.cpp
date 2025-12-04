@@ -401,3 +401,40 @@ KEEP_FUNC void SaveMngSpecial_FaronGate1() {
 KEEP_FUNC void SaveMngSpecial_FaronGate2() {
     SaveMngSpecial_MoveEpona(-41000.0, -6960.0, 108800.0);
 }
+
+KEEP_FUNC void SaveMngSpecial_reBiTE() {
+    setNextStageLayer(2);
+}
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define BLUE_POT_ID 762
+#else
+#define BLUE_POT_ID 764
+#endif
+
+
+KEEP_FUNC void SaveMngSpecial_PotPush2() {
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_B, SLOT_0); // rang on B
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_RIGHT, SLOT_15); // bombs on D-Pad left
+
+    gSaveManager.setSaveAngle(21579);
+    gSaveManager.setSavePosition(9208.0947, 0.0, 79.1174); // Link next to 4th pot
+    gSaveManager.setLinkInfo();
+
+    cXyz position1(9579.6, 0.0000, -76.9); // furthest from door
+    cXyz position2(9491.1, 0.0000, -30.3);
+    cXyz position3(9396.6, -1.0000, 18.9);
+    cXyz position4(9297.3, -1.0000, 30.7); // staggered
+
+    int type = 10; // big blue pot
+    u16 angleZ = ((u16)type << 1) & 0x1F; // extra params, like type of pot, is stored in the z angle on init
+    csXyz angleTowardsEntrance(0, 54711, angleZ);
+    csXyz angleAwayEntrance(0, 21487, angleZ);
+    u32 params = 0x00003FFF;
+    s8 roomNo = dComIfGp_getPlayer()->current.roomNo;
+
+    fopAcM_create(BLUE_POT_ID, params, &position1, roomNo, &angleTowardsEntrance, nullptr, -1);
+    fopAcM_create(BLUE_POT_ID, params, &position2, roomNo, &angleAwayEntrance, nullptr, -1);
+    fopAcM_create(BLUE_POT_ID, params, &position3, roomNo, &angleAwayEntrance, nullptr, -1);
+    fopAcM_create(BLUE_POT_ID, params, &position4, roomNo, &angleAwayEntrance, nullptr, -1);
+}
