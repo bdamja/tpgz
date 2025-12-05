@@ -92,6 +92,8 @@ def main(args=None):
             "faron_gate_clip_2",
             "goats",
             "sewers",
+            "sewers_tower",
+            "sewers_rooftops",
             "hugo",
             "faron_twilight",
             "ems",
@@ -101,14 +103,22 @@ def main(args=None):
             "rebite",
             "forest_temple",
             "eldin_twilight",
+            "basement_bugs",
+            "eld_inn",
             "bombhouse_skip",
+            "eldin_steam_cycle",
             "epona_oob_to_flight_by_fowl",
+            "quaforce_clip",
             "kargarok_fight",
             "kargarok_flight",
             "lanayru_twilight",
+            "inner_zd_bug",
             "waterfall_sidehop",
+            "ct_bug",
+            "dock_bug",
             "boss_bug",
             "iza",
+            "plumm_cs_skip",
             "plumm_oob",
             "enter_lakebed",
             "lakebed_1",
@@ -121,10 +131,16 @@ def main(args=None):
             "rope_skip",
             "mdh_tower",
             "mdh_bridge",
+            "post_mdh",
+            "snowpeak_cave",
             "messenger_skip",
+            "blind_snowboarding",
+            "snowpeak_ruins",
             "snowpeak_ruins_mbbb",
+            "spr_spinner_boost",
             "freezard_skip",
             "dark_hammer",
+            "desert_fence_clip",
             "bulblin_camp",
             "ag",
             "poe_gate_skip",
@@ -135,6 +151,7 @@ def main(args=None):
             "epic_spinner",
             "stallord",
             "stallord",
+            "mirror_chamber",
             "early_city",
             "cits",
             "arg_cs_skip",
@@ -146,13 +163,17 @@ def main(args=None):
             "fan_tower",
             "argorok",
             "pot1",
+            "sol1_backtrack",
             "stupidroom",
+            "smart_room",
+            "sol2_backtrack",
             "pot2",
             "pot_bk",
             "earlypf",
             "zant",
             "zant_dangoro",
             "zant_final",
+            "ct_mailman_skip",
             "hc",
             "kb4",
             "darknut",
@@ -251,15 +272,6 @@ def main(args=None):
             'requirements': Requirements.POS | Requirements.CAM,
             'pos': (25362.3184, -3028.7673, 10060.8379),
             'angle': 29327,
-            'counter': 30,
-        })
-
-    # mdh bridge
-    if args.platform is Platform.WII:
-        update_entry("mdh_bridge", data = {
-            'requirements': Requirements.POS | Requirements.CAM,
-            'pos': (27436.0391, 1300.0, 6575.3115),
-            'angle': 32768,
             'counter': 30,
         })
 
@@ -451,6 +463,119 @@ def main(args=None):
         'pos': (-107158.469, -23433.293, 46868.5273),
         'angle': 64976,
         'counter': 30
+    })
+
+    # sewers tower
+    update_entry("sewers_tower", {
+        'requirements': Requirements.POS | Requirements.CAM,
+        'pos': (25524, -3010, 8087),
+        'angle': 32737,
+        'cam': {
+            'pos': (25771.3672, -2753.22388, 7785.64941),
+            'target': (25535.5352, -2890, 8078.35254)
+        },
+        'counter': 30
+    })
+
+    # sewers rooftops
+    update_entry("rooftops", {
+        'requirements': Requirements.POS,
+        'pos': (27441, 2930, 6796),
+        'angle': 32465,
+        'counter': 30
+    })
+
+    # eldin steam cycle
+    update_entry("eldin_steam_cycle", {
+        'requirements': Requirements.POS,
+        'pos': (411.544403, 18.8815422, 9147.74805),
+        'angle': 33423,
+        'counter': 10
+    })
+
+    # inner zd bug
+    update_entry("inner_zd_bug", {
+        'requirements': Requirements.POS | Requirements.CAM,
+        'pos': (0, -8.27449322, -2750),
+        'angle': 32768,
+        'cam': {
+            'pos': (-280.019684, 76.9521179, -2899.97949),
+            'target': (8.7422813, 86.7255249, -2740)
+        },
+        'counter': 30
+    })
+
+    # ct bug
+    update_entry("ct_bug", {
+        'requirements': Requirements.POS,
+        'pos': (2185.91479, -725, 6443.65088),
+        'angle': 19198,
+    })
+
+    # plumm cs skip
+    update_entry("plumm_cs_skip", {
+        'requirements': Requirements.POS,
+        'pos': (-101516.211, -18470, 53531.9336),
+        'angle': 57707,
+    })
+
+    # blind snowboarding
+    update_entry("blind_snowboarding", {
+        'requirements': Requirements.POS,
+        'pos': (-14476.7305, 1814.04504, -9606.24609),
+        'angle': 36106,
+    })
+
+    # desert fence clip
+    update_entry("desert_fence_clip", {
+        'requirements': Requirements.POS,
+        'pos': (3885.38916, -732.859985, 18491.7715),
+        'angle': 40266,
+    })
+
+    # mirror chamber portal
+    update_entry('mirror_chamber', {
+        'requirements': Requirements.POS | Requirements.CAM,
+        'pos': (5336.63672, 4392.44238, -20123.7754),
+        'angle': 54828,
+        'cam': {
+            'pos': (5772.17188, 4685.60254, -20415.6738),
+            'target': (5344.75195, 4542.44629, -20157.0879)
+        },
+        'counter': 10
+    })
+
+    # pot right wing inside 2
+    update_entry('smart_room', data = {
+        'requirements': Requirements.POS | Requirements.CAM,
+        'pos': (3999.17676, -725, 249.467438),
+        'angle': 32768,
+        'cam': {
+            'pos': (4036.18408, -505, 378.042297),
+            'target': (4026.32227, -565, 248.41687)
+        },
+        'counter': 30
+    })
+
+    # pot sol 1 backtrack
+    update_entry("sol1_backtrack", {
+        'requirements': Requirements.POS,
+        'pos': (0, 0, 300),
+        'angle': 41971,
+    })
+
+    # pot sol 2 backtrack
+    update_entry("sol2_backtrack", {
+        'requirements': Requirements.POS,
+        'pos': (0, 0, 300),
+        'angle': 41971,
+    })
+
+    # mailman skip outside of castle town
+    update_entry("ct_mailman_skip", {
+        'requirements': Requirements.POS,
+        'pos': (-70000, -1400, 10662),
+        'angle': 16384,
     })
 
     file = open("any.bin", "wb")

@@ -68,3 +68,6 @@ void SaveMngSpecial_FaronGate2();
 
 void SaveMngSpecial_reBiTE();
 void SaveMngSpecial_PotPush2();
+void SaveMngSpecial_MDHBridge();
+void SaveMngSpecial_SPR_MBBB();
+void SaveMngSpecial_SPR_SpinnerBoost();

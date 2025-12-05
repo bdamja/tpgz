@@ -32,7 +32,7 @@ KEEP_FUNC SettingsMenu::SettingsMenu(Cursor& cursor)
                          "Change menu object positions (A to toggle selection, DPad to move)",
                          false},
                          {"credits", CREDITS_INDEX, "view credits", false},
-                         {"save pot positions", SAVE_POT_POSITIONS_INDEX, "save pot positions for pot push", false},
+                         {"save pot positions", SAVE_POT_POSITIONS_INDEX, "save pot positions for pot push 2 (does not save to card yet)", false},
                     } {}
 
 SettingsMenu::~SettingsMenu() {}

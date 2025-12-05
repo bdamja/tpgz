@@ -146,7 +146,7 @@ KEEP_FUNC void SaveMngSpecial_LakebedBKSkip() {
 
 KEEP_FUNC void SaveMngSpecial_Darkhammer() {
     dComIfGs_onEventBit(0x0B02);
-    dComIfGs_onEventBit(0x0B04);  // iza bomb bag stolen
+    //dComIfGs_onEventBit(0x0B04);  // iza bomb bag stolen
 }
 
 KEEP_FUNC void SaveMngSpecial_Morpheel() {
@@ -256,13 +256,13 @@ KEEP_FUNC void SaveMngSpecial_Palace1() {
     g_dComIfG_gameInfo.info.mDan.mSwitch[0] = 0;  // reset palace switches
 }
 
-KEEP_FUNC void SaveMngSpecial_Palace2() {
-    dComIfGp_getPlayer()->mEquipItem = 3;  // master sword
-    gSaveManager.injectDefault_during();
-    gSaveManager.setSaveAngle(32731);
-    gSaveManager.setSavePosition(251.83f, -200.0f, 10993.50f);
-    gSaveManager.setLinkInfo();
-}
+// KEEP_FUNC void SaveMngSpecial_Palace2() {
+//     dComIfGp_getPlayer()->mEquipItem = 3;  // master sword
+//     gSaveManager.injectDefault_during();
+//     gSaveManager.setSaveAngle(32731);
+//     gSaveManager.setSavePosition(251.83f, -200.0f, 10993.50f);
+//     gSaveManager.setLinkInfo();
+// }
 
 KEEP_FUNC void SaveMngSpecial_CaveOfOrdeals() {
     gSaveManager.injectDefault_during();
@@ -437,4 +437,37 @@ KEEP_FUNC void SaveMngSpecial_PotPush2() {
     fopAcM_create(BLUE_POT_ID, params, &position2, roomNo, &angleAwayEntrance, nullptr, -1);
     fopAcM_create(BLUE_POT_ID, params, &position3, roomNo, &angleAwayEntrance, nullptr, -1);
     fopAcM_create(BLUE_POT_ID, params, &position4, roomNo, &angleAwayEntrance, nullptr, -1);
+}
+
+KEEP_FUNC void SaveMngSpecial_MDHBridge() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 25.0f;
+}
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define WOLFOS_ACTOR_ID 519
+#else
+#define WOLFOS_ACTOR_ID 521
+#endif
+
+KEEP_FUNC void SaveMngSpecial_SPR_MBBB() {
+    fopAc_ac_c* actorData1 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData1); // delete wolfos
+    fopAc_ac_c* actorData2 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData2); // delete wolfos
+
+    gSaveManager.setSaveAngle(49152);
+    gSaveManager.setSavePosition(659.949341, 50, -2762.14014); // corner of wall
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_SPR_SpinnerBoost() {
+    fopAc_ac_c* actorData1 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData1); // delete wolfos
+    fopAc_ac_c* actorData2 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData2); // delete wolfos
+
+    gSaveManager.setSaveAngle(49152);
+    gSaveManager.setSavePosition(1998.8147, 0, -1984.20801); // corner of wall
+    gSaveManager.setLinkInfo();
 }
