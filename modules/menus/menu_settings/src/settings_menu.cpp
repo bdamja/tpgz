@@ -6,6 +6,8 @@
 #include "settings.h"
 #include "rels/include/defines.h"
 #include "menus/utils/menu_mgr.h"
+#include "libtp_c/include/f_op/f_op_actor_mng.h"
+#include "libtp_c/include/f_op/f_op_actor_iter.h"
 
 #define MAX_RELOAD_OPTIONS 2
 #define MAX_CURSOR_COLOR_OPTIONS 6
@@ -30,6 +32,7 @@ KEEP_FUNC SettingsMenu::SettingsMenu(Cursor& cursor)
                          "Change menu object positions (A to toggle selection, DPad to move)",
                          false},
                          {"credits", CREDITS_INDEX, "view credits", false},
+                         {"save pot positions", SAVE_POT_POSITIONS_INDEX, "save pot positions for pot push", false},
                     } {}
 
 SettingsMenu::~SettingsMenu() {}
@@ -108,9 +111,16 @@ void SettingsMenu::draw() {
 #endif  // WII_PLATFORM
             break;
         }
-        case SWAP_EQUIPS_INDEX:
+        case SWAP_EQUIPS_INDEX: {
             g_swap_equips_flag = !g_swap_equips_flag;
             break;
+        }
+
+        case SAVE_POT_POSITIONS_INDEX: {
+            PotResult pot_result = find_pots_in_radius(cXyz(9400.0f, 0.0f, 0.0f), 400.0f, 4);
+            store_pot_positions(pot_result);
+            break;
+        }
         }
     }
 
@@ -195,3 +205,5 @@ void SettingsMenu::draw() {
 
     GZ_drawMenuLines(lines, cursor.y, MENU_LINE_NUM);
 }
+
+

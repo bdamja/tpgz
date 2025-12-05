@@ -3,6 +3,7 @@
 #include <stdint.h>
 #include "utils/lines.h"
 #include "utils/containers/deque.h"
+#include "libtp_c/include/f_op/f_op_actor_mng.h"
 
 #define CURSOR_RGBA g_cursorColor
 #define FONT_OPTIONS_COUNT ARRAY_COUNT(g_font_opt)
@@ -11,6 +12,20 @@
 #define LOAD_FILE 1
 
 #define ACTIVE_FUNC(id) []() { return GZStng_getData(id, false); }
+
+struct PotResult {
+    fopAc_ac_c* pots[4];
+    int count = 0;
+};
+
+PotResult find_pots_in_radius(const cXyz& center, float radius, int maxCount); 
+
+void store_pot_positions(const PotResult& potResult);
+
+extern cXyz g_pot_position_1;
+extern cXyz g_pot_position_2;
+extern cXyz g_pot_position_3;
+extern cXyz g_pot_position_4;
 
 extern bool g_swap_equips_flag;
 extern ListMember g_font_opt[7];

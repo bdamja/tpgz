@@ -8,6 +8,7 @@
 #include "libtp_c/include/rel/d/a/obj/d_a_obj_lv4sand.h"
 #include "libtp_c/include/d/d_procname.h"
 #include "rels/include/defines.h"
+#include "settings.h"
 
 typedef bool (*predicate_t)(fopAc_ac_c&);
 
@@ -412,19 +413,18 @@ KEEP_FUNC void SaveMngSpecial_reBiTE() {
 #define BLUE_POT_ID 764
 #endif
 
-
 KEEP_FUNC void SaveMngSpecial_PotPush2() {
     dComIfGs_setSelectItemIndex(SELECT_ITEM_B, SLOT_0); // rang on B
-    dComIfGs_setSelectItemIndex(SELECT_ITEM_RIGHT, SLOT_15); // bombs on D-Pad left
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_RIGHT, SLOT_15); // bombs on D-Pad left, it's backwards
 
     gSaveManager.setSaveAngle(21579);
     gSaveManager.setSavePosition(9208.0947, 0.0, 79.1174); // Link next to 4th pot
     gSaveManager.setLinkInfo();
 
-    cXyz position1(9579.6, 0.0000, -76.9); // furthest from door
-    cXyz position2(9491.1, 0.0000, -30.3);
-    cXyz position3(9396.6, -1.0000, 18.9);
-    cXyz position4(9297.3, -1.0000, 30.7); // staggered
+    cXyz position1 = g_pot_position_1;
+    cXyz position2 = g_pot_position_2;
+    cXyz position3 = g_pot_position_3;
+    cXyz position4 = g_pot_position_4;
 
     int type = 10; // big blue pot
     u16 angleZ = ((u16)type << 1) & 0x1F; // extra params, like type of pot, is stored in the z angle on init
