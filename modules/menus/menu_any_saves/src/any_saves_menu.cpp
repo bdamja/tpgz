@@ -212,7 +212,7 @@ void AnySavesMenu::draw() {
             special(FAN_TOWER_INDEX, SaveMngSpecial_FanTower, nullptr),
             special(ARGOROK_INDEX, SaveMngSpecial_Argorok, nullptr),
             special(PALACE_SOL_1_INDEX, SaveMngSpecial_Palace1, nullptr),
-            special(PALACE_SOL_2_INDEX, nullptr, SaveMngSpecial_Sword),
+            special(PALACE_2_INDEX, nullptr, SaveMngSpecial_Sword),
             special(BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
             special(PGS_EBMB_INDEX, nullptr, SaveMngSpecial_SpawnPGS),
             special(ZANT_DANGORO_INDEX, nullptr, SaveMngSpecial_ZantDangoro),
