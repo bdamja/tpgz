@@ -71,3 +71,6 @@ void SaveMngSpecial_PotPush2();
 void SaveMngSpecial_MDHBridge();
 void SaveMngSpecial_SPR_MBBB();
 void SaveMngSpecial_SPR_SpinnerBoost();
+
+void SaveMngSpecial_KB1Phase2();
+void SaveMngSpecial_KB4();

@@ -100,7 +100,9 @@ def main(args=None):
             "purple_mist",
             "bite",
             "kb1",
+            "kb1_2",
             "rebite",
+            "kak_beasts",
             "forest_temple",
             "eldin_twilight",
             "basement_bugs",
@@ -424,14 +426,6 @@ def main(args=None):
         'angle': 0,
         'counter': 10,
     }) 
-
-    # kb4
-    update_entry('kb4', data = {
-        'requirements': Requirements.POS,
-        'pos': (-8593.0000, 52.0000, -4873.0000),
-        'angle': 24354,
-        'counter': 20,
-    })
 
     # city 1
     update_entry("cits", {

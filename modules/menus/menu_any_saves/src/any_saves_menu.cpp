@@ -77,8 +77,10 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
             {"early master sword", EMS_INDEX, "Super Jump to early Sacred Grove"},
             {"purple mist", MIST_INDEX, "Purple mist in Faron Woods (post-EMS)"},
             {"bite", BITE_INDEX, "Back in Time Equipped after Faron Twilight completion"},
-            {"kb1", KB1_INDEX, "King Bulblin 1 Fight"},
+            {"kb1", KB1_INDEX, "King Bulblin 1 fight"},
+            {"kb1 phase 2", KB1_2_INDEX, "King Bulblin 1 fight phase 2"},
             {"rebite", REBITE_INDEX, "Back in Time Equipped for EBF after spawning in Kakariko"},
+            {"kak messengers", KAK_BEASTS_INDEX, "Shadowbeast fight in Kakariko after re-BiTE"},
             {"forest temple", FOREST_TEMPLE_INDEX, "Beginning of Forest Temple with boss flag set"},
             {"eldin twilight", ELDIN_TWILIGHT_INDEX, "Eldin Twilight tears"},
             {"basement bugs", BASEMENT_BUGS_INDEX, "Eldin Twilight sanctuary basement bugs"},
@@ -229,6 +231,9 @@ void AnySavesMenu::draw() {
             special(MDH_BRIDGE_INDEX, SaveMngSpecial_MDHBridge, nullptr),
             special(SPR_MBBB_INDEX, nullptr, SaveMngSpecial_SPR_MBBB),
             special(SPR_SPINNER_BOOST_INDEX, nullptr, SaveMngSpecial_SPR_SpinnerBoost),
+            special(KB1_2_INDEX, SaveMngSpecial_KB1Phase2, SaveMngSpecial_Sword),
+            special(KAK_BEASTS_INDEX, nullptr, SaveMngSpecial_BossFlags),
+            special(KB4_INDEX, nullptr, SaveMngSpecial_KB4),
         };
 #endif
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));

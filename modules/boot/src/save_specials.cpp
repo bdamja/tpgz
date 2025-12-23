@@ -471,3 +471,16 @@ KEEP_FUNC void SaveMngSpecial_SPR_SpinnerBoost() {
     gSaveManager.setSavePosition(1998.8147, 0, -1984.20801); // corner of wall
     gSaveManager.setLinkInfo();
 }
+
+KEEP_FUNC void SaveMngSpecial_KB1Phase2() {
+    gSaveManager.injectDefault_during();
+    setNextStageLayer(4); // phase 2
+}
+
+KEEP_FUNC void SaveMngSpecial_KB4() {
+    gSaveManager.injectDefault_during();
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSaveAngle(24354);
+    gSaveManager.setSavePosition(-8566.32617f, 200.0f, -4870.11084f);
+    gSaveManager.setLinkInfo();
+}
