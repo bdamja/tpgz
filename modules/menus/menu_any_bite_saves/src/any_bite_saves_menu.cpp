@@ -36,13 +36,14 @@ KEEP_FUNC AnyBiTESavesMenu::AnyBiTESavesMenu(Cursor& cursor)
           {"mdh bridge", BITE_MDH_BRIDGE_INDEX, "MDH castle rooftops"},
           {"bulblin camp", BITE_BULBLIN_CAMP_INDEX, "The camp before Arbiter's Grounds"},
           {"arbiter's grounds", BITE_AG_INDEX, "The Arbiter's Grounds segment"},
-          {"poe gate skip", BITE_PGS_INDEX, "Bouncin' with Bonnie"},
+          {"poe gate clip", BITE_PGC_INDEX, "Clipping through the Arbiter's poe gate"},
           {"death sword", BITE_DSS_INDEX, "Arbiter's Grounds miniboss"},
           {"stallord", BITE_STALLORD_INDEX, "Arbiter's Grounds boss"},
           {"stallord 2", BITE_STALLORD2_INDEX, "Stallord 2nd phase"},
           {"silver rupee", BITE_SILVER_RUPEE, "Silver Rupee in Kakariko"},
           {"city early", BITE_CITS_EARLY_INDEX, "Clip to the cannon early"},
           {"city 1", BITE_CITS_1_INDEX, "The 1st City in the Sky segment"},
+          {"city gate clip", BITE_CGC_INDEX, "Clipping through the city gate before Aeralfos"},
           {"aeralfos skip", BITE_AERALFOS_SKIP_INDEX, "City in the Sky miniboss"},
           {"fan tower", BITE_FAN_TOWER_INDEX, "Final fan room in City"},
           {"argorok", BITE_ARGOROK_INDEX, "City in the Sky boss"},
@@ -178,6 +179,7 @@ void AnyBiTESavesMenu::draw() {
         };
 #endif
 #ifdef WII_PLATFORM
+<<<<<<< HEAD
         special AnySpecials[] = {
             special(ORDON_GATE_CLIP_INDEX, nullptr, SaveMngSpecial_OrdonRock),
             special(HUGO_INDEX, SaveMngSpecial_Hugo, SaveMngSpecial_SpawnHugo),
@@ -209,6 +211,25 @@ void AnyBiTESavesMenu::draw() {
             special(KB4_INDEX, nullptr, SaveMngSpecial_KB4),
             special(WORMHOLE_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Wormhole),
             special(EARLY_BOSS_KEY_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
+=======
+            special(BITE_PLUMM_OOB_INDEX, SaveMngSpecial_AnyPlummOoB, nullptr),
+            special(BITE_ENTER_LAKEBED_INDEX, SaveMngSpecial_emptyLake, nullptr),
+            special(BITE_DARK_HAMMER_INDEX, nullptr, SaveMngSpecial_Darkhammer),
+            special(BITE_PALACE_SOL_1_INDEX, SaveMngSpecial_Palace1, nullptr),
+            special(BITE_PALACE_SOL_2_INDEX, nullptr, SaveMngSpecial_Palace2),
+            special(BITE_BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
+#endif
+            special(BITE_TOAD_INDEX, SaveMngSpecial_BossFlags, nullptr),
+            special(BITE_MORPHEEL_INDEX, nullptr, SaveMngSpecial_Morpheel),
+            special(BITE_STALLORD_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Stallord),
+            special(BITE_STALLORD2_INDEX, SaveMngSpecial_Stallord2_init, SaveMngSpecial_Stallord2),
+            special(BITE_LAKEBED_1_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_BossFlags),
+            special(BITE_WATERFALL_SIDEHOP_INDEX, SaveMngSpecial_WaterfallSidehop, nullptr),
+            special(BITE_FAN_TOWER_INDEX, SaveMngSpecial_FanTower, nullptr),
+            special(BITE_ARGOROK_INDEX, SaveMngSpecial_Argorok, nullptr),
+            special(BITE_PALACE_2_INDEX, nullptr, SaveMngSpecial_Palace2),
+            special(BITE_BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
+>>>>>>> 3d1a769 (1.2.2m)
         };
 #endif
 
