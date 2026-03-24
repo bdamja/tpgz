@@ -86,10 +86,6 @@ def main(args=None):
         file_names = [
             "ordon_gate_clip",
             "ordon_gate_clip",
-            "faron_gate_clip_1",
-            "seam_clip",
-            "oob_to_gorge",
-            "faron_gate_clip_2",
             "goats",
             "sewers",
             "sewers_tower",
@@ -103,16 +99,17 @@ def main(args=None):
             "kb1_2",
             "rebite",
             "kak_beasts",
-            "forest_temple",
             "eldin_twilight",
             "basement_bugs",
+            "forest_temple",
+            "faron_escape",
+            "hfs_mailman_skip",
+            "lanayru_gate_clip",
+            "kargarok_fight",
+            "kargarok_flight",
             "eld_inn",
             "bombhouse_skip",
             "eldin_steam_cycle",
-            "epona_oob_to_flight_by_fowl",
-            "quaforce_clip",
-            "kargarok_fight",
-            "kargarok_flight",
             "lanayru_twilight",
             "inner_zd_bug",
             "waterfall_sidehop",
@@ -124,8 +121,7 @@ def main(args=None):
             "plumm_oob",
             "enter_lakebed",
             "lakebed_1",
-            "pot_push",
-            "pot_push",
+            "wormhole",
             "deku_toad",
             "lakebed_bk_skip",
             "morpheel",
@@ -146,7 +142,6 @@ def main(args=None):
             "bulblin_camp",
             "ag",
             "poe_gate_skip",
-            "pgs_ebmb",
             "early_boss_key",
             "triple_stalfos_skip",
             "death_sword",
@@ -330,6 +325,14 @@ def main(args=None):
         'counter': 10,
     })
 
+    # faron escape
+    update_entry("faron_escape", data = {
+        'requirements': Requirements.POS,
+        'pos': (-13557.3584, -3.10, -13216.2646),
+        'angle': 17562,
+        'counter': 10,
+    })
+
     # iza
     update_entry("iza", data = {
         'requirements': Requirements.POS,
@@ -414,8 +417,8 @@ def main(args=None):
     # lakebed bk skip
     update_entry('lakebed_bk_skip', data = {
         'requirements': Requirements.POS,
-        'pos': (63.3586, 1500.0000, 3139.0151),
-        'angle': 32727,
+        'pos': (71.9835968, 1500.0000, 2839.01587),
+        'angle': 32767,
         'counter': 10,
     })
 
@@ -454,8 +457,8 @@ def main(args=None):
     # kargarok rider fight
     update_entry("kargarok_fight", data = {
         'requirements': Requirements.POS,
-        'pos': (-107158.469, -23433.293, 46868.5273),
-        'angle': 64976,
+        'pos': (-106950.828, -23436.4746, 47117.9375),
+        'angle': 50103,
         'counter': 30
     })
 
@@ -570,6 +573,13 @@ def main(args=None):
         'requirements': Requirements.POS,
         'pos': (-70000, -1400, 10662),
         'angle': 16384,
+    })
+
+    # hyrule field south mailman skip
+    update_entry("hfs_mailman_skip", {
+        'requirements': Requirements.POS,
+        'pos': (-46261.4805, -7473.17773, 98200.4141),
+        'angle': 31612,
     })
 
     file = open("any.bin", "wb")

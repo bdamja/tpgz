@@ -40,6 +40,7 @@ const char l_descTemplates[TOOLS_COUNT][100] = {
     "use %s to warp to kakariko gorge",
 #ifdef WII_PLATFORM
     "use %s to warp to ordon bridge",
+    "frame counter for slash out of item wheel",
 #endif
     "show frame info when doing coro td",
     "practice snowpeak universal map delay timing",
@@ -78,6 +79,8 @@ KEEP_FUNC ToolsMenu::ToolsMenu(Cursor& cursor, ToolsData& data)
 #ifdef WII_PLATFORM
             {"bit checker", BIT_INDEX, "use " BACK_IN_TIME_TEXT " to warp to ordon bridge", true,
              ACTIVE_FUNC(STNG_TOOLS_BIT)},
+            {"slash checker", SLASH_INDEX, "frame counter for slash out of item wheel", true,
+             ACTIVE_FUNC(STNG_TOOLS_SLASH)},
 #endif
             {"coro td checker", COROTD_INDEX, "show frame info when doing coro td", true,
              ACTIVE_FUNC(STNG_TOOLS_COROTD)},
@@ -132,6 +135,7 @@ GZSettingID l_mapping[] = {
     STNG_TOOLS_FAST_MOVEMENT, STNG_TOOLS_GORGE,
 #ifdef WII_PLATFORM
     STNG_TOOLS_BIT,
+    STNG_TOOLS_SLASH,
 #endif
     STNG_TOOLS_COROTD,        STNG_TOOLS_UMD,           STNG_TOOLS_INPUT_VIEWER,
     STNG_TOOLS_LINK_DEBUG,    STNG_TOOLS_STAGE_INFO,    STNG_TOOLS_HEAP_DEBUG,    STNG_TOOLS_SAND,

@@ -8,6 +8,7 @@ enum ToolsIndex {
     GORGE_INDEX,
 #ifdef WII_PLATFORM
     BIT_INDEX,
+    SLASH_INDEX,
 #endif
     COROTD_INDEX,
     UMD_INDEX,

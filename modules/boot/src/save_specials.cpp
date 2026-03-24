@@ -297,7 +297,7 @@ KEEP_FUNC void SaveMngSpecial_NoSQAeralfos() {
 #endif
 
 KEEP_FUNC void SaveMngSpecial_SpawnPGS() {
-    dComIfGs_setLife(2); // half heart
+    dComIfGs_setLife(6); // half heart
     gSaveManager.setSaveAngle(16384);
     gSaveManager.setSavePosition(-749.9980, 50.0, -3265.0000);
     gSaveManager.setLinkInfo();
@@ -483,4 +483,16 @@ KEEP_FUNC void SaveMngSpecial_KB4() {
     gSaveManager.setSaveAngle(24354);
     gSaveManager.setSavePosition(-8566.32617f, 200.0f, -4870.11084f);
     gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_Wormhole() {
+    gSaveManager.injectDefault_during();
+    gSaveManager.setSaveAngle(32768);
+    gSaveManager.setSavePosition(1.7732302f, 1503.0f, 7134.00684f);
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_AGEarlyBk() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 23.0f;
 }

@@ -21,6 +21,7 @@ enum GZFlags {
     GZFLG_GORGE_VOID,
 #ifdef WII_PLATFORM
     GZFLG_BIT,
+    GZFLG_SLASH,
 #endif
     GZFLG_ROLL,
     GZFLG_COROTD,

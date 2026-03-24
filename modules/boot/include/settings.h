@@ -120,6 +120,7 @@ enum GZSettingID : uint32_t {
     STNG_CMD_MOON_JUMP,
     STNG_TOOLS_STAGE_INFO,
     STNG_SPRITES_STAGE_INFO,
+    STNG_TOOLS_SLASH,
 };
 
 struct GZSettingEntry {

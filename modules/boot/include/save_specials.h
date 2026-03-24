@@ -74,3 +74,5 @@ void SaveMngSpecial_SPR_SpinnerBoost();
 
 void SaveMngSpecial_KB1Phase2();
 void SaveMngSpecial_KB4();
+void SaveMngSpecial_Wormhole();
+void SaveMngSpecial_AGEarlyBk();
