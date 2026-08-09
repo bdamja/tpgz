@@ -284,6 +284,11 @@ void HundoSavesMenu::draw() {
         special(WND_TOAD_INDEX, SaveMngSpecial_BossFlags, nullptr),
         special(WND_KARG_FLIGHT_INDEX, SaveMngSpecial_KargOoBWolf, nullptr),
         special(WND_MIDNA_DIVE_INDEX, nullptr, SaveMngSpecial_MidnaDivePot),
+        special(WND_WATERFALL_SIDEHOP_INDEX, SaveMngSpecial_WaterfallSidehop, nullptr),
+        special(WND_IZA1_SKIP_INDEX, SaveMngSpecial_Iza1Skip, nullptr),
+        special(WND_KB2_SKIP_INDEX, SaveMngSpecial_KB2Skip, nullptr),
+        special(WND_ESCORT_INDEX, SaveMngSpecial_Escort, SaveMngSpecial_EscortKeys),
+        special(WND_KB1_TRIGGER_SKIP_INDEX, SaveMngSpecial_KB1TriggerSkip, nullptr),
     };
 #endif
 

@@ -589,4 +589,9 @@ KEEP_FUNC void SaveMngSpecial_KargOoBWolf() {
     g_dComIfG_gameInfo.info.mRestart.mLastMode = 0xA;  // spawn on kargorok
 }
 
+KEEP_FUNC void SaveMngSpecial_KB1TriggerSkip() {
+    gSaveManager.injectDefault_during();
+    setNextStageLayer(2);
+}
+
 // ---- WII 100% END ----

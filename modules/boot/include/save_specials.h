@@ -88,4 +88,5 @@ void SaveMngSpecial_Sword();
 // wundo start
 void SaveMngSpecial_MidnaDivePot();
 void SaveMngSpecial_KargOoBWolf();
+void SaveMngSpecial_KB1TriggerSkip();
 // wundo end

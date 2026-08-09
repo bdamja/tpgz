@@ -198,6 +198,14 @@ update_entry("corotd", data = {
     'counter': 10,
 })
 
+# inner zd bug
+update_entry("zdbug", {
+    'requirements': Requirements.POS,
+    'pos': (0, -8.27449322, -2750),
+    'angle': 32768,
+    'counter': 30
+})
+
 # castle town bug
 update_entry("ctbug", data = {
     'requirements': Requirements.POS,
