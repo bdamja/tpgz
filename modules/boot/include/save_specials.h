@@ -84,3 +84,8 @@ void SaveMngSpecial_KB1Phase2();
 void SaveMngSpecial_Wormhole();
 void SaveMngSpecial_AGEarlyBk();
 void SaveMngSpecial_Sword();
+
+// wundo start
+void SaveMngSpecial_MidnaDivePot();
+void SaveMngSpecial_KargOoBWolf();
+// wundo end

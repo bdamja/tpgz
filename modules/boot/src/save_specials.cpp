@@ -63,6 +63,7 @@ KEEP_FUNC void SaveMngSpecial_BossFlags() {
 KEEP_FUNC void SaveMngSpecial_Goats1() {
     gSaveManager.injectDefault_during();
     setNextStageLayer(5);
+    dComIfGs_onTmpBit(0x1480); // disable fado text
 }
 
 KEEP_FUNC void SaveMngSpecial_Hugo() {
@@ -558,3 +559,34 @@ KEEP_FUNC void SaveMngSpecial_AGEarlyBk() {
 KEEP_FUNC void SaveMngSpecial_Sword() {
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
 }
+
+// ---- WII 100% START ----
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define SMALL_POT_ID 762
+#else
+#define SMALL_POT_ID 764
+#endif
+
+KEEP_FUNC void SaveMngSpecial_MidnaDivePot() {
+    gSaveManager.setSaveAngle(28225);
+    gSaveManager.setSavePosition(-95846.8359f, -24550.7012f, 32464.5996f);
+    gSaveManager.setLinkInfo();
+
+    int type = 7; // small red pot
+    u16 angleZ = ((u16)type << 1) & 0x1F; // extra params, like type of pot, is stored in the z angle on init
+    u32 params = 0x00003FFF;
+    s8 roomNo = dComIfGp_getPlayer()->current.roomNo;
+    cXyz position1 (-95882.8f, -24400.0f, 32388.6f);
+    csXyz someangle(0, 21487, angleZ);
+
+    fopAcM_create(SMALL_POT_ID, params, &position1, roomNo, &someangle, nullptr, -1);
+}
+
+KEEP_FUNC void SaveMngSpecial_KargOoBWolf() {
+    gSaveManager.mPracticeFileOpts.inject_options_before_load = nullptr;
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 0xA;  // spawn on kargorok
+}
+
+// ---- WII 100% END ----
