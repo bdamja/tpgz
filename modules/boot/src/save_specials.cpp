@@ -493,11 +493,68 @@ KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
     gSaveManager.setLinkInfo();
 }
 
+KEEP_FUNC void SaveMngSpecial_reBiTE() {
+    setNextStageLayer(2);
+}
+
+KEEP_FUNC void SaveMngSpecial_MDHBridge() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 25.0f;
+}
+
+#if defined(WII_NTSCU_10) || defined(WII_PAL)
+#define WOLFOS_ACTOR_ID 519
+#else
+#define WOLFOS_ACTOR_ID 521
+#endif
+
+KEEP_FUNC void SaveMngSpecial_SPR_MBBB() {
+    fopAc_ac_c* actorData1 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData1); // delete wolfos
+    fopAc_ac_c* actorData2 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData2); // delete wolfos
+
+    gSaveManager.setSaveAngle(49152);
+    gSaveManager.setSavePosition(659.949341, 50, -2762.14014); // corner of wall
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_SPR_SpinnerBoost() {
+    fopAc_ac_c* actorData1 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData1); // delete wolfos
+    fopAc_ac_c* actorData2 = find_actor([](auto& act) { return act.mBase.mProcName == WOLFOS_ACTOR_ID; });
+    fopAcM_delete(actorData2); // delete wolfos
+
+    gSaveManager.setSaveAngle(49152);
+    gSaveManager.setSavePosition(1998.8147, 0, -1984.20801); // corner of wall
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_KB1Phase2() {
+    gSaveManager.injectDefault_during();
+    setNextStageLayer(4); // phase 2
+}
+
 KEEP_FUNC void SaveMngSpecial_KB4() {
     gSaveManager.injectDefault_during();
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-    gSaveManager.setSaveAngle(24548);
-    gSaveManager.setSavePosition(-8567.7666f, 52.0f, -4893.16992f);
-    gSaveManager.setSaveCamera(-8804.90332f, 225.034332f, -4658.11719f, -8567.05664f, 160.653625f, -4893.875f); // does not work
-    gSaveManager.setPositionCamera();
+    gSaveManager.setSaveAngle(24354);
+    gSaveManager.setSavePosition(-8566.32617f, 200.0f, -4870.11084f);
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_Wormhole() {
+    gSaveManager.injectDefault_during();
+    gSaveManager.setSaveAngle(32768);
+    gSaveManager.setSavePosition(1.7732302f, 1503.0f, 7134.00684f);
+    gSaveManager.setLinkInfo();
+}
+
+KEEP_FUNC void SaveMngSpecial_AGEarlyBk() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 23.0f;
+}
+
+KEEP_FUNC void SaveMngSpecial_Sword() {
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
 }

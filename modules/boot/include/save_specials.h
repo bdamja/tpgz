@@ -75,3 +75,12 @@ void BeastGanonSpecial_setLayer();
 void SaveMngSpecial_emptyLake();
 
 void SaveMngSpecial_NoSQAeralfos();
+
+void SaveMngSpecial_reBiTE();
+void SaveMngSpecial_MDHBridge();
+void SaveMngSpecial_SPR_MBBB();
+void SaveMngSpecial_SPR_SpinnerBoost();
+void SaveMngSpecial_KB1Phase2();
+void SaveMngSpecial_Wormhole();
+void SaveMngSpecial_AGEarlyBk();
+void SaveMngSpecial_Sword();
