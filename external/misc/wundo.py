@@ -32,16 +32,16 @@ file_names = [
     "jakeskip",
     "lakebeddisplacementclips",
     "dekutoad",
-    # karg fight
+    "kargfight",
     "kargflight",
     "foresttemple2",
     "diababa",
-    # hfs postman skip
+    "hfspostmanskip",
     "eldintwilight",
-    # basement bugs
-    # elde inn
+    "basementbugs",
+    "eldeinn",
     "bombhouseskip",
-    # eldin steam cycle
+    "eldinsteamcycle",
     "posteldintwilight",
     "corotd",
     "earlyelevator",
@@ -65,8 +65,8 @@ file_names = [
     "louiseglitch",
     "ropeskip",
     "mdhtower",
-    # mdh bridge
-    # post mdh
+    "mdhbridge",
+    "postmdh",
     "kb1",
     "gorgecleanup",
     "iza1skip",
@@ -357,6 +357,55 @@ update_entry("kb4", data = {
     'pos': (-8296.9180, 62, -5183.4233),
     'angle': 23289,
     'counter': 10,
+})
+
+update_entry("ropeskip", {
+    'requirements': Requirements.POS,
+    'pos': (3173.88843, -500, 5294.07227),
+    'angle': 33276,
+})
+
+update_entry("kargfight", {
+    'requirements': Requirements.POS,
+    'pos': (-106932.789, -23436.2207, 47097.9727),
+    'angle': 47454,
+})
+
+update_entry("hfspostmanskip", {
+    'requirements': Requirements.POS,
+    'pos': (-38275.3672, -9126.06543, 75278.8672),
+    'angle': 20751,
+})
+
+update_entry("eldintwilight", {
+    'requirements': Requirements.POS,
+    'pos': (455.088379, -150.0, 11516.7227),
+    'angle': 6058,
+    'counter': 10
+})
+
+update_entry("postphantomzant1", {
+    'requirements': Requirements.POS,
+    'pos': (0, 0, 300),
+    'angle': 41971,
+})
+
+update_entry("postphantomzant2", {
+    'requirements': Requirements.POS,
+    'pos': (0, 0, 300),
+    'angle': 41971,
+})
+
+update_entry("cats", {
+    'requirements': Requirements.POS,
+    'pos': (5220.78906, 0, -3909.49048),
+    'angle': 7759,
+})
+
+update_entry("iza2", {
+    'requirements': Requirements.POS,
+    'pos': (-5254.66602, 17082, -89796.7266),
+    'angle': 14451,
 })
 
 file = open("wundo.bin", "wb")

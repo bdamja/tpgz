@@ -89,4 +89,9 @@ void SaveMngSpecial_Sword();
 void SaveMngSpecial_MidnaDivePot();
 void SaveMngSpecial_KargOoBWolf();
 void SaveMngSpecial_KB1TriggerSkip();
+void SaveMngSpecial_HFNGrotto();
+void SaveMngSpecial_CoO10();
+void SaveMngSpecial_CoO20();
+void SaveMngSpecial_CoO30();
+void SaveMngSpecial_CoO40();
 // wundo end

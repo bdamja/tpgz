@@ -553,7 +553,7 @@ KEEP_FUNC void SaveMngSpecial_Wormhole() {
 
 KEEP_FUNC void SaveMngSpecial_AGEarlyBk() {
     gSaveManager.injectDefault_during();
-    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 23.0f;
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 25.0f;
 }
 
 KEEP_FUNC void SaveMngSpecial_Sword() {
@@ -592,6 +592,31 @@ KEEP_FUNC void SaveMngSpecial_KargOoBWolf() {
 KEEP_FUNC void SaveMngSpecial_KB1TriggerSkip() {
     gSaveManager.injectDefault_during();
     setNextStageLayer(2);
+}
+
+KEEP_FUNC void SaveMngSpecial_HFNGrotto() {
+    gSaveManager.injectDefault_during();
+    setNextStageLayer(3);
+}
+
+KEEP_FUNC void SaveMngSpecial_CoO10() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mDan.mSwitch[0] |= 0x300;
+}
+
+KEEP_FUNC void SaveMngSpecial_CoO20() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mDan.mSwitch[0] |= 0x80000;
+}
+
+KEEP_FUNC void SaveMngSpecial_CoO30() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mDan.mSwitch[0] |= 0x20000000;
+}
+
+KEEP_FUNC void SaveMngSpecial_CoO40() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mDan.mSwitch[1] |= 0x80;
 }
 
 // ---- WII 100% END ----
