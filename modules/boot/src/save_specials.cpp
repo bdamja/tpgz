@@ -488,7 +488,7 @@ KEEP_FUNC void SaveMngSpecial_EarlyPlatform() {
 KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
     gSaveManager.injectDefault_during();
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-    dComIfGs_setSelectItemIndex(SELECT_ITEM_X, SLOT_0); // rang on y
+    //dComIfGs_setSelectItemIndex(SELECT_ITEM_X, SLOT_0); // rang on y
     gSaveManager.setSaveAngle(0);
     gSaveManager.setSavePosition(0.0f, -500.0f, 0.0f);
     gSaveManager.setLinkInfo();

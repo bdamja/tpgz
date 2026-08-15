@@ -365,11 +365,11 @@ update_entry("ropeskip", {
     'angle': 33276,
 })
 
-update_entry("kargfight", {
-    'requirements': Requirements.POS,
-    'pos': (-106932.789, -23436.2207, 47097.9727),
-    'angle': 47454,
-})
+# update_entry("kargfight", {
+#     'requirements': Requirements.POS,
+#     'pos': (-106932.789, -23436.2207, 47097.9727),
+#     'angle': 47454,
+# })
 
 update_entry("hfspostmanskip", {
     'requirements': Requirements.POS,
