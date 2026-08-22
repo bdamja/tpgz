@@ -179,7 +179,6 @@ void AnyBiTESavesMenu::draw() {
         };
 #endif
 #ifdef WII_PLATFORM
-<<<<<<< HEAD
         special AnySpecials[] = {
             special(ORDON_GATE_CLIP_INDEX, nullptr, SaveMngSpecial_OrdonRock),
             special(HUGO_INDEX, SaveMngSpecial_Hugo, SaveMngSpecial_SpawnHugo),
@@ -211,25 +210,6 @@ void AnyBiTESavesMenu::draw() {
             special(KB4_INDEX, nullptr, SaveMngSpecial_KB4),
             special(WORMHOLE_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Wormhole),
             special(EARLY_BOSS_KEY_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
-=======
-            special(BITE_PLUMM_OOB_INDEX, SaveMngSpecial_AnyPlummOoB, nullptr),
-            special(BITE_ENTER_LAKEBED_INDEX, SaveMngSpecial_emptyLake, nullptr),
-            special(BITE_DARK_HAMMER_INDEX, nullptr, SaveMngSpecial_Darkhammer),
-            special(BITE_PALACE_SOL_1_INDEX, SaveMngSpecial_Palace1, nullptr),
-            special(BITE_PALACE_SOL_2_INDEX, nullptr, SaveMngSpecial_Palace2),
-            special(BITE_BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
-#endif
-            special(BITE_TOAD_INDEX, SaveMngSpecial_BossFlags, nullptr),
-            special(BITE_MORPHEEL_INDEX, nullptr, SaveMngSpecial_Morpheel),
-            special(BITE_STALLORD_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Stallord),
-            special(BITE_STALLORD2_INDEX, SaveMngSpecial_Stallord2_init, SaveMngSpecial_Stallord2),
-            special(BITE_LAKEBED_1_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_BossFlags),
-            special(BITE_WATERFALL_SIDEHOP_INDEX, SaveMngSpecial_WaterfallSidehop, nullptr),
-            special(BITE_FAN_TOWER_INDEX, SaveMngSpecial_FanTower, nullptr),
-            special(BITE_ARGOROK_INDEX, SaveMngSpecial_Argorok, nullptr),
-            special(BITE_PALACE_2_INDEX, nullptr, SaveMngSpecial_Palace2),
-            special(BITE_BEAST_GANON_INDEX, BeastGanonSpecial_setLayer, nullptr),
->>>>>>> 3d1a769 (1.2.2m)
         };
 #endif
 
