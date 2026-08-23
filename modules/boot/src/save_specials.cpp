@@ -245,8 +245,10 @@ KEEP_FUNC void SaveMngSpecial_StallordCad() {
     gSaveManager.injectDefault_during();
     g_dComIfG_gameInfo.info.mZone[0].mBit.mSwitch[0] |= 0x300000;  // turn off intro cs, start fight
     setNextStagePoint(1);                                          // spawn at in front of stally
-    gSaveManager.setSaveAngle(60562);
-    gSaveManager.setSavePosition(327.221771f, 1800.0f, -4990.98975f);
+    //gSaveManager.setSaveAngle(60562);
+    gSaveManager.setSaveAngle(59392);
+    //gSaveManager.setSavePosition(327.221771f, 1800.0f, -4990.98975f); // corner for old diagonal setup
+    gSaveManager.setSavePosition(50.997982f, 1775.0f, -4024.03882f);
     gSaveManager.setLinkInfo();
 
     // Find joseph in the actor list
@@ -321,6 +323,32 @@ KEEP_FUNC void SaveMngSpecial_StallordBombBoost() {
     joseph->current.pos = corner;
 }
 
+KEEP_FUNC void SaveMngSpecial_StallordDisplacementClip() {
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mZone[0].mBit.mSwitch[0] |= 0x300000;  // turn off intro cs, start fight
+    setNextStagePoint(1);                                          // spawn at in front of stally
+    gSaveManager.setSaveAngle(59392);
+    gSaveManager.setSavePosition(-327.861115f, 1800.0f, -4990.23926f);
+    gSaveManager.setLinkInfo();
+
+    // Find joseph in the actor list
+    fopAc_ac_c* actorData1 =
+        find_actor([](auto& act) { return act.mBase.mProcName == PROC_E_ZS && (int) act.current.pos.x == -920; });
+
+    daE_ZS_c* joseph = (daE_ZS_c*) actorData1;
+    joseph->mAction = 1; // not functionally important, slouching idle with both arms down
+    joseph->mMode = 0; // not functionally important, slouching idle with both arms down
+    
+    daE_ZS_c__setBck_void_(joseph, 9, 2, 3.0f, 1.0f); // rise up animation
+    joseph->field_0x65c = 0; // something something vertical matrix
+    joseph->field_0x673 = 1; // visibility?
+    joseph->mCyl.mGObjInf.OnTgSetBit(); // hitbox
+    joseph->mCyl.mGObjInf.OnCoSetBit(); // push collider
+    joseph->mStatus |= 0x200000; // clawshottable
+    cXyz corner (-301.9, 1800.0, -4966.0);
+    joseph->current.pos = corner;
+}
+
 #if defined(WII_NTSCU_10) || defined(WII_PAL)
 #define ZANT_ACTOR_ID 247
 #else
@@ -351,6 +379,38 @@ KEEP_FUNC void SaveMngSpecial_ZantFinal() {
     }
 
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+}
+
+KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
+    class daB_ZANT_c {
+    public:
+        /* 0x0000 */ fopEn_enemy_c base;
+        /* 0x05AC */ u8 field_0x5ac[0x6d4 - 0x5ac];
+        /* 0x06D4 */ int mAction;
+        /* 0x06D8 */ int field_0x6d8;
+        /* 0x06DC */ int mMode;
+        /* 0x06E0 */ u8 field_0x6e0[0x1b];
+        /* 0x06FB */ u8 mFightPhase;
+    };
+
+    // Find zant in the actor list
+    daB_ZANT_c* actorData = (daB_ZANT_c*)find_actor([](auto& act) { return act.mBase.mProcName == PROC_B_ZANT; });
+
+    // Set his action, fight phase and mode to trigger the transition demo
+
+    if (actorData != nullptr) {
+        // Set Zant's state
+        actorData->mAction = 0;      // ACT_SMALL_ATTACK
+        //actorData->mFightPhase = 5;   // PHASE_YO
+        //actorData->mMode = 0;         // MODE_START_DEMO
+        actorData->base.current.pos.set(-200.0f, -1050.0f, -1250.0f);
+    }
+    //cXyz(-1000.0f, 400.0f, 1500.0f),
+
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSaveAngle(32768);
+    gSaveManager.setSavePosition(-200.0f, -800.0f, -850.0f);
+    gSaveManager.setLinkInfo();
 }
 
 KEEP_FUNC void SaveMngSpecial_SPRBossKey() {
@@ -404,9 +464,9 @@ KEEP_FUNC void SaveMngSpecial_Palace1() {
 KEEP_FUNC void SaveMngSpecial_Palace2() {
     gSaveManager.injectDefault_during();
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-    gSaveManager.setSaveAngle(32731);
-    gSaveManager.setSavePosition(251.83f, 1400.0f, 584.0f);
-    gSaveManager.setLinkInfo();
+    // gSaveManager.setSaveAngle(32731);
+    // gSaveManager.setSavePosition(251.83f, 1400.0f, 584.0f);
+    // gSaveManager.setLinkInfo();
 }
 
 KEEP_FUNC void SaveMngSpecial_CaveOfOrdeals() {
@@ -443,9 +503,9 @@ KEEP_FUNC void SaveMngSpecial_DeathSword() {
 KEEP_FUNC void SaveMngSpecial_ArgorokCSSkip() {
     gSaveManager.injectDefault_during();
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-    gSaveManager.setSaveAngle(16267);
-    gSaveManager.setSavePosition(-10406.9248f, 0.0f, -12446.7979f);
-    gSaveManager.setLinkInfo();
+    // gSaveManager.setSaveAngle(16267);
+    // gSaveManager.setSavePosition(-10406.9248f, 0.0f, -12446.7979f);
+    // gSaveManager.setLinkInfo();
 }
 
 KEEP_FUNC void SaveMngSpecial_PalaceBossKey() {
@@ -456,15 +516,6 @@ KEEP_FUNC void SaveMngSpecial_PalaceBossKey() {
 KEEP_FUNC void SaveMngSpecial_EarlyPlatform() {
     gSaveManager.injectDefault_during();
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-}
-
-KEEP_FUNC void SaveMngSpecial_ZantDangoro() {
-    gSaveManager.injectDefault_during();
-    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
-    //dComIfGs_setSelectItemIndex(SELECT_ITEM_X, SLOT_0); // rang on y
-    gSaveManager.setSaveAngle(0);
-    gSaveManager.setSavePosition(0.0f, -500.0f, 0.0f);
-    gSaveManager.setLinkInfo();
 }
 
 KEEP_FUNC void SaveMngSpecial_reBiTE() {
@@ -533,6 +584,21 @@ KEEP_FUNC void SaveMngSpecial_Sword() {
     daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
 }
 
+KEEP_FUNC void SaveMngSpecial_ZD_Yellows() {
+    dComIfGs_onItemFirstBit(YELLOW_RUPEE); // yellow text
+    g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 25.0f;
+}
+
+KEEP_FUNC void SaveMngSpecial_RopeSkip() {
+    setNextStageLayer(2);
+    //g_dComIfG_gameInfo.info.mRestart.mLastMode |= 0x100000; // holding first sol
+}
+
+KEEP_FUNC void SaveMngSpecial_HoldSol() {
+    g_dComIfG_gameInfo.info.mRestart.mLastMode |= 0x100000; // holding first sol
+    // 2nd sol is 0x80000
+}
+
 // ---- WII 100% START ----
 
 #if defined(WII_NTSCU_10) || defined(WII_PAL)
@@ -560,6 +626,12 @@ KEEP_FUNC void SaveMngSpecial_KargOoBWolf() {
     gSaveManager.mPracticeFileOpts.inject_options_before_load = nullptr;
     gSaveManager.injectDefault_during();
     g_dComIfG_gameInfo.info.mRestart.mLastMode = 0xA;  // spawn on kargorok
+}
+
+KEEP_FUNC void SaveMngSpecial_SetDigging() {
+    gSaveManager.mPracticeFileOpts.inject_options_before_load = nullptr;
+    gSaveManager.injectDefault_during();
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 9; // dig exit mode
 }
 
 KEEP_FUNC void SaveMngSpecial_KB1TriggerSkip() {

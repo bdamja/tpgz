@@ -32,6 +32,7 @@ file_names = [
     "purple_mist",
     "forest_bit",
     "forest_escape",
+    "hfs_mailman",
     "gorge_void",
     "rupee_roll",
     "lanayru_gate_clip",
@@ -41,13 +42,17 @@ file_names = [
     "basement_bugs",
     "eld_inn",
     "bomb_house_skip",
+    "watchtower",
+    "dmt_bugs",
     "lanayru_twilight",
     "inner_zd_bug",
     "waterfall_sidehop",
     "ct_bug",
     "dock_bug",
     "boss_bug",
+    "zd_yellows",
     "iza",
+    "plumm_cs_skip",
     "plumm_oob",
     "elh",
     "lakebed_1",
@@ -64,17 +69,20 @@ file_names = [
     "spr_warp",
     "blind_snowboarding",
     "spr",
-    "lfc",
+    "spr_floor_clip",
+    "spr_dc",
     "darkhammer",
+    "spr_orange_1",
+    "spr_orange_2",
     "fence_clip",
     "camp",
     "ag",
     "poe_gate_clip",
     "ag_early_bk",
+    "ag_human_mvt",
     "ag_tss",
     "death_sword_skip",
     "epic_spinner",
-    "stallord",
     "stallord",
     "stallord",
     "stallord",
@@ -92,9 +100,12 @@ file_names = [
     "argorok",
     "palace_1",
     "pz1",
+    "sol_1_backtrack",
+    "sol_1_throw",
     "stupid_room",
     "smart_room",
     "pz2",
+    "sol_2_backtrack",
     "palace_2",
     "pot_bk",
     "early_platform",
@@ -104,7 +115,10 @@ file_names = [
     "hc_mailman",
     "hc",
     "kb4",
+    "hc_inside",
     "darknut",
+    "hc_torch",
+    "hc_dynalfos",
     "hc_aeralfos",
     "hc_tower",
     "beast_ganon",
@@ -176,13 +190,13 @@ update_entry("sewers_tower", {
     'counter': 30
 })
 
-# sewers rooftops
-update_entry("rooftops", {
-    'requirements': Requirements.POS,
-    'pos': (27441, 2930, 6796),
-    'angle': 32465,
-    'counter': 30
-})
+# # sewers rooftops
+# update_entry("rooftops", {
+#     'requirements': Requirements.POS,
+#     'pos': (27441, 2930, 6796),
+#     'angle': 32465,
+#     'counter': 30
+# })
 
 # hugo
 update_entry("hugo", {
@@ -205,13 +219,9 @@ update_entry("purple_mist", {
 
 # forest escape
 update_entry("forest_escape", {
-    'requirements': Requirements.POS | Requirements.CAM,
-    'pos': (-13485.0713, -72, -15362.1299),
+    'requirements': Requirements.POS,
+    'pos': (-13543.6143, -60.0176926, -15259.1592),
     'angle': 27375,
-    'cam': {
-        'pos': (-12552.8252, -53.5801048, -16729.5313),
-        'target': (-12433.2979, -106.667023, -17104.9512)
-    },
     'counter': 30
 })
 
@@ -281,8 +291,8 @@ update_entry("inner_zd_bug", {
 # ct bug
 update_entry("ct_bug", {
     'requirements': Requirements.POS,
-    'pos': (2185.91479, -725, 6443.65088),
-    'angle': 19198,
+    'pos': (1371.10864, -375, 6502.85156),
+    'angle': 17130,
 })
 
 # boss bug
@@ -345,12 +355,11 @@ update_entry("louise_glitch", {
 })
 
 # rope skip
-# this spawns outside of telma's bar, because the save being in telma's bar will always set it to the wrong layer (4) for some reason
-update_entry("rope_skip", {
-    'requirements': Requirements.POS,
-    'pos': (3159.06836, -500, 5492.82129),
-    'angle': 33276,
-})
+# update_entry("rope_skip", {
+#     'requirements': Requirements.POS,
+#     'pos': (3174.97998, -500, 5319.94727),
+#     'angle': 33276,
+# })
 
 # poe gate clip
 update_entry('poe_gate_clip', data = {
@@ -372,11 +381,11 @@ update_entry('ag_tss', data = {
 })
 
 # snowpeak connection cave
-update_entry("snowpeak_cave", {
-    'requirements': Requirements.POS,
-    'pos': (-4615.54688, -1243.95117, -10858.0576),
-    'angle': 55644,
-})
+# update_entry("snowpeak_cave", {
+#     'requirements': Requirements.POS,
+#     'pos': (-4615.54688, -1243.95117, -10858.0576),
+#     'angle': 55644,
+# })
 
 # blind snowboarding
 update_entry("blind_snowboarding", {
@@ -386,11 +395,11 @@ update_entry("blind_snowboarding", {
 })
 
 # ladder freezard cancel
-update_entry("lfc", {
-    'requirements': Requirements.POS,
-    'pos': (-2645.54785, 0, -4794.21094),
-    'angle': 32768,
-})
+# update_entry("lfc", {
+#     'requirements': Requirements.POS,
+#     'pos': (-2645.54785, 0, -4794.21094),
+#     'angle': 32768,
+# })
 
 # desert fence clip
 update_entry("fence_clip", {
@@ -438,6 +447,80 @@ update_entry('city_gate_clip', data = {
     'requirements': Requirements.POS | Requirements.CAM,
     'pos': (16516.6094, 0, -12722.480),
     'angle': 16384
+})
+
+update_entry("plumm_cs_skip", {
+    'requirements': Requirements.POS,
+    'pos': (-104778.273, -18428.0566, 52224.3125),
+    'angle': 44000,
+})
+
+update_entry("hfs_mailman", {
+    'requirements': Requirements.POS,
+    'pos': (-30285.875, -8040.25342, 88312.0391),
+    'angle': 22160,
+})
+
+update_entry("wormhole", {
+    'requirements': Requirements.POS,
+    'pos': (1.587677, 1503, 7134.00635),
+    'angle': 32768,
+})
+
+# update_entry('dmt_bugs', data = {
+#     'requirements': Requirements.POS,
+#     'pos': (2814.27393, 968, 4549.9292),
+#     'angle': 44300
+# })
+
+update_entry("spr_floor_clip", {
+    'requirements': Requirements.POS,
+    'pos': (-3522.25562, 0, 1508.99194),
+    'angle': 49691,
+})
+
+update_entry("spr_dc", {
+    'requirements': Requirements.POS,
+    'pos': (-2424.82227, 0, -1550),
+    'angle': 32768,
+})
+
+update_entry("spr_orange_1", {
+    'requirements': Requirements.POS,
+    'pos': (75.1765671, 0, -1865.9917),
+    'angle': 32767,
+})
+
+update_entry("ag_human_mvt", {
+    'requirements': Requirements.POS,
+    'pos': (-4846.9834, 450, -7250.39844),
+    'angle': 49172,
+})
+
+# pot sol 1 backtrack
+update_entry("sol_1_backtrack", {
+    'requirements': Requirements.POS,
+    'pos': (0, 0, 300),
+    'angle': 41971,
+})
+
+# pot sol 2 backtrack
+update_entry("sol_2_backtrack", {
+    'requirements': Requirements.POS,
+    'pos': (0, 0, 300),
+    'angle': 41971,
+})
+
+update_entry("hc_torch", {
+    'requirements': Requirements.POS,
+    'pos': (3497.80249, 2000, -2892.34424),
+    'angle': 8191,
+})
+
+update_entry("hc_dynalfos", {
+    'requirements': Requirements.POS,
+    'pos': (4274.82617, 2000, 1365.9917),
+    'angle': 65535,
 })
 
 # city bk clip aka kai clip

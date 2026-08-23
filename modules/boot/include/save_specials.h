@@ -43,6 +43,7 @@ void SaveMngSpecial_Stallord2();
 void SaveMngSpecial_Stallord2_init();
 void SaveMngSpecial_StallordCad();
 void SaveMngSpecial_StallordWallClip();
+void SaveMngSpecial_StallordDisplacementClip();
 void SaveMngSpecial_StallordBombBoost();
 
 void SaveMngSpecial_DeathSword();
@@ -82,6 +83,10 @@ void SaveMngSpecial_KB1Phase2();
 void SaveMngSpecial_Wormhole();
 void SaveMngSpecial_AGEarlyBk();
 void SaveMngSpecial_Sword();
+void SaveMngSpecial_SetDigging();
+void SaveMngSpecial_ZD_Yellows();
+void SaveMngSpecial_RopeSkip();
+void SaveMngSpecial_HoldSol();
 
 // wundo start
 void SaveMngSpecial_MidnaDivePot();
