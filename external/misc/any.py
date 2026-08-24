@@ -523,6 +523,12 @@ update_entry("hc_dynalfos", {
     'angle': 65535,
 })
 
+update_entry("elh", {
+    'requirements': Requirements.POS,
+    'pos': (-87807.3438, -21093.3203, 38265.3945),
+    'angle': 48385,
+})
+
 # city bk clip aka kai clip
 update_entry('city_bk_clip', data = {
     'requirements': Requirements.POS | Requirements.CAM,
