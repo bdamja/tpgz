@@ -27,6 +27,8 @@ bool ebmb_active();
 bool ee_active();
 bool mash_checker_active();
 bool gorge_active();
+bool gorge_wolf_active();
+bool gorge_human_active();
 bool rollcheck_active();
 bool moon_jump_active();
 bool freeze_actor_active();

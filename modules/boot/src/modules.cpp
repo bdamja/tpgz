@@ -15,11 +15,14 @@ KEEP_VAR tpgz::containers::deque<Module*> g_modules;
  */
 KEEP_FUNC void GZ_handleModules() {
     for (auto mod : g_modules) {
-        if (mod->active() && !mod->rel.isLoaded()) {
-            mod->rel.load(true);
-        }
         if (!mod->active() && mod->rel.isLoaded()) {
             mod->rel.close();
+        }
+    }
+
+    for (auto mod : g_modules) {
+        if (mod->active() && !mod->rel.isLoaded()) {
+            mod->rel.load(true);
         }
     }
 }
@@ -89,7 +92,15 @@ KEEP_FUNC bool mash_checker_active() {
 }
 
 KEEP_FUNC bool gorge_active() {
-    return GZStng_getData(STNG_TOOLS_GORGE, false);
+    return GZStng_getData<uint32_t>(STNG_TOOLS_GORGE, 0) != 0;
+}
+
+KEEP_FUNC bool gorge_wolf_active() {
+    return GZStng_getData<uint32_t>(STNG_TOOLS_GORGE, 0) == 1;
+}
+
+KEEP_FUNC bool gorge_human_active() {
+    return GZStng_getData<uint32_t>(STNG_TOOLS_GORGE, 0) == 2;
 }
 
 KEEP_FUNC bool rollcheck_active() {

@@ -73,7 +73,8 @@ void main() {
     g_modules.push_back(new Module{ebmb_active, "/tpgz/rels/features/ebmb_checker.rel"});
     g_modules.push_back(new Module{ee_active, "/tpgz/rels/features/ee_checker.rel"});
     g_modules.push_back(new Module{mash_checker_active, "/tpgz/rels/features/mash_checker.rel"});
-    g_modules.push_back(new Module{gorge_active, "/tpgz/rels/features/gorge.rel"});
+    g_modules.push_back(new Module{gorge_wolf_active, "/tpgz/rels/features/gorge.rel"});
+    g_modules.push_back(new Module{gorge_human_active, "/tpgz/rels/features/gorge.rel"});
     g_modules.push_back(new Module{rollcheck_active, "/tpgz/rels/features/rollcheck.rel"});
     g_modules.push_back(new Module{moon_jump_active, "/tpgz/rels/features/moon_jump.rel"});
 
