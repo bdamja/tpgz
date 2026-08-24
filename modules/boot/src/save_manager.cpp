@@ -207,3 +207,9 @@ void SaveManager::setPositionCamera() {
         dComIfGp_getPlayer()->current.pos = tmp;
     }
 }
+
+// set time of day to save time, needed to fix auto setting to midnight after non-twilight save is loaded in twilight
+void SaveManager::updateTime() {
+    dSv_save_c* save = (dSv_save_c*)MEMFILE_BUF;
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerStatusB().setTime(save->getPlayer().getPlayerStatusB().getTime());
+}

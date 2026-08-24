@@ -100,6 +100,7 @@ public:
     static void defaultLoad();
     static void setLinkInfo();
     static void setPositionCamera();
+    static void updateTime();
 
     static void loadData();
 
