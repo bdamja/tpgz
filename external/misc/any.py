@@ -84,9 +84,9 @@ file_names = [
     "death_sword_skip",
     "epic_spinner",
     "stallord",
-    "stallord",
-    "stallord",
-    "stallord",
+    "stallord", # stallord cad
+    "stallord", # stallord dc
+    "stallord", # stallord 2
     "mirror_chamber",
     "cits_early",
     "cits_1",

@@ -100,3 +100,4 @@ void SaveMngSpecial_CoO40();
 // wundo end
 
 void SaveMngSpecial_Argorok2_after();
+void SaveMngSpecial_Ganondorf();

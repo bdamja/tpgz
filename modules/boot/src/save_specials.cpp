@@ -699,3 +699,11 @@ KEEP_FUNC void SaveMngSpecial_Argorok2_after() {
     gSaveManager.setSavePosition(0.0f, -300.0f, 4000.0f);
     gSaveManager.setLinkInfo();
 }
+
+KEEP_FUNC void SaveMngSpecial_Ganondorf() {
+    g_dComIfG_gameInfo.info.mDan.mSwitch[0] = 1048578;
+    g_dComIfG_gameInfo.info.mZone[0].mBit.mRoomSwitch = 1024;
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSavePosition(0.0f, -2000.0f, 0.0f);
+    gSaveManager.setLinkInfo(); // void
+}

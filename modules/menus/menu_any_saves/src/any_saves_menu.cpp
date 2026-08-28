@@ -110,6 +110,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"final tower climb", HC_TOWER_INDEX, "The tower climb before Ganondorf"},
           {"beast ganon", BEAST_GANON_INDEX, "The Beast Ganon fight"},
           {"horseback ganon", HORSEBACK_GANON_INDEX, "The Horseback Ganondorf fight"},
+          {"ganondorf", GANONDORF_INDEX, "Do you know how to do an autospin"},
       } {}
 
 AnySavesMenu::~AnySavesMenu() {}
@@ -164,6 +165,7 @@ void AnySavesMenu::draw() {
             special(AG_EARLY_BK_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
             special(SOL_1_THROW_INDEX, SaveMngSpecial_HoldSol, nullptr),
             special(ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
+            special(GANONDORF_INDEX, nullptr, SaveMngSpecial_Ganondorf),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();
