@@ -26,7 +26,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"kargarok flight", KARG_INDEX, "Clip OoB with trumpet bird"},
           {"eldin twilight", ELDIN_TWILIGHT_INDEX, "Eldin Twilight tears"},
           {"basement bugs", BASEMENT_BUGS_INDEX, "Kakariko Sanctuary basement bugs"},
-          {"eld inn", ELD_INN_INDEX, "Kakariko Village inn bugs"},
+          {"elde inn", ELD_INN_INDEX, "Kakariko Village inn bugs"},
           {"bomb house skip", BOMB_HOUSE_SKIP_INDEX, "Skip entering the Bomb House"},
           {"watchtower bug", WATCHTOWER_INDEX, "Bug in the Kakariko watchtower"},
           {"dmt messengers", DMT_BUGS_INDEX, "Death Mountain messenger fight + bugs"},
@@ -166,6 +166,9 @@ void AnySavesMenu::draw() {
             special(SOL_1_THROW_INDEX, SaveMngSpecial_HoldSol, nullptr),
             special(ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
             special(GANONDORF_INDEX, nullptr, SaveMngSpecial_Ganondorf),
+            special(ELDIN_TWILIGHT_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
+            special(BASEMENT_BUGS_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
+            special(ELD_INN_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();

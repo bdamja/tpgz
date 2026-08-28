@@ -707,3 +707,7 @@ KEEP_FUNC void SaveMngSpecial_Ganondorf() {
     gSaveManager.setSavePosition(0.0f, -2000.0f, 0.0f);
     gSaveManager.setLinkInfo(); // void
 }
+
+KEEP_FUNC void SaveMngSpecial_YellowText() {
+    dComIfGs_onItemFirstBit(YELLOW_RUPEE);
+}

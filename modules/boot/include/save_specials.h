@@ -101,3 +101,4 @@ void SaveMngSpecial_CoO40();
 
 void SaveMngSpecial_Argorok2_after();
 void SaveMngSpecial_Ganondorf();
+void SaveMngSpecial_YellowText();
