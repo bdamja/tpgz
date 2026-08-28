@@ -98,3 +98,5 @@ void SaveMngSpecial_CoO20();
 void SaveMngSpecial_CoO30();
 void SaveMngSpecial_CoO40();
 // wundo end
+
+void SaveMngSpecial_Argorok2_after();

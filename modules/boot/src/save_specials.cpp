@@ -665,3 +665,37 @@ KEEP_FUNC void SaveMngSpecial_CoO40() {
 }
 
 // ---- WII 100% END ----
+
+KEEP_FUNC void SaveMngSpecial_Argorok2_after() {
+    SaveMngSpecial_BossFlags();
+    // class daB_DR_c {
+    // public:
+    //     /* 0x0000 */ fopEn_enemy_c base;
+    //     /* 0x05AC */ u8 field_0x5ac[0x6d4 - 0x5ac];
+    //     /* 0x06D4 */ int mAction;
+    // };
+
+    // daB_DR_c* actorData = (daB_DR_c*)find_actor([](auto& act) { return act.mBase.mProcName == PROC_B_DR; });
+
+    // if (actorData != nullptr) {
+    //     actorData->base.current.pos.y = 50;
+    // }
+    g_dComIfG_gameInfo.info.mRestart.mRoomAngleY = -32768;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = 8.585349082946777;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.y = 0.0;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.z = 2004.4146728515625;
+    g_dComIfG_gameInfo.info.mRestart.mStartPoint = 2;
+    g_dComIfG_gameInfo.info.mZone[0].mRoomNo = 50;
+    g_dComIfG_gameInfo.info.mDan.mSwitch[0] = 0;
+    g_dComIfG_gameInfo.info.mZone[0].mBit.mSwitch[1] = 240;
+    g_dComIfG_gameInfo.info.mMemory.mBit.mSwitch[0] = 843264206;
+    g_dComIfG_gameInfo.info.mMemory.mBit.mSwitch[1] = 2395341057;
+    g_dComIfG_gameInfo.info.mZone[0].mBit.mSwitch[0] = 7; 
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1191182405;
+    g_dComIfG_gameInfo.info.mSavedata.mSave[22].mBit.mSwitch[0] = 843264206;
+    g_dComIfG_gameInfo.info.mSavedata.mSave[22].mBit.mSwitch[1] = 2395341057;
+    g_dComIfG_gameInfo.info.mRestart.mRoomParam = 0;
+
+    gSaveManager.setSavePosition(0.0f, -300.0f, 4000.0f);
+    gSaveManager.setLinkInfo();
+}

@@ -84,6 +84,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"city bk clip", CITS_BK_CLIP_INDEX, "Boss Key clip during City in the Sky"},
           {"fan tower", FAN_TOWER_INDEX, "Final fan room in City"},
           {"argorok", ARGOROK_INDEX, "City in the Sky boss"},
+          {"argorok 2", ARGOROK_2_INDEX, "City in the Sky boss's 2nd phase"},
           {"palace 1", PALACE_1_INDEX, "The 1st Palace of Twilight segment"},
           {"phantom zant 1", PZ1_INDEX, "West wing Phantom Zant fight"},
           {"sol 1 backtrack", SOL_1_BACKTRACK_INDEX, "Backtrack with sol after first phantom zant"},
@@ -162,6 +163,7 @@ void AnySavesMenu::draw() {
             special(SNOWPEAK_CAVE_INDEX, SaveMngSpecial_SetDigging, nullptr),
             special(AG_EARLY_BK_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
             special(SOL_1_THROW_INDEX, SaveMngSpecial_HoldSol, nullptr),
+            special(ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();

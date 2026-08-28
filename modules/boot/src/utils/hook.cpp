@@ -202,7 +202,7 @@ int endSaveInjectHook(void* i_scene) {
         SaveManager::s_injectSave = false;
         SaveManager::s_injectMemfile = false;
     }
-    SaveManager::updateTime(); // needs to run late
+    //SaveManager::updateTime(); // needs to run late
 
     return rt;
 }

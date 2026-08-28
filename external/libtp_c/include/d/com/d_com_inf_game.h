@@ -26,7 +26,27 @@ public:
     u8 mTimerType;
 };
 
-struct camera_class {};
+struct camera_class {
+public:
+    u8 padding[0x23C];
+};
+
+class dCamera_c {
+public:
+    u8 padding[0x03c];
+    cXyz mEye;
+    u8 padding1[16];
+    f32 mFovy;
+};
+
+
+class camera_process_class : public camera_class {
+public:
+    /* 0x23C */ int field_0x23c;
+    /* 0x240 */ u8 padding[8];
+    /* 0x248 */ dCamera_c mCamera;
+};
+
 
 class dComIfG_camera_info_class {
 public:
@@ -94,6 +114,10 @@ public:
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
     // inline char* getStartStageName() { return mStartStage.getName(); }
+
+
+    int getPlayerCameraID(int i) { return mPlayerCameraID[i]; }
+    camera_class* getCamera(int idx) { return mCameraInfo[idx].mCamera; }
 
 public:
     /* 0x00000 */ dBgS mDBgS;
@@ -757,6 +781,14 @@ inline u8 dComIfGs_getArrowNum() {
 inline u8 dComIfGs_getBombNum(u8 bagIdx) {
     return dSv_player_item_record_c__getBombNum(
         &g_dComIfG_gameInfo.info.getPlayer().getItemRecord(), bagIdx);
+}
+
+inline camera_process_class* dComIfGp_getCamera(int idx) {
+    return (camera_process_class*)g_dComIfG_gameInfo.play.getCamera(idx);
+}
+
+inline int dComIfGp_getPlayerCameraID(int idx) {
+    return g_dComIfG_gameInfo.play.getPlayerCameraID(idx);
 }
 
 #ifdef WII_PLATFORM

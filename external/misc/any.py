@@ -98,6 +98,7 @@ file_names = [
     "city_bk_clip",
     "fan_tower",
     "argorok",
+    "argorok_2",
     "palace_1",
     "pz1",
     "sol_1_backtrack",
