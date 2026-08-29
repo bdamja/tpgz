@@ -172,6 +172,17 @@ void AnySavesMenu::draw() {
             special(ELD_INN_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
             special(FYER_BUG_INDEX, nullptr, SaveMngSpecial_CenterCamera),
             special(SMART_ROOM_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(HFS_MAILMAN_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(PLUMM_CS_SKIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(SPR_WARP_SKIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(SPR_DISPLACEMENT_CLIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(AG_HUMAN_MVT_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(AG_TSS_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(MIRROR_CHAMBER_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(CITY_GATE_CLIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(CITS_BK_CLIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(SOL_1_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
+            special(SOL_2_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();

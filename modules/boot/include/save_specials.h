@@ -103,3 +103,4 @@ void SaveMngSpecial_Argorok2_after();
 void SaveMngSpecial_Ganondorf();
 void SaveMngSpecial_YellowText();
 void SaveMngSpecial_CenterCamera();
+void SaveMngSpecial_SolBacktrackCamera();

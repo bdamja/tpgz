@@ -252,6 +252,8 @@ KEEP_FUNC void SaveMngSpecial_StallordCad() {
     gSaveManager.setSavePosition(50.997982f, 1775.0f, -4024.03882f);
     gSaveManager.setLinkInfo();
 
+    SaveMngSpecial_CenterCamera();
+
     // Find joseph in the actor list
     fopAc_ac_c* actorData1 =
         find_actor([](auto& act) { return act.mBase.mProcName == PROC_E_ZS && (int) act.current.pos.x == -920; });
@@ -567,6 +569,8 @@ KEEP_FUNC void SaveMngSpecial_KB4() {
     gSaveManager.setSaveAngle(24354);
     gSaveManager.setSavePosition(-8566.32617f, 200.0f, -4870.11084f);
     gSaveManager.setLinkInfo();
+
+    SaveMngSpecial_CenterCamera();
 }
 
 KEEP_FUNC void SaveMngSpecial_Wormhole() {
@@ -728,4 +732,16 @@ KEEP_FUNC void SaveMngSpecial_CenterCamera() {
     dComIfGp_getCamera(0)->mCamera.mEye.x = pos.x;
     dComIfGp_getCamera(0)->mCamera.mEye.y = pos.y + 105.0f;
     dComIfGp_getCamera(0)->mCamera.mEye.z = pos.z;
+}
+
+KEEP_FUNC void SaveMngSpecial_SolBacktrackCamera() {
+    gSaveManager.setLinkInfo();
+
+    dComIfGp_getCamera(0)->mCamera.mCenter.x = 0.0f;
+    dComIfGp_getCamera(0)->mCamera.mCenter.y = 170.850647f;
+    dComIfGp_getCamera(0)->mCamera.mCenter.z = 533.318665f;
+
+    dComIfGp_getCamera(0)->mCamera.mEye.x = 0.0f;
+    dComIfGp_getCamera(0)->mCamera.mEye.y = 93.3100357f;
+    dComIfGp_getCamera(0)->mCamera.mEye.z = 299.36438f;
 }
