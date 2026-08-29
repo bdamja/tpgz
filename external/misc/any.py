@@ -48,6 +48,7 @@ file_names = [
     "inner_zd_bug",
     "waterfall_sidehop",
     "ct_bug",
+    "fyer",
     "dock_bug",
     "boss_bug",
     "zd_yellows",
@@ -552,6 +553,13 @@ update_entry('smart_room', data = {
         'target': (4026.32227, -565, 248.41687)
     },
     'counter': 30
+})
+
+update_entry("fyer", {
+    'requirements': Requirements.POS,
+    'pos': (-101516.211, -18470, 53531.9336),
+    'angle': 57709,
+    'counter': 10
 })
 
 # Wii specific entries

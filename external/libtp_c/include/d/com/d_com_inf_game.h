@@ -33,12 +33,15 @@ public:
 
 class dCamera_c {
 public:
-    u8 padding[0x03c];
-    cXyz mEye;
-    u8 padding1[16];
-    f32 mFovy;
-};
+    u8 padding[0x028];
 
+    cSGlobe mDirection;       // 0x028
+    cXyz mCenter;             // 0x030
+    cXyz mEye;                // 0x03C
+    cXyz mUp;                 // 0x048
+    cSAngle mBank;            // 0x054
+    f32 mFovy;                // 0x058
+};
 
 class camera_process_class : public camera_class {
 public:

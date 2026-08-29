@@ -34,6 +34,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"inner zd bug", INNER_ZD_BUG_INDEX, "Inner Zora's Domain bug before Rutela skip"},
           {"waterfall sidehop", WATERFALL_SIDEHOP_INDEX, "Waterfall sidehop after Rutela skip"},
           {"castle town bug", CT_BUG_INDEX, "Castle Town bug"},
+          {"fyer bug", FYER_BUG_INDEX, "Bug behind Fyer's hut after warping to Lake Hylia"},
           {"dock bug", DOCK_BUG_INDEX, "Last bug by the dock before boss bug"},
           {"boss bug", BOSS_BUG_INDEX, "Lanayru Twilight boss bug"},
           {"zd yellows", ZD_YELLOWS_INDEX, "Get outer Zora's Domain yellows while taking fall damage"},
@@ -169,6 +170,8 @@ void AnySavesMenu::draw() {
             special(ELDIN_TWILIGHT_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
             special(BASEMENT_BUGS_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
             special(ELD_INN_INDEX, nullptr, SaveMngSpecial_ZD_Yellows),
+            special(FYER_BUG_INDEX, nullptr, SaveMngSpecial_CenterCamera),
+            special(SMART_ROOM_INDEX, nullptr, SaveMngSpecial_CenterCamera),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();

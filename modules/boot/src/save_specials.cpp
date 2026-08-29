@@ -8,6 +8,7 @@
 #include "libtp_c/include/d/a/d_a_e_zs.h"
 #include "libtp_c/include/rel/d/a/obj/d_a_obj_lv4sand.h"
 #include "libtp_c/include/d/d_procname.h"
+#include "libtp_c/include/m_Do/m_Do_printf.h"
 #include "rels/include/defines.h"
 
 typedef bool (*predicate_t)(fopAc_ac_c&);
@@ -710,4 +711,21 @@ KEEP_FUNC void SaveMngSpecial_Ganondorf() {
 
 KEEP_FUNC void SaveMngSpecial_YellowText() {
     dComIfGs_onItemFirstBit(YELLOW_RUPEE);
+}
+
+KEEP_FUNC void SaveMngSpecial_CenterCamera() {
+    // needs to run in the "after" callback
+    gSaveManager.setLinkInfo();
+
+    cXyz pos = dComIfGp_getPlayer()->current.pos;
+    u16 angle = dComIfGp_getPlayer()->shape_angle.y;
+    f32 radians = angle * (2.0f * M_PI / 65536.0f);
+
+    dComIfGp_getCamera(0)->mCamera.mCenter.x = pos.x - sin(radians) * -373.0f;
+    dComIfGp_getCamera(0)->mCamera.mCenter.y = pos.y + 250.0f;
+    dComIfGp_getCamera(0)->mCamera.mCenter.z = pos.z - cos(radians) * -373.0f;
+
+    dComIfGp_getCamera(0)->mCamera.mEye.x = pos.x;
+    dComIfGp_getCamera(0)->mCamera.mEye.y = pos.y + 105.0f;
+    dComIfGp_getCamera(0)->mCamera.mEye.z = pos.z;
 }
