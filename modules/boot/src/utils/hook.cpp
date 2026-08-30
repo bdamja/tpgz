@@ -38,6 +38,10 @@ HOOK_DEF(void, draw, (void*));
 
 extern volatile uint32_t gzCrashReport;
 
+volatile int* game_r0 = reinterpret_cast<volatile int*>(0x80451168); // gc ntsc-u
+volatile int* game_r1 = reinterpret_cast<volatile int*>(0x8045116C);
+volatile int* game_r2 = reinterpret_cast<volatile int*>(0x80451170);
+
 HOOK_DEF(uint32_t, PADRead, (uint16_t*));
 HOOK_DEF(uint32_t, checkHookshotStickBG, (void*, void*));
 HOOK_DEF(void, setSpecialGravity, (daAlink_c*, float, float, int));
@@ -123,12 +127,12 @@ uint32_t unrestrictedItemsHook(uint16_t p1) {
 
 f32 freezeRNGHook() {
     if (!GZ_checkFreezeRng()) {
-        *r0 = (*r0 * 171) % 30269;
-        *r1 = (*r1 * 172) % 30307;
-        *r2 = (*r2 * 170) % 30323;   
+        *game_r0 = (*game_r0 * 171) % 30269;
+        *game_r1 = (*game_r1 * 172) % 30307;
+        *game_r2 = (*game_r2 * 170) % 30323;   
     }
 
-    f32 var_f31 = *r0 / 30269.0f + *r1 / 30307.0f + *r2 / 30323.0f;
+    f32 var_f31 = *game_r0 / 30269.0f + *game_r1 / 30307.0f + *game_r2 / 30323.0f;
 
     return std__fabsf(fmodf(var_f31, 1.0));
 }
