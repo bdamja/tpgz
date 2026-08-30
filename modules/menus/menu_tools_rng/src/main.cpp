@@ -28,12 +28,14 @@ void exit() {
 }  // namespace tpgz::modules
 
 void onCreate() {
+    g_menuMgr->setPersistentData(new ToolsRngData);
     if (!g_menuMgr->getPermanentData<Cursor>()) {
         g_menuMgr->setPermanentData(new Cursor);
     }
 }
 
 void onLoad() {
+    toolsRngData = g_menuMgr->getPersistentData<ToolsRngData>();
     l_toolsRngMenu = new ToolsRngMenu(*g_menuMgr->getPermanentData<Cursor>());
     g_drawListener->addListener(onDraw);
 }
@@ -47,4 +49,8 @@ void onUnload() {
     delete l_toolsRngMenu;
 }
 
-void onDelete() {}
+void onDelete() {
+    auto data = g_menuMgr->getPersistentData<ToolsRngData>();
+    delete data;
+    g_menuMgr->setPersistentData<ToolsRngData>(nullptr);
+}

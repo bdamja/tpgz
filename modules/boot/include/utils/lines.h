@@ -15,6 +15,13 @@ struct ListMember {
     char member[MAX_LIST_MEMBER_LENGTH];
 };
 
+struct RngPresetMember {
+    char member[MAX_LIST_MEMBER_LENGTH];
+    int r0;
+    int r1;
+    int r2;
+};
+
 struct Line {
     char line[50];
     uint32_t idx;
