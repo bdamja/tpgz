@@ -38,10 +38,6 @@ HOOK_DEF(void, draw, (void*));
 
 extern volatile uint32_t gzCrashReport;
 
-volatile s32* r0 = reinterpret_cast<volatile s32*>(0x80451168); // gc ntsc-u
-volatile s32* r1 = reinterpret_cast<volatile s32*>(0x8045116C);
-volatile s32* r2 = reinterpret_cast<volatile s32*>(0x80451170);
-
 HOOK_DEF(uint32_t, PADRead, (uint16_t*));
 HOOK_DEF(uint32_t, checkHookshotStickBG, (void*, void*));
 HOOK_DEF(void, setSpecialGravity, (daAlink_c*, float, float, int));

@@ -18,6 +18,10 @@ enum HookIndex {
     HK_MYEXCEPTIONCALLBACK_INDEX = 13
 };
 
+volatile int* r0 = reinterpret_cast<volatile int*>(0x80451168); // gc ntsc-u
+volatile int* r1 = reinterpret_cast<volatile int*>(0x8045116C);
+volatile int* r2 = reinterpret_cast<volatile int*>(0x80451170);
+
 namespace Hook {
 void applyHooks();
 }  // namespace Hook
