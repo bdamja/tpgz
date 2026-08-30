@@ -126,7 +126,7 @@ uint32_t unrestrictedItemsHook(uint16_t p1) {
 }
 
 f32 freezeRNGHook() {
-    if (!GZ_checkCheat(STNG_CHEATS_UNRESTRICTED_ITEMS)) {
+    if (!GZ_checkFreezeRng()) {
         *r0 = (*r0 * 171) % 30269;
         *r1 = (*r1 * 172) % 30307;
         *r2 = (*r2 * 170) % 30323;   

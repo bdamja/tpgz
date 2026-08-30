@@ -122,3 +122,7 @@ KEEP_FUNC bool hide_actor_active() {
 KEEP_FUNC bool freeze_camera_active() {
     return GZStng_getData(STNG_SCENE_FREEZE_CAMERA, false);
 }
+
+KEEP_FUNC bool freezeRng_active() {
+    return GZStng_getData(STNG_TOOLS_FREEZE_RNG, false);
+}
