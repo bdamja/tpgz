@@ -12,7 +12,6 @@
 
 #define ACTIVE_FUNC(id) []() { return GZStng_getData(id, false); }
 
-extern bool g_swap_equips_flag;
 extern ListMember g_font_opt[7];
 
 // WARNING
@@ -114,7 +113,8 @@ enum GZSettingID : uint32_t {
     STNG_ADVANCED_MODE,
     STNG_TOOLS_FREEZE_RNG,
     STNG_TOOLS_ADVANCE_RNG,
-    STNG_TOOLS_LOAD_RNG_PRESET
+    STNG_TOOLS_LOAD_RNG_PRESET,
+    STNG_SWAP_EQUIPS,
 };
 
 struct GZSettingEntry {
@@ -172,5 +172,10 @@ inline bool GZ_checkAdvancedMode() {
 
 inline bool GZ_checkFreezeRng() {
     auto* stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
+    return stng && *static_cast<bool*>(stng->data);
+}
+
+inline bool GZ_checkSwapEquips() {
+    auto* stng = GZStng_get(STNG_SWAP_EQUIPS);
     return stng && *static_cast<bool*>(stng->data);
 }

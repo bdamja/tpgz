@@ -158,7 +158,7 @@ KEEP_FUNC void SaveManager::loadData() {
 
 // swap equip logic
 #ifdef GCN_PLATFORM
-    if (g_swap_equips_flag) {
+    if (GZ_checkSwapEquips()) {
         uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_X);
         uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_X);
 
@@ -170,7 +170,7 @@ KEEP_FUNC void SaveManager::loadData() {
 #endif
 
 #ifdef WII_PLATFORM
-    if (g_swap_equips_flag) {
+    if (GZ_checkSwapEquips()) {
         uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_LEFT);
         uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_LEFT);
 

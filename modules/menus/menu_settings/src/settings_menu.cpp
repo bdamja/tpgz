@@ -23,7 +23,7 @@ KEEP_FUNC SettingsMenu::SettingsMenu(Cursor& cursor)
                         {"drop shadows", DROP_SHADOWS_INDEX, "Adds shadows to all font letters",
                          true, GZ_checkDropShadows},
                         {"swap equips", SWAP_EQUIPS_INDEX,
-                         "Swap equips when loading practice files", true, [](){return g_swap_equips_flag;}},
+                         "Swap equips when loading practice files", true, GZ_checkSwapEquips},
                         {"save card", SAVE_CARD_INDEX, "Save settings to memory card"},
                         {"load card", LOAD_CARD_INDEX, "Load settings from memory card"},
                         {"delete card", DELETE_CARD_INDEX, "Delete settings from memory card"},
@@ -119,7 +119,12 @@ void SettingsMenu::draw() {
             break;
         }
         case SWAP_EQUIPS_INDEX:
-            g_swap_equips_flag = !g_swap_equips_flag;
+            stng = GZStng_get(STNG_SWAP_EQUIPS);
+            if (!stng) {
+                stng = new GZSettingEntry{STNG_SWAP_EQUIPS, sizeof(bool), new bool{false}};
+                g_settings.push_back(stng);
+            }
+            *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
             break;
         }
     }

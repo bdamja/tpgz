@@ -79,7 +79,7 @@ void initState() {
 #ifdef WII_PLATFORM
     actorFastCreateAtLink(KYTAG09_ACTOR_ID, -1, -1);
 #endif
-    if (g_swap_equips_flag) {
+    if (GZ_checkSwapEquips()) {
         dComIfGs_setSelectItemIndex(SELECT_ITEM_X, SLOT_3);
     } else {
         dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, SLOT_3);
