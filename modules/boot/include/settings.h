@@ -111,7 +111,10 @@ enum GZSettingID : uint32_t {
     STNG_TOOLS_DISPLACEMENT,
     STNG_SPRITES_DISPLACEMENT,
     STNG_TOOLS_EBMB,
-    STNG_ADVANCED_MODE
+    STNG_ADVANCED_MODE,
+    STNG_TOOLS_FREEZE_RNG,
+    STNG_TOOLS_ADVANCE_RNG,
+    STNG_TOOLS_LOAD_RNG_PRESET
 };
 
 struct GZSettingEntry {
@@ -164,5 +167,10 @@ inline bool GZ_checkDropShadows() {
 
 inline bool GZ_checkAdvancedMode() {
     auto* stng = GZStng_get(STNG_ADVANCED_MODE);
+    return stng && *static_cast<bool*>(stng->data);
+}
+
+inline bool GZ_checkFreezeRng() {
+    auto* stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
     return stng && *static_cast<bool*>(stng->data);
 }
