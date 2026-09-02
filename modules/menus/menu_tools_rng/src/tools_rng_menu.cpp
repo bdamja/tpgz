@@ -10,7 +10,7 @@ KEEP_VAR ToolsRngData* toolsRngData;
 
 KEEP_FUNC ToolsRngMenu::ToolsRngMenu(Cursor& cursor)
     : Menu(cursor),
-      lines{{"freeze rng values", FREEZE_RNG_INDEX, "Freeze the 3 current RNG1 values", true,
+      lines{{"freeze rng values", FREEZE_RNG_INDEX, "Freeze main 3 RNG values", true,
              ACTIVE_FUNC(STNG_TOOLS_FREEZE_RNG)},
             {"randomize values", RANDOMIZE_INDEX, "Advance one iteration of the Wichmann-Hill algorithm"},
             {"load preset", LOAD_PRESET_INDEX, "Apply the RNG preset onto the current RNG values"},
