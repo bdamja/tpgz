@@ -27,3 +27,5 @@ public:
 private:
     Line lines[TOOLS_RNG_COUNT];
 };
+
+void store_frozen_rng_values(int r0, int r1, int r2);

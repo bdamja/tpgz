@@ -31,16 +31,16 @@ void ToolsRngMenu::draw() {
     GZSettingEntry* stng = nullptr;
 
     RngPresetMember rng_opt[MAX_RNG_PRESETS] = {
-        {"zant head 1st platform", 18177, 23597, 13040},
-        {"zant head 3rd platform", 4134, 7345, 3379},
+        {"zant head 1st platform", 4134, 7345, 3379},
+        {"zant head 3rd platform", 25170, 3588, 2141},
         {"zant head back left", 4995, 3011, 718},
-        {"zant head back mid", 171, 344, 510},
-        {"zant head back right", 29241, 28861, 26054},
-        {"horseback pattern A", 4661, 29274, 13264},
-        {"horseback pattern B", 1, 2, 3},//
-        {"horseback pattern C", 1, 2, 3},//
-        {"kb1 left after 3rd hit", 21744, 25914, 15568},
-        {"kb1 right after 3rd hit", 20952, 7801, 9111},
+        {"zant head back mid", 12361, 7069, 29087},
+        {"zant head back right", 10870, 5151, 9268},
+        {"horseback A (middle)", 5872, 10996, 94},
+        {"horseback B (down)", 5235, 12278, 15980},
+        {"horseback C (up)", 29379, 13886, 25014},
+        {"kb1 left after 3rd hit", 5872, 10996, 94},
+        {"kb1 right after 3rd hit", 25170, 3588, 2141},
     };
 
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
@@ -49,6 +49,8 @@ void ToolsRngMenu::draw() {
                 *game_r0 = (*game_r0 * 171) % 30269;
                 *game_r1 = (*game_r1 * 172) % 30307;
                 *game_r2 = (*game_r2 * 170) % 30323;
+
+                store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
                 break;
             case LOAD_PRESET_INDEX:
                 stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
@@ -62,6 +64,8 @@ void ToolsRngMenu::draw() {
                 *game_r0 = rng_opt[toolsRngData->l_rng_preset_idx].r0;
                 *game_r1 = rng_opt[toolsRngData->l_rng_preset_idx].r1;
                 *game_r2 = rng_opt[toolsRngData->l_rng_preset_idx].r2;
+
+                store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
                 break;
             case FREEZE_RNG_INDEX:
                 stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
@@ -73,6 +77,10 @@ void ToolsRngMenu::draw() {
 
                 if (stng)
                     *(bool*)stng->data = !*(bool*)stng->data;
+
+                if (stng && *(bool*)stng->data) {
+                    store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
+                }
                 break;
         }
     }
@@ -95,4 +103,10 @@ void ToolsRngMenu::draw() {
 
     GZ_drawMenuLines(lines, cursor.y, MENU_LINE_NUM);
     GZ_drawRngLines(lines, cursor.y, MENU_LINE_NUM);
+}
+
+KEEP_FUNC void store_frozen_rng_values(int r0, int r1, int r2) {
+    preset_r0 = r0;
+    preset_r1 = r1;
+    preset_r2 = r2;
 }
