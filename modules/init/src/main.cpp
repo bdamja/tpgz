@@ -69,6 +69,7 @@ void main() {
     g_modules.push_back(new Module{bit_active, "/tpgz/rels/features/bit.rel"});
 #endif
     g_modules.push_back(new Module{corotd_active, "/tpgz/rels/features/corotd.rel"});
+    g_modules.push_back(new Module{fast_eel_regrab_active, "/tpgz/rels/features/fast_eel_regrab.rel"});
     g_modules.push_back(new Module{lfc_active, "/tpgz/rels/features/lfc_checker.rel"});
     g_modules.push_back(new Module{ebmb_active, "/tpgz/rels/features/ebmb_checker.rel"});
     g_modules.push_back(new Module{ee_active, "/tpgz/rels/features/ee_checker.rel"});

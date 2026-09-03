@@ -33,6 +33,7 @@ enum CheckersIndex {
     MASH_CHECKER_INDEX,
     ROLL_INDEX,
     UMD_INDEX,
+    FAST_EEL_REGRAB_INDEX,
     GORGE_INDEX,
 
     CHECKERS_COUNT,

@@ -115,6 +115,7 @@ enum GZSettingID : uint32_t {
     STNG_TOOLS_ADVANCE_RNG,
     STNG_TOOLS_LOAD_RNG_PRESET,
     STNG_SWAP_EQUIPS,
+    STNG_TOOLS_FAST_EEL_REGRAB,
 };
 
 struct GZSettingEntry {

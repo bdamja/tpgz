@@ -34,3 +34,4 @@ bool moon_jump_active();
 bool freeze_actor_active();
 bool hide_actor_active();
 bool freeze_camera_active();
+bool fast_eel_regrab_active();

@@ -23,6 +23,7 @@ KEEP_FUNC CheckersMenu::CheckersMenu(Cursor& cursor)
              ACTIVE_FUNC(STNG_TOOLS_ROLL)},
             {"universal map delay", UMD_INDEX, "practice snowpeak universal map delay timing", true,
              ACTIVE_FUNC(STNG_TOOLS_UMD)},
+            {"fast eel regrab", FAST_EEL_REGRAB_INDEX, "show frame info when fast morpheel regrab (claw before boots)", true, ACTIVE_FUNC(STNG_TOOLS_FAST_EEL_REGRAB)},
             {
                 "gorge void", 
                 GORGE_INDEX, 
@@ -111,6 +112,14 @@ void CheckersMenu::draw() {
                 stng = GZStng_get(STNG_TOOLS_UMD);
                 if (!stng) {
                     stng = new GZSettingEntry{STNG_TOOLS_UMD, sizeof(bool), new bool{false}};
+                    g_settings.push_back(stng);
+                }
+                *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
+                break;
+            case FAST_EEL_REGRAB_INDEX:
+                stng = GZStng_get(STNG_TOOLS_FAST_EEL_REGRAB);
+                if (!stng) {
+                    stng = new GZSettingEntry{STNG_TOOLS_FAST_EEL_REGRAB, sizeof(bool), new bool{false}};
                     g_settings.push_back(stng);
                 }
                 *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
