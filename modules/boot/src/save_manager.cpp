@@ -14,6 +14,7 @@
 #include "libtp_c/include/f_op/f_op_scene_req.h"
 #include "libtp_c/include/f_op/f_op_draw_tag.h"
 #include "menus/utils/menu_mgr.h"
+#include "libtp_c/include/m_Do/m_Do_printf.h"
 
 static char l_filename[80];
 SaveManager gSaveManager;
@@ -157,30 +158,29 @@ KEEP_FUNC void SaveManager::loadData() {
     }
 
 // swap equip logic
-#ifdef GCN_PLATFORM
-    if (GZ_checkSwapEquips()) {
-        uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_X);
-        uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_X);
+if (GZ_checkSwapEquips() && !s_injectMemfile) { // don't swap for memfiles
 
-        dComIfGs_setSelectItemIndex(SELECT_ITEM_X, dComIfGs_getSelectItemIndex(SELECT_ITEM_Y));
-        dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, tmp);
-        dComIfGs_setMixItemIndex(SELECT_ITEM_X, dComIfGs_getMixItemIndex(SELECT_ITEM_Y));
-        dComIfGs_setMixItemIndex(SELECT_ITEM_Y, tmp_mix);
-    }
+#ifdef GCN_PLATFORM
+    uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_X);
+    uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_X);
+
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_X, dComIfGs_getSelectItemIndex(SELECT_ITEM_Y));
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, tmp);
+    dComIfGs_setMixItemIndex(SELECT_ITEM_X, dComIfGs_getMixItemIndex(SELECT_ITEM_Y));
+    dComIfGs_setMixItemIndex(SELECT_ITEM_Y, tmp_mix);
 #endif
 
 #ifdef WII_PLATFORM
-    if (GZ_checkSwapEquips()) {
-        uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_LEFT);
-        uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_LEFT);
+    uint8_t tmp = dComIfGs_getSelectItemIndex(SELECT_ITEM_LEFT);
+    uint8_t tmp_mix = dComIfGs_getMixItemIndex(SELECT_ITEM_LEFT);
 
-        dComIfGs_setSelectItemIndex(SELECT_ITEM_LEFT,
-                                    dComIfGs_getSelectItemIndex(SELECT_ITEM_RIGHT));
-        dComIfGs_setSelectItemIndex(SELECT_ITEM_RIGHT, tmp);
-        dComIfGs_setMixItemIndex(SELECT_ITEM_LEFT, dComIfGs_getMixItemIndex(SELECT_ITEM_RIGHT));
-        dComIfGs_setMixItemIndex(SELECT_ITEM_RIGHT, tmp_mix);
-    }
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_LEFT,
+                                dComIfGs_getSelectItemIndex(SELECT_ITEM_RIGHT));
+    dComIfGs_setSelectItemIndex(SELECT_ITEM_RIGHT, tmp);
+    dComIfGs_setMixItemIndex(SELECT_ITEM_LEFT, dComIfGs_getMixItemIndex(SELECT_ITEM_RIGHT));
+    dComIfGs_setMixItemIndex(SELECT_ITEM_RIGHT, tmp_mix);
 #endif
+    }
 }
 
 void SaveManager::setLinkInfo() {
