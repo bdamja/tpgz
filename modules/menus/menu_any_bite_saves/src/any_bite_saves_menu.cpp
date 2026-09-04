@@ -154,7 +154,8 @@ KEEP_FUNC AnyBiTESavesMenu::AnyBiTESavesMenu(Cursor& cursor)
         {"hc aeralfos", HC_AERALFOS_INDEX, "The Aeralfos fight in Hyrule Castle"},
         {"final tower climb", HC_TOWER_INDEX, "The tower climb before the final boss fights"},
         {"beast ganon", BEAST_GANON_INDEX, "The Beast Ganon fight"},
-        {"horseback ganon", HORSEBACK_GANON_INDEX, "The horseback Ganondorf fight"}} {};
+        {"horseback ganon", HORSEBACK_GANON_INDEX, "The horseback Ganondorf fight"},
+        {"ganondorf", GANONDORF_INDEX, "Do you know how to do an autospin"},} {};
 #endif
 
 AnyBiTESavesMenu::~AnyBiTESavesMenu() {}
@@ -212,6 +213,7 @@ void AnyBiTESavesMenu::draw() {
             special(WORMHOLE_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Wormhole),
             special(EARLY_BOSS_KEY_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
             special(ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
+            special(GANONDORF_INDEX, nullptr, SaveMngSpecial_Ganondorf),
         };
 #endif
 

@@ -152,6 +152,7 @@ enum AnyBitePracticeIndex {
     HC_TOWER_INDEX,
     BEAST_GANON_INDEX,
     HORSEBACK_GANON_INDEX,
+    GANONDORF_INDEX,
 
     // Entry used as a count of entries
     ANY_BITE_SAVES_COUNT

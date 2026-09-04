@@ -156,7 +156,8 @@ file_names = [
     "aeralfos",
     "finaltower",
     "beastganon",
-    "horsebackganon"
+    "horsebackganon",
+    "ganondorf"
 ]
 
 wundo_p = [{**copy.deepcopy(default_entry), "id": i, "filename": name}

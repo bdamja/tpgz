@@ -111,6 +111,7 @@ file_names = [
     "towerclimb",
     "beast_ganon",
     "horseback",
+    "ganondorf"
 ]
 
 anyb_p = [{**copy.deepcopy(default_entry), "id": i, "filename": name}

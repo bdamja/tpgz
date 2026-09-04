@@ -239,7 +239,9 @@ KEEP_FUNC HundoSavesMenu::HundoSavesMenu(Cursor& cursor)
         {"hc aeralfos", WND_HC_AERALFOS_INDEX, "Hyrule Castle aeralfos fight"},
         {"tower climb", WND_HC_TOWER_INDEX, "HC final tower ascent"},
         {"beast ganon", WND_BEAST_GANON_INDEX, "Ganondorf's beast phase"},
-        {"horseback ganon", WND_HORSEBACK_GANON_INDEX, "Ganondorf's horseback phase"}} {};
+        {"horseback ganon", WND_HORSEBACK_GANON_INDEX, "Ganondorf's horseback phase"},
+        {"ganondorf", WND_GANONDORF_INDEX, "Do you know how to do an autospin"}
+        } {};
 #endif
 HundoSavesMenu::~HundoSavesMenu() {}
 
@@ -309,6 +311,7 @@ void HundoSavesMenu::draw() {
         special(WND_ZANT_FINAL_INDEX, nullptr, SaveMngSpecial_ZantFinal),
         special(WND_HFN_GROTTO_INDEX, SaveMngSpecial_HFNGrotto, nullptr),
         special(WND_ARGOROK2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
+        special(WND_GANONDORF_INDEX, nullptr, SaveMngSpecial_Ganondorf)
     };
 #endif
 
