@@ -69,6 +69,10 @@ KEEP_FUNC bool umd_active() {
 KEEP_FUNC bool bit_active() {
     return GZStng_getData(STNG_TOOLS_BIT, false);
 }
+
+KEEP_FUNC bool slash_active() {
+    return GZStng_getData(STNG_TOOLS_SLASH, false);
+}
 #endif
 
 KEEP_FUNC bool corotd_active() {

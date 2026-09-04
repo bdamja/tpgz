@@ -20,6 +20,7 @@ bool transformIndicator_active();
 bool umd_active();
 #ifdef WII_PLATFORM
 bool bit_active();
+bool slash_active();
 #endif
 bool corotd_active();
 bool lfc_active();

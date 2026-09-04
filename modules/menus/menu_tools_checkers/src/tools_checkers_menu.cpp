@@ -8,6 +8,8 @@ KEEP_FUNC CheckersMenu::CheckersMenu(Cursor& cursor)
 #ifdef WII_PLATFORM
             {"bit", BIT_INDEX, "use " BACK_IN_TIME_TEXT " to warp to ordon bridge", true,
              ACTIVE_FUNC(STNG_TOOLS_BIT)},
+            {"slash", SLASH_INDEX, "frame counter for slash out of item wheel", true,
+            ACTIVE_FUNC(STNG_TOOLS_SLASH)},
 #endif
             {"coro td", COROTD_INDEX, "show frame info when doing coro td", true,
              ACTIVE_FUNC(STNG_TOOLS_COROTD)},
@@ -54,6 +56,14 @@ void CheckersMenu::draw() {
                 stng = GZStng_get(STNG_TOOLS_BIT);
                 if (!stng) {
                     stng = new GZSettingEntry{STNG_TOOLS_BIT, sizeof(bool), new bool{false}};
+                    g_settings.push_back(stng);
+                }
+                *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
+                break;
+            case SLASH_INDEX:
+                stng = GZStng_get(STNG_TOOLS_SLASH);
+                if (!stng) {
+                    stng = new GZSettingEntry{STNG_TOOLS_SLASH, sizeof(bool), new bool{false}};
                     g_settings.push_back(stng);
                 }
                 *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);

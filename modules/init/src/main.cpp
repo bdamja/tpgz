@@ -67,6 +67,7 @@ void main() {
     g_modules.push_back(new Module{umd_active, "/tpgz/rels/features/umd.rel"});
 #ifdef WII_PLATFORM
     g_modules.push_back(new Module{bit_active, "/tpgz/rels/features/bit.rel"});
+    g_modules.push_back(new Module{slash_active, "/tpgz/rels/features/slash_checker.rel"});
 #endif
     g_modules.push_back(new Module{corotd_active, "/tpgz/rels/features/corotd.rel"});
     g_modules.push_back(new Module{fast_eel_regrab_active, "/tpgz/rels/features/fast_eel_regrab.rel"});

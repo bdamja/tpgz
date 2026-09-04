@@ -25,6 +25,7 @@ enum CheckersIndex {
     
 #ifdef WII_PLATFORM
     BIT_INDEX,
+    SLASH_INDEX,
 #endif
     COROTD_INDEX,
     EBMB_INDEX,
