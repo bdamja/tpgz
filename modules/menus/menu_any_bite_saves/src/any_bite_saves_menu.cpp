@@ -135,6 +135,7 @@ KEEP_FUNC AnyBiTESavesMenu::AnyBiTESavesMenu(Cursor& cursor)
         {"city fanless", CITS_FANLESS_INDEX, "Cross the northern outdoor fans without turning them on CitS"},
         {"fan tower", FAN_TOWER_INDEX, "Final fan room in CitS before the boss"},
         {"argorok", ARGOROK_INDEX, "The City in the Sky boss"},
+        {"argorok 2", ARGOROK_2_INDEX, "The City in the Sky boss 2nd phase"},
         {"palace of twilight", PALACE_SOL_1_INDEX, "The first sol segment of Palace of Twilight"},
         {"sol 1 backtrack", SOL_1_BACKTRACK_INDEX, "Backtrack to the entrance after getting the first Sol"},
         {"stupid room", PALACE_SOL_2_INDEX, "Palace of Twilight west wing inside 1"},
@@ -210,6 +211,7 @@ void AnyBiTESavesMenu::draw() {
             special(KB4_INDEX, nullptr, SaveMngSpecial_KB4),
             special(WORMHOLE_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Wormhole),
             special(EARLY_BOSS_KEY_INDEX, SaveMngSpecial_AGEarlyBk, nullptr),
+            special(ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
         };
 #endif
 

@@ -91,6 +91,7 @@ file_names = [
     "fanless",
     "fan_tower",
     "argorok",
+    "argorok_2",
     "pot1",
     "sol1_backtrack",
     "stupidroom",

@@ -308,6 +308,7 @@ void HundoSavesMenu::draw() {
         special(WND_ZANT_DANGORO_INDEX, nullptr, SaveMngSpecial_ZantDangoro),
         special(WND_ZANT_FINAL_INDEX, nullptr, SaveMngSpecial_ZantFinal),
         special(WND_HFN_GROTTO_INDEX, SaveMngSpecial_HFNGrotto, nullptr),
+        special(WND_ARGOROK2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
     };
 #endif
 
