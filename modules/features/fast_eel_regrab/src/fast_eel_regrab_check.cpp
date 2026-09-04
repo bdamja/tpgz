@@ -6,11 +6,18 @@
 #include "libtp_c/include/SSystem/SComponent/c_counter.h"
 #include "libtp_c/include/f_op/f_op_scene_req.h"
 
+#ifdef GCN_PLATFORM
 #define X_HELD_CHECK !GZ_getButtonHold(GZPad::X)
 #define X_DOWN_CHECK GZ_getButtonPressed(GZPad::X)
-
 #define Y_HELD_CHECK !GZ_getButtonHold(GZPad::Y)
 #define Y_DOWN_CHECK GZ_getButtonPressed(GZPad::Y)
+
+#else
+#define X_HELD_CHECK !GZ_getButtonHold(GZPad::B)
+#define X_DOWN_CHECK GZ_getButtonPressed(GZPad::B)
+#define Y_HELD_CHECK !GZ_getButtonHold(GZPad::DPAD_DOWN)
+#define Y_DOWN_CHECK GZ_getButtonPressed(GZPad::DPAD_DOWN)
+#endif
 
 #define first_frame 9
 

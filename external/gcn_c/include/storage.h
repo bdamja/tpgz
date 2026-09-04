@@ -81,7 +81,7 @@ inline int32_t StorageSeek(Storage* storage, int32_t offset, int32_t whence) {
     return storage->position;
 }
 #else  // WII_PLATFORM
-#define StorageFreeBlocks(ch, byteNotUsed, filesNotUsed) CARDFreeBlocks(ch, byteNotUsed, filesNotUsed)
+#define StorageFreeBlocks(ch, byteNotUsed, filesNotUsed)
 #define StorageCreate(ch, fileName, size, fileBuffer)                                              \
     ({                                                                                             \
         (void)size;                                                                                \
