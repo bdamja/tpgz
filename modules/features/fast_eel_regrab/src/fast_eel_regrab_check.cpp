@@ -13,10 +13,10 @@
 #define Y_DOWN_CHECK GZ_getButtonPressed(GZPad::Y)
 
 #else
-#define X_HELD_CHECK !GZ_getButtonHold(GZPad::B)
-#define X_DOWN_CHECK GZ_getButtonPressed(GZPad::B)
-#define Y_HELD_CHECK !GZ_getButtonHold(GZPad::DPAD_DOWN)
-#define Y_DOWN_CHECK GZ_getButtonPressed(GZPad::DPAD_DOWN)
+#define X_HELD_CHECK !GZ_getButtonHold(GZPad::DPAD_DOWN)
+#define X_DOWN_CHECK GZ_getButtonPressed(GZPad::DPAD_DOWN)
+#define Y_HELD_CHECK !GZ_getButtonHold(GZPad::B)
+#define Y_DOWN_CHECK GZ_getButtonPressed(GZPad::B)
 #endif
 
 #define first_frame 9
