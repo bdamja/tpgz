@@ -5,6 +5,7 @@
 #include "libtp_c/include/d/com/d_com_inf_game.h"
 #include "libtp_c/include/SSystem/SComponent/c_counter.h"
 #include "libtp_c/include/f_op/f_op_scene_req.h"
+#include "libtp_c/include/m_Do/m_Re_controller_pad.h"
 
 #define ITEM_BUTTON_HELD_CHECK (!GZ_getButtonHold(GZPad::A) || !GZ_getButtonHold(GZPad::MINUS))
 #define ITEM_BUTTON_DOWN_CHECK (GZ_getButtonPressed(GZPad::A) || GZ_getButtonPressed(GZPad::MINUS))
@@ -12,7 +13,7 @@
 
 KEEP_FUNC void SlashChecker::execute() {
     static bool sTimerStarted = false;
-    static bool sGoalHit = false;
+    static bool didFirstSwing = false;
     static uint32_t sFrameCount = 0;
 
     if (dComIfGp_getPlayer() == nullptr) {
@@ -22,46 +23,52 @@ KEEP_FUNC void SlashChecker::execute() {
     // reset counters on load
     if (fopScnRq.isLoading) {
         sFrameCount = 0;
-        sGoalHit = false;
         sTimerStarted = false;
+        didFirstSwing = false;
     }
 
     if (ITEM_BUTTON_HELD_CHECK && ITEM_BUTTON_DOWN_CHECK && dComIfGp_getPlayer()->mActionID != 33) {
         sTimerStarted = true;
         sFrameCount = 0;
-        sGoalHit = false;
+        didFirstSwing = false;
     }
 
-    uint32_t correctFrames = 8;
+    uint32_t correctFrames = 7;
 
     if (sTimerStarted) {
         sFrameCount++;
 
         if (sFrameCount < 15) {
-            if (!sGoalHit && dComIfGp_getPlayer()->mActionID == 33) { // slash
+            if (mPad.m_remAcc.m_swing > 0) { // slash
+
+                if (!didFirstSwing) {
+                    FIFOQueue::push("<", Queue);
+                    didFirstSwing = true;
+                }
+
                 char buf[20];
                 if (sFrameCount < correctFrames) {
                     snprintf(buf, sizeof(buf), "%df early", correctFrames - sFrameCount);
                     FIFOQueue::push(buf, Queue, 0x0000FF00);
                 } else if (sFrameCount == correctFrames) {
                     FIFOQueue::push("got it", Queue, 0x00CC0000);
-                    sGoalHit = true;
                 } else if (sFrameCount > correctFrames) {
                     if (sFrameCount - correctFrames == 1) {
                         FIFOQueue::push("1f late", Queue, 0xFF757500);
                     } else {
                         snprintf(buf, sizeof(buf), "%df late", sFrameCount - correctFrames);
                         FIFOQueue::push(buf, Queue, 0x99000000);
-                    }    
+                    }
                 }
-                sFrameCount = 0;
-                sGoalHit = false;
-                sTimerStarted = false;
             }
         } else {
             sFrameCount = 0;
-            sGoalHit = false;
             sTimerStarted = false;
+            if (didFirstSwing) {
+                FIFOQueue::push(">", Queue);
+                didFirstSwing = false;
+            }
+            
         }
     }
 }
