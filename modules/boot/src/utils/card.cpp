@@ -251,6 +251,7 @@ KEEP_FUNC void GZ_storeMemCard(Storage& storage) {
 }
 
 KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
+    #ifdef GCN_PLATFORM
     int bytesRemaining = 0;
     int filesRemaining = 0;
     StorageFreeBlocks(0, &bytesRemaining, &filesRemaining);
@@ -266,6 +267,7 @@ KEEP_FUNC void GZ_storeMemfile(Storage& storage) {
         FIFOQueue::push("failed: no space remaining", Queue);
         return;
     }
+    #endif
 
     PositionData posData;
     posData.link = dComIfGp_getPlayer()->current.pos;
