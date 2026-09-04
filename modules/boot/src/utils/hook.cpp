@@ -38,10 +38,6 @@ HOOK_DEF(void, draw, (void*));
 
 extern volatile uint32_t gzCrashReport;
 
-volatile int* game_r0 = reinterpret_cast<volatile int*>(0x80451168); // gc ntsc-u
-volatile int* game_r1 = reinterpret_cast<volatile int*>(0x8045116C);
-volatile int* game_r2 = reinterpret_cast<volatile int*>(0x80451170);
-
 int preset_r0 = 100;
 int preset_r1 = 100;
 int preset_r2 = 100;
@@ -131,9 +127,9 @@ uint32_t unrestrictedItemsHook(uint16_t p1) {
 
 uint32_t freezeRNGHook(base_process_class* i_proc) {
     if (GZ_checkFreezeRng()) {
-        *game_r0 = preset_r0;
-        *game_r1 = preset_r1;
-        *game_r2 = preset_r2;   
+        r0 = preset_r0;
+        r1 = preset_r1;
+        r2 = preset_r2;   
     }
 
     return fpcBs_ExecuteTrampoline(i_proc);

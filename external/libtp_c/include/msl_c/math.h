@@ -53,4 +53,8 @@ inline float std__fabsf(float x) {
 LIBTP_DEFINE_FUNC(fabsf__3stdFf, fabsf, float, std__fabsf, (float))
 #endif
 
+extern int r0;
+extern int r1;
+extern int r2;
+
 #endif  // !LIB_TP_MATH

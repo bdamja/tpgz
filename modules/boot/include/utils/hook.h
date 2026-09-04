@@ -18,10 +18,6 @@ enum HookIndex {
     HK_MYEXCEPTIONCALLBACK_INDEX = 13
 };
 
-extern volatile int* game_r0;
-extern volatile int* game_r1;
-extern volatile int* game_r2;
-
 extern int preset_r0;
 extern int preset_r1;
 extern int preset_r2;

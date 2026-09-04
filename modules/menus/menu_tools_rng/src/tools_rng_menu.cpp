@@ -3,6 +3,7 @@
 #include "utils/hook.h"
 #include "rels/include/defines.h"
 #include "menus/utils/menu_mgr.h"
+#include "libtp_c/include/msl_c/math.h"
 
 #define MAX_RNG_PRESETS 10
 
@@ -47,11 +48,11 @@ void ToolsRngMenu::draw() {
     if (GZ_getButtonTrig(SELECTION_BUTTON)) {
         switch (cursor.y) {
             case RANDOMIZE_INDEX:
-                *game_r0 = (*game_r0 * 171) % 30269;
-                *game_r1 = (*game_r1 * 172) % 30307;
-                *game_r2 = (*game_r2 * 170) % 30323;
+                r0 = (r0 * 171) % 30269;
+                r1 = (r1 * 172) % 30307;
+                r2 = (r2 * 170) % 30323;
 
-                store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
+                store_frozen_rng_values(r0, r1, r2);
                 break;
             case LOAD_PRESET_INDEX:
                 stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
@@ -62,11 +63,11 @@ void ToolsRngMenu::draw() {
                 if (stng)
                     *(bool*)stng->data = true;
 
-                *game_r0 = rng_opt[toolsRngData->l_rng_preset_idx].r0;
-                *game_r1 = rng_opt[toolsRngData->l_rng_preset_idx].r1;
-                *game_r2 = rng_opt[toolsRngData->l_rng_preset_idx].r2;
+                r0 = rng_opt[toolsRngData->l_rng_preset_idx].r0;
+                r1 = rng_opt[toolsRngData->l_rng_preset_idx].r1;
+                r2 = rng_opt[toolsRngData->l_rng_preset_idx].r2;
 
-                store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
+                store_frozen_rng_values(r0, r1, r2);
                 break;
             case FREEZE_RNG_INDEX:
                 stng = GZStng_get(STNG_TOOLS_FREEZE_RNG);
@@ -80,7 +81,7 @@ void ToolsRngMenu::draw() {
                     *(bool*)stng->data = !*(bool*)stng->data;
 
                 if (stng && *(bool*)stng->data) {
-                    store_frozen_rng_values(*game_r0, *game_r1, *game_r2);
+                    store_frozen_rng_values(r0, r1, r2);
                 }
                 break;
         }
