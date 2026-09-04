@@ -1,3 +1,5 @@
+#ifdef WII_PLATFORM
+
 #include <cstdio>
 #include "slash_checker.h"
 #include "controller.h"
@@ -72,3 +74,5 @@ KEEP_FUNC void SlashChecker::execute() {
         }
     }
 }
+
+#endif
