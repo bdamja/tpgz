@@ -104,3 +104,4 @@ void SaveMngSpecial_Ganondorf();
 void SaveMngSpecial_YellowText();
 void SaveMngSpecial_CenterCamera();
 void SaveMngSpecial_SolBacktrackCamera();
+void SaveMngSpecial_GorgeVoid();

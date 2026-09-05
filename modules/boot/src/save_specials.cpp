@@ -745,3 +745,13 @@ KEEP_FUNC void SaveMngSpecial_SolBacktrackCamera() {
     dComIfGp_getCamera(0)->mCamera.mEye.y = 93.3100357f;
     dComIfGp_getCamera(0)->mCamera.mEye.z = 299.36438f;
 }
+
+KEEP_FUNC void SaveMngSpecial_GorgeVoid() {
+    g_dComIfG_gameInfo.info.mRestart.mRoomAngleY = 26033;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = -17316.703125;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.y = -6450.0;
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.z = 67532.7578125;
+    gSaveManager.setLinkInfo();
+    
+    SaveMngSpecial_CenterCamera();
+}

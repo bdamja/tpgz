@@ -230,8 +230,8 @@ update_entry("forest_escape", {
 # gorge void
 update_entry("gorge_void", {
     'requirements': Requirements.POS,
-    'pos': (-9704.47266, -7200.0, 58475.5195),
-    'angle': 54288,
+    'pos': (-11140.334, -7214.11377, 59937.4141),
+    'angle': 25608,
 })
 
 # rupee roll

@@ -137,7 +137,6 @@ void AnySavesMenu::draw() {
             special(ZANT_DANGORO_INDEX, nullptr, SaveMngSpecial_ZantDangoro),
             special(ZANT_FINAL_INDEX, nullptr, SaveMngSpecial_ZantFinal),
             special(FRST_ESCAPE_INDEX, SaveMngSpecial_BossFlags, nullptr),
-            special(GORGE_VOID_INDEX, SaveMngSpecial_BossFlags, nullptr),
             special(RUPEE_ROLL_INDEX, SaveMngSpecial_BossFlags, nullptr),
             special(LANAYRU_GATE_CLIP_INDEX, SaveMngSpecial_BossFlags, nullptr),
             special(LAKEBED_1_INDEX, SaveMngSpecial_BossFlags, nullptr),
@@ -183,6 +182,7 @@ void AnySavesMenu::draw() {
             special(CITS_BK_CLIP_INDEX, nullptr, SaveMngSpecial_CenterCamera),
             special(SOL_1_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
             special(SOL_2_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
+            special(GORGE_VOID_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_GorgeVoid),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();
