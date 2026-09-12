@@ -1,5 +1,9 @@
 #pragma once
 
+#include "libtp_c/include/d/com/d_com_inf_game.h"
+
+fopAc_ac_c* find_actor(bool (*predicate)(fopAc_ac_c&));
+
 void SaveMngSpecial_OrdonRock();
 
 void SaveMngSpecial_BossFlags();

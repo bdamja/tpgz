@@ -7,6 +7,7 @@
 #include "tools.h"
 #include "rels/include/defines.h"
 #include "commands.h"
+#include "boot/include/save_specials.h"
 
 KEEP_FUNC void GZ_displayLinkInfo() {
     if (!GZStng_getData(STNG_TOOLS_LINK_DEBUG, false)) {
@@ -29,6 +30,7 @@ KEEP_FUNC void GZ_displayLinkInfo() {
         char ground_angle[22];
         char collision_flags[22];
         char demo_mode[22];
+        char seed_xz[22];
 
         snprintf(link_angle, sizeof(link_angle), "angle: %d",
                  (uint16_t)dComIfGp_getPlayer()->shape_angle.y);
@@ -53,6 +55,17 @@ KEEP_FUNC void GZ_displayLinkInfo() {
 
         u32 mDemoMode = dComIfGp_getPlayer()->mDemo.mDemoMode;
         snprintf(demo_mode, sizeof(demo_mode), "demo: %d", mDemoMode);
+
+        #define CARRY_ID_WII 762;
+
+        fopAc_ac_c* actorData = find_actor([](auto& act) { return act.mBase.mProcName == CARRY_ID_WII});
+
+        if (actorData != NULL) {
+            u16 seed_xz_val = static_cast<u16> (actorData->current.angle.y);
+            snprintf(seed_xz, sizeof(seed_xz), "seed xz: %d", seed_xz_val);
+        } else {
+            snprintf(seed_xz, sizeof(seed_xz), "seed xz: n/a");
+        }
 
         Font::GZ_drawStr(link_angle, spriteOffset.x,
                          spriteOffset.y + 20.0f, 0xFFFFFFFF,
@@ -85,6 +98,9 @@ KEEP_FUNC void GZ_displayLinkInfo() {
                             GZ_checkDropShadows());
             Font::GZ_drawStr(demo_mode, spriteOffset.x,
                             spriteOffset.y + 200.0f, 0xFFFFFFFF,
+                            GZ_checkDropShadows());
+            Font::GZ_drawStr(seed_xz, spriteOffset.x,
+                            spriteOffset.y + 220.0f, 0xFFFFFFFF,
                             GZ_checkDropShadows());
         }
     } else {
@@ -119,6 +135,9 @@ KEEP_FUNC void GZ_displayLinkInfo() {
                             GZ_checkDropShadows());
             Font::GZ_drawStr("demo: n/a", spriteOffset.x,
                             spriteOffset.y + 200.0f, 0xFFFFFFFF,
+                            GZ_checkDropShadows());
+            Font::GZ_drawStr("seed xz: n/a", spriteOffset.x,
+                            spriteOffset.y + 220.0f, 0xFFFFFFFF,
                             GZ_checkDropShadows());
         }
     }

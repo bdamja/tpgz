@@ -11,9 +11,7 @@
 #include "libtp_c/include/m_Do/m_Do_printf.h"
 #include "rels/include/defines.h"
 
-typedef bool (*predicate_t)(fopAc_ac_c&);
-
-fopAc_ac_c* find_actor(predicate_t const& predicate) {
+fopAc_ac_c* find_actor(bool (*predicate)(fopAc_ac_c&)) {
     if (predicate == nullptr) {
         return nullptr;
     }
