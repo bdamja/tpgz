@@ -130,7 +130,13 @@ KEEP_FUNC void SaveMngSpecial_WaterfallSidehop() {
 
 KEEP_FUNC void SaveMngSpecial_EarlyEle() {
     gSaveManager.injectDefault_during();
-    dComIfGs_onTmpBit(0x0002);
+    dComIfGs_onTmpBit(0x0002); // td
+}
+
+KEEP_FUNC void SaveMngSpecial_ElevatorEscape() {
+    gSaveManager.injectDefault_during();
+    dComIfGp_getPlayer()->onNoResetFlg0(daPy_py_c::FLG0_EQUIP_HVY_BOOTS);
+    dComIfGs_onTmpBit(0x0002); // td
 }
 
 KEEP_FUNC void SaveMngSpecial_EarlyEleSpawn() {

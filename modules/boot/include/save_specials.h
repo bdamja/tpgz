@@ -18,6 +18,7 @@ void SaveMngSpecial_WaterfallSidehop();
 
 void SaveMngSpecial_EarlyEle();
 void SaveMngSpecial_EarlyEleSpawn();
+void SaveMngSpecial_ElevatorEscape();
 
 void SaveMngSpecial_HorseSpawn();
 void SaveMngSpecial_EldinCollection();
