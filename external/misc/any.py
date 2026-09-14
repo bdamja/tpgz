@@ -61,6 +61,7 @@ file_names = [
     "deku_toad",
     "lakebed_bk_skip",
     "morpheel",
+    "morpheel_2",
     "louise_glitch",
     "rope_skip",
     "mdh_tower",

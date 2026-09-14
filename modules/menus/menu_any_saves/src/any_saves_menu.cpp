@@ -47,6 +47,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"deku toad", TOAD_INDEX, "Lakebed Temple miniboss"},
           {"lakebed bk skip", LAKEBED_BK_SKIP_INDEX, "Boss Key skip in Lakebed Temple"},
           {"morpheel", ONEBOMB_INDEX, "Morpheel fight (no Zora Armor)"},
+          {"morpheel 2", MORPHEEL_2_INDEX, "Morpheel phase 2"},
           {"louise glitch", LOUISE_GLITCH_INDEX, "Minor timesave involving Telma's cat during MDH"},
           {"rope skip", ROPE_SKIP_INDEX, "Skip the first two ropes in Telma's Bar during MDH"},
           {"mdh tower", MDH_TOWER_INDEX, "MDH tower climb"},
@@ -183,6 +184,7 @@ void AnySavesMenu::draw() {
             special(SOL_1_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
             special(SOL_2_BACKTRACK_INDEX, nullptr, SaveMngSpecial_SolBacktrackCamera),
             special(GORGE_VOID_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_GorgeVoid),
+            special(MORPHEEL_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Morpheel2),
         };
         SaveManager::triggerLoad(cursor.y, "any", AnySpecials, ARRAY_COUNT(AnySpecials));
         g_menuMgr->hide();

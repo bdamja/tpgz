@@ -106,3 +106,4 @@ void SaveMngSpecial_YellowText();
 void SaveMngSpecial_CenterCamera();
 void SaveMngSpecial_SolBacktrackCamera();
 void SaveMngSpecial_GorgeVoid();
+void SaveMngSpecial_Morpheel2();

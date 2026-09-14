@@ -760,4 +760,37 @@ KEEP_FUNC void SaveMngSpecial_GorgeVoid() {
     gSaveManager.setLinkInfo();
     
     SaveMngSpecial_CenterCamera();
+} 
+
+KEEP_FUNC void SaveMngSpecial_Morpheel2() {
+    class daB_OB_c { // morpheel
+    public:
+        /* 0x0000 */ fopEn_enemy_c base;
+        /* 0x05AC */ u8 field_0x5ac[0x4752 - 0x5ac];
+        /* 0x4752 */ s16 mAction;
+    };
+
+    daB_OB_c* morpheel = (daB_OB_c*)find_actor([](auto& act) { return act.mBase.mProcName == PROC_B_OB; });
+    
+    if (morpheel != nullptr) {
+        morpheel->mAction = 5; // OB_ACTION_CORE_END
+    }
+    
+    gSaveManager.setSaveAngle(10754);
+    gSaveManager.setSavePosition(-1193.0f, -23999.0f, -770.0f);
+    gSaveManager.setLinkInfo();
+
+    cXyz create_pos = (dComIfGp_getPlayer()->mLeftHandPos + dComIfGp_getPlayer()->mRightHandPos) * 0.5f;
+    s16 bomb_proc_id = 0x221;
+    int water_bomb_param = 9;
+
+    // create water bomb actor
+    fopAc_ac_c* actor = fopAcM_fastCreate(bomb_proc_id, water_bomb_param, &create_pos, -1, nullptr, nullptr, -1, nullptr, nullptr);
+
+    setGrabItemActor(dComIfGp_getPlayer(), actor); // make link hold water bomb
+    dComIfGp_getPlayer()->field_0x33e4 = 38.0f; // idk lol
+    setGrabUpperAnime(dComIfGp_getPlayer(), 4.0f); // something something animation
+
+    g_dComIfG_gameInfo.play.mOxygenShowFlag = 1; // show the bar otherwise it'll set the air to full
+    dComIfGs_setOxygen(600 * 0.75); // about how much air you usually have start of phase 2
 }

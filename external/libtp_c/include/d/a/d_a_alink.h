@@ -2964,4 +2964,10 @@ LIBTP_DEFINE_FUNC(getGroundAngle__9daAlink_cFP13cBgS_PolyInfos, daAlink_c__getGr
 
 LIBTP_DEFINE_FUNC(swordEquip__9daAlink_cFi, daAlink_c__swordEquip_int_, void, daAlink_c__swordEquip, (daAlink_c*, s32))
 
+LIBTP_DEFINE_FUNC(itemEquip__9daAlink_cFUs, daAlink_c__itemEquip_unsigned_short_, void, daAlink_c__itemEquip, (daAlink_c*, u16))
+
+LIBTP_DEFINE_FUNC(setGrabItemActor__9daAlink_cFP10fopAc_ac_c, daAlink_c__setGrabItemActor_fopAc_ac_c___, void, setGrabItemActor, (daAlink_c*, fopAc_ac_c*))
+
+LIBTP_DEFINE_FUNC(setGrabUpperAnime__9daAlink_cFf, daAlink_c__setGrabUpperAnime_float_, void, setGrabUpperAnime, (daAlink_c*, f32))
+
 #endif /* D_A_D_A_ALINK_H */
