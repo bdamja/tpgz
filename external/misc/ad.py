@@ -167,16 +167,16 @@ update_entry("eldin_twilight", {
     'counter': 10
 })
 
-update_entry("rusl_td", {
-    'requirements': Requirements.POS | Requirements.CAM,
-    'pos': (-37785.152, 597.8449, -21831.369),
-    'angle': 36422,
-    'cam': {
-        'pos': (-37785.152, 597.8449, -21831.369),
-        'target': (-37785.152, 597.8449, -21831.369)
-    },
-    'counter': 10
-})
+# update_entry("rusl_td", {
+#     'requirements': Requirements.POS | Requirements.CAM,
+#     'pos': (-37785.152, 597.8449, -21831.369),
+#     'angle': 36422,
+#     'cam': {
+#         'pos': (-37785.152, 597.8449, -21831.369),
+#         'target': (-37785.152, 597.8449, -21831.369)
+#     },
+#     'counter': 10
+# })
 
 update_entry("early_elevator", {
     'requirements': Requirements.POS | Requirements.CAM,

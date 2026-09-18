@@ -76,6 +76,7 @@ file_names = [
     "darkhammer",
     "spr_orange_1",
     "spr_orange_2",
+    "desert",
     "fence_clip",
     "camp",
     "ag",

@@ -62,6 +62,7 @@ KEEP_FUNC AnySavesMenu::AnySavesMenu(Cursor& cursor)
           {"darkhammer", DARK_HAMMER_INDEX, "Snowpeak Ruins miniboss"},
           {"spr orange 1", SPR_ORANGE_1_INDEX, "Orange rupee from the cheese room armor"},
           {"spr orange 2", SPR_ORANGE_2_INDEX, "Orange rupee from the entrance armor"},
+          {"gerudo desert", DESERT_INDEX, "Dash through the desert and take damage from (or avoid) moldorms"},
           {"desert fence clip", FENCE_CLIP_INDEX, "Clip through the second fence before Bulblin Camp"},
           {"bulblin camp", BULBLIN_CAMP_INDEX, "The camp before Arbiter's Grounds"},
           {"arbiter's grounds", AG_INDEX, "The Arbiter's Grounds segment"},
