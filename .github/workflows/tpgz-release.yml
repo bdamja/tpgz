@@ -39,11 +39,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Install build tools
-        run: |
-          apt-get update
-          apt-get install -y --no-install-recommends cmake build-essential python3
-
       - name: Configure and build patch
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
