@@ -41,6 +41,7 @@ jobs:
           submodules: recursive
 
       - name: Configure and build patch
+        shell: bash
         run: |
           if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
             VERSION="${GITHUB_REF_NAME#v}"
