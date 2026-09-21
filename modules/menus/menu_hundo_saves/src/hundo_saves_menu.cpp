@@ -294,7 +294,7 @@ void HundoSavesMenu::draw() {
         special(HND_FRST_BIT_INDEX, nullptr, SaveMngSpecial_ForestBit),
         special(HND_FRST_2_INDEX, SaveMngSpecial_BossFlags, nullptr),
         special(HND_KITTY_CLIMB_INDEX, nullptr, SaveMngSpecial_KittyClimb),
-        special(HND_DMT_POE_INDEX, nullptr, SaveMngSpecial_DMTPoe),
+        special(HND_DMT_POE_INDEX, nullptr, SaveMngSpecial_DMTPoe, 60),
         special(HND_ARGOROK_2_INDEX, SaveMngSpecial_BossFlags, SaveMngSpecial_Argorok2_after),
         special(HND_SNOWBOARDING_INDEX, SaveMngSpecial_RemoveAreaBannerBefore_Snowpeak, nullptr),
     };

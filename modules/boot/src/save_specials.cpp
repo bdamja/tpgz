@@ -814,10 +814,8 @@ KEEP_FUNC void SaveMngSpecial_KittyClimb() {
 }
 
 KEEP_FUNC void SaveMngSpecial_DMTPoe() {
-    // g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = 100; //1493172293
-    // g_dComIfG_gameInfo.info.mRestart.mLastMode = 1493172293;
-    // gSaveManager.setSavePosition(0.0f, -2000.0f, 0.0f);
-    // gSaveManager.setLinkInfo(); v8388608
+    g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = 100; //1493172293
+    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1493172293;
 }
 
 KEEP_FUNC void SaveMngSpecial_RemoveAreaBannerBefore_ZorasDomain() {

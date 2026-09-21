@@ -16,6 +16,7 @@
 #include "libtp_c/include/m_Do/m_Re_controller_pad.h"
 #include "libtp_c/include/f_op/f_op_scene_req.h"
 #include "rels/include/defines.h"
+#include "libtp_c/include/m_Do/m_Do_printf.h"
 
 bool g_framePaused = false;
 
@@ -120,8 +121,10 @@ void GZ_execute(int phase) {
 
     // separate variable to make sure the after-callback is only run after a load has happened
     static bool load_started = false;
+    static bool load_finished = false;
     if (fopScnRq.isLoading && !load_started) {
         load_started = true;
+        load_finished = false;
     }
 
     // Check for post load callback and run it once link is valid
@@ -131,7 +134,24 @@ void GZ_execute(int phase) {
             gSaveManager.mPracticeFileOpts.inject_options_after_load = nullptr;
         }
         load_started = false;
+        if (gSaveManager.mPracticeFileOpts.inject_options_after_counter > 0) {
+            load_finished = true;
+        }
     }
+
+    if (load_finished && !fopScnRq.isLoading && dComIfGp_getPlayer()) {
+        if (gSaveManager.mPracticeFileOpts.inject_options_after_counter > 0) {
+            gSaveManager.mPracticeFileOpts.inject_options_after_counter--;
+        } else {
+            gSaveManager.setSaveAngle(28409);
+            gSaveManager.setSavePosition(-3849.0f, -188.0f, 3117.0f);
+            gSaveManager.setLinkInfo();
+            OSReport("aight\n");
+            load_finished = false;
+        }
+    }
+
+
 
     // normally oxygen doesn't get set until going to the file select screen
     // so this fixes oxygen issues when loading a save from title screen directly after boot

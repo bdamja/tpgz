@@ -69,8 +69,8 @@ void SaveManager::loadSave(uint32_t id, const char* category, special i_specials
     if (gSaveManager.mPracticeSaveInfo.requirements) {
         gSaveManager.mPracticeFileOpts.inject_options_after_load =
             gSaveManager.mPracticeSaveInfo.requirements & REQ_CAM ? setPositionCamera : setLinkInfo;
-        gSaveManager.mPracticeFileOpts.inject_options_after_counter =
-            gSaveManager.mPracticeSaveInfo.counter;
+        // gSaveManager.mPracticeFileOpts.inject_options_after_counter =
+        //     gSaveManager.mPracticeSaveInfo.counter;
     }
 
     bossFlags = 0;
@@ -89,6 +89,7 @@ void SaveManager::loadSave(uint32_t id, const char* category, special i_specials
                 }
 
                 last_special = i_specials[i];
+                gSaveManager.mPracticeFileOpts.inject_options_after_counter = i_specials[i].extraDelay;
                 break;
             }
         }
