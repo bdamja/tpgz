@@ -46,12 +46,13 @@ def main(args=None):
         "goats_2",
         "faron_twilight",
         "ems",
-        "purple_mist",
-        "forest_bit",
-        "forest_2",
-        "ookless",
-        "eldin_twilight",
-        "bomb_house_skip",
+        "Purple Mist",
+        "forest_1",
+        "Forest Temple 2(ebf)",
+        "Deku Like(ebf)",
+        "Diababa (ebf)",
+        "Eldin Vessel", # start of twilight
+        "BHS",
         "lanayru_gate_clip",
         "pillar_clip",
         "lakebed_1",
@@ -61,12 +62,14 @@ def main(args=None):
         "corotd",
         "early_ele",
         "gm",
+        "kitty_climb",
         "dangoro",
         "fyrus",
         "waterfall_sidehop",
         "boss_bug",
         "kb2",
         "kb2",
+        "escort_lja",
         "eldin_collection",
         "lakebed_bk_skip",
         "morpheel",
@@ -77,8 +80,10 @@ def main(args=None):
         "kb1",
         "iza_1_skip",
         "lh_cave",
+        "Desert Collection",
         "camp",
         "ag",
+        "speedrat",
         "poe_1_skip",
         "death_sword_skip",
         "stallord",
@@ -86,7 +91,7 @@ def main(args=None):
         "spr",
         "darkhammer",
         "spr_2",
-        "spr_bk_lja",
+        "freezard_2",
         "spr_bk",
         "blizzeta",
         "nf_bomb_boost",
@@ -99,19 +104,24 @@ def main(args=None):
         "tot_darknut",
         "dot_skip",
         "post_tot",
+        "snowboarding",
         "hotspring",
+        "orange_backslice",
         "gorge_arc",
+        "Flight By fowl",
         "silver_rupee",
+        "dmt_poe",
         "ice_puzzle",
         "iza_2",
         "hv_archery",
         "cits_1",
         "city_gate_clip",
         "aeralfos_skip",
-        "cits_2",
+        "City 2",
         "cits_poe_cycle",
         "fan_tower",
         "argorok",
+        "argorok", # phase 2
         "star_2",
         "palace_1",
         "palace_2",
@@ -119,12 +129,15 @@ def main(args=None):
         "zant",
         "coo",
         "coo_10",
+        "CoO poe 1 (floor 17)",
         "coo_20",
         "coo_30",
+        "CoO poe 2 (floor 33)",
         "coo_40",
         "cats",
         "hc",
         "hc_darknut",
+        "Friendless",
         "hc_tower",
         "beast_ganon",
         "horseback_ganon",
@@ -150,7 +163,7 @@ def main(args=None):
         'counter': 10
     })
 
-    update_entry("purple_mist", {
+    update_entry("Purple Mist", {
         'requirements': Requirements.POS,
         'pos': (-23524.6152, 250.0, -16220.166),
         'angle': 40758,
@@ -278,6 +291,60 @@ def main(args=None):
         'requirements': Requirements.POS | Requirements.CAM,
         'pos': (16516.6094, 0, -12722.480),
         'angle': 16384
+    })
+
+    # update_entry('kitty_climb', data = {
+    #     'requirements': Requirements.POS,
+    #     'pos': (-3849.0, -188.0, 3117.0),
+    #     'angle': 28409 
+    # })
+
+    update_entry('Speed rat (turn wall)', data = {
+        'requirements': Requirements.POS,
+        'pos': (4159, 0, -2905),
+        'angle': 0
+    })
+
+    update_entry('Friendless', data = {
+        'requirements': Requirements.POS,
+        'pos': (-2232, 2600, 5857),
+        'angle': 48805 
+    })
+
+    update_entry('Friendless', data = {
+        'requirements': Requirements.POS,
+        'pos': (-2232, 2600, 5857),
+        'angle': 48805 
+    })
+
+    update_entry('Deku Like(ebf)', data = {
+        'requirements': Requirements.POS,
+        'pos': (-7151, 4080, 6159),
+        'angle': 16384 
+    })
+
+    # update_entry('dmt_poe', data = {
+    #     'requirements': Requirements.POS,
+    #     'pos': (-1221.2317, -1969.3409, 17314.1797),
+    #     'angle': 34005 
+    # })
+
+    update_entry('freezard_2', data = {
+        'requirements': Requirements.POS,
+        'pos': (1734.7701, 950.0000, 74.5665),
+        'angle': 49419 
+    })
+
+    update_entry('snowboarding', data = {
+        'requirements': Requirements.POS,
+        'pos': (-11424.1289, 900.0000, -9670.6328),
+        'angle': 49152 
+    })
+
+    update_entry('speedrat', data = {
+        'requirements': Requirements.POS,
+        'pos': (4150, 0, -2877),
+        'angle': 0 
     })
 
     file = open("hundo.bin", "wb")

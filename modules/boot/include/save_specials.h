@@ -25,6 +25,7 @@ void SaveMngSpecial_EldinCollection();
 
 void SaveMngSpecial_KB2Skip();
 void SaveMngSpecial_Escort();
+void SaveMngSpecial_EscortLJA();
 void SaveMngSpecial_EscortKeys();
 
 void SaveMngSpecial_Dangoro();
@@ -107,3 +108,9 @@ void SaveMngSpecial_CenterCamera();
 void SaveMngSpecial_SolBacktrackCamera();
 void SaveMngSpecial_GorgeVoid();
 void SaveMngSpecial_Morpheel2();
+
+void SaveMngSpecial_KittyClimb();
+void SaveMngSpecial_DMTPoe();
+
+void SaveMngSpecial_RemoveAreaBannerBefore_ZorasDomain();
+void SaveMngSpecial_RemoveAreaBannerBefore_Snowpeak();

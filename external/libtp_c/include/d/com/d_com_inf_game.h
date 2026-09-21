@@ -1,6 +1,7 @@
 #ifndef D_COM_D_COM_INF_GAME_H
 #define D_COM_D_COM_INF_GAME_H
 
+#include <cstring>
 #include "../save/d_save.h"
 #include "../bg/d_bg_s.h"
 #include "../cc/d_cc_s.h"
@@ -117,6 +118,11 @@ public:
     u8 getDoStatus(void) { return mDoStatus; }
     u8 getRStatus(void) { return mRStatus; }
     // inline char* getStartStageName() { return mStartStage.getName(); }
+    char* getLastPlayStageName() { return mLastPlayStageName; }
+    void setLastPlayStageName(char* name) {
+        strncpy(mLastPlayStageName, name, 7);
+        mLastPlayStageName[7] = 0;
+    }
 
 
     int getPlayerCameraID(int i) { return mPlayerCameraID[i]; }

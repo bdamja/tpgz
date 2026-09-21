@@ -124,6 +124,7 @@ KEEP_FUNC void SaveMngSpecial_KargOoB() {
 }
 
 KEEP_FUNC void SaveMngSpecial_WaterfallSidehop() {
+    SaveMngSpecial_RemoveAreaBannerBefore_ZorasDomain();
     gSaveManager.injectDefault_during();
     g_dComIfG_gameInfo.info.mRestart.mLastSpeedF = 10.0f;  // link spawns swimming forward
 }
@@ -166,6 +167,11 @@ KEEP_FUNC void SaveMngSpecial_Escort() {
     gSaveManager.injectDefault_during();
     setNextStageRoom(0xD);
     setNextStagePoint(98);
+    setNextStageLayer(2);
+}
+
+KEEP_FUNC void SaveMngSpecial_EscortLJA() {
+    gSaveManager.injectDefault_during();
     setNextStageLayer(2);
 }
 
@@ -795,4 +801,31 @@ KEEP_FUNC void SaveMngSpecial_Morpheel2() {
 
     g_dComIfG_gameInfo.play.mOxygenShowFlag = 1; // show the bar otherwise it'll set the air to full
     dComIfGs_setOxygen(600 * 0.75); // about how much air you usually have start of phase 2
+}
+
+KEEP_FUNC void SaveMngSpecial_KittyClimb() {
+    gSaveManager.injectDefault_during();
+    daAlink_c__swordEquip(dComIfGp_getPlayer(), 0); // sword out
+    gSaveManager.setSaveAngle(28409);
+    gSaveManager.setSavePosition(-3849.0f, -188.0f, 3117.0f);
+    gSaveManager.setLinkInfo();
+
+    SaveMngSpecial_CenterCamera();
+}
+
+KEEP_FUNC void SaveMngSpecial_DMTPoe() {
+    // g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = 100; //1493172293
+    // g_dComIfG_gameInfo.info.mRestart.mLastMode = 1493172293;
+    // gSaveManager.setSavePosition(0.0f, -2000.0f, 0.0f);
+    // gSaveManager.setLinkInfo(); v8388608
+}
+
+KEEP_FUNC void SaveMngSpecial_RemoveAreaBannerBefore_ZorasDomain() {
+    char stageName[] = "F_SP113";
+    g_dComIfG_gameInfo.play.setLastPlayStageName(stageName);
+}
+
+KEEP_FUNC void SaveMngSpecial_RemoveAreaBannerBefore_Snowpeak() {
+    char stageName[] = "F_SP114";
+    g_dComIfG_gameInfo.play.setLastPlayStageName(stageName);
 }
