@@ -116,7 +116,7 @@ string(REPLACE ".iso" ".patch" TPGZ_CFG_BLD_PATCH_OLD ${TPGZ_CFG_BLD_ISO})
 string(TOLOWER ${PLATFORM} tpgz_platform_lower)
 string(TOLOWER ${REGION} tpgz_region_lower)
 string(REPLACE "_" "-" tpgz_region_lower ${tpgz_region_lower})
-set(TPGZ_CFG_BLD_PATCH ${TPGZ_VERSION}-${tpgz_platform_lower}-${tpgz_region_lower}.patch)
+set(TPGZ_CFG_BLD_PATCH tpgz-${tpgz_platform_lower}-${tpgz_region_lower}-${TPGZ_VERSION}.patch)
 add_custom_command(OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/${TPGZ_CFG_BLD_PATCH}
     DEPENDS tpgz modules ${TPGZ_PATCHER_EXE} ${CMAKE_CURRENT_SOURCE_DIR}/res ${CMAKE_CURRENT_BINARY_DIR}/patch.asm ${CMAKE_CURRENT_BINARY_DIR}/RomHack.toml ${TPGZ_REL_FILES}
     COMMAND ${TPGZ_PATCHER_EXE} build --patch
