@@ -1,34 +1,100 @@
 name: TPGZ Release Automation
 
 on:
-  release:
-    types:
-      - published
+  push:
+    branches:
+      - '**'
+    tags:
+      - '*'
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
-  build:
+  version:
     runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      is_tag: ${{ steps.version.outputs.is_tag }}
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-    - name: Download latest release patches
-      run: curl -s https://api.github.com/repos/zsrtp/tpgz/releases/latest | grep "http.*patch" | cut -d ":" -f 2,3 | tr -d \ \" | wget -qi - --directory-prefix patches/
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-        aws-region: ${{ secrets.AWS_REGION }}
-    - name: Download existing meta.json
-      run: aws s3 cp s3://${{ secrets.AWS_S3_BUCKET }}/patches/meta.json meta.json
-    - name: Update meta.json
-      run: |
-        python3 external/misc/meta.py
-    - name: Upload updated meta.json to S3
-      run: aws s3 cp meta.json s3://${{ secrets.AWS_S3_BUCKET }}/patches/meta.json --acl public-read
-    - name: Sync directory to S3
-      run: |
-          aws s3 sync patches/ s3://${{ secrets.AWS_S3_BUCKET }}/patches/ --acl public-read
+      - name: Determine version from tag or commit hash
+        id: version
+        run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+            echo "is_tag=true" >> "$GITHUB_OUTPUT"
+          else
+            VERSION="$(echo "${GITHUB_SHA}" | cut -c1-7)"
+            echo "is_tag=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+  build-patches:
+    needs: version
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitppc:latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: GCN
+            region: NTSCU
+          - platform: GCN
+            region: PAL
+          - platform: GCN
+            region: NTSCJ
+          - platform: WII
+            region: NTSCU_10
+          - platform: WII
+            region: NTSCU_12
+          - platform: WII
+            region: PAL
+
+    name: Build ${{ matrix.platform }}-${{ matrix.region }} Patch
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends cmake build-essential python3
+
+      - name: Configure and build patch
+        run: |
+          mkdir build
+          cd build
+          cmake .. -DPLATFORM=${{ matrix.platform }} -DREGION=${{ matrix.region }} -DTPGZ_VERSION=${{ needs.version.outputs.version }}
+          make -j$(nproc) patch
+
+      - name: Upload patch artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: patch-${{ matrix.platform }}-${{ matrix.region }}
+          path: build/*.patch
+          if-no-files-found: error
+
+  release:
+    needs: [version, build-patches]
+    if: needs.version.outputs.is_tag == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all patches
+        uses: actions/download-artifact@v4
+        with:
+          pattern: patch-*
+          path: patches
+          merge-multiple: true
+
+      - name: Create release with patches
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          files: patches/*.patch
