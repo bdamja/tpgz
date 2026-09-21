@@ -33,22 +33,28 @@ jobs:
     needs: version
     runs-on: ubuntu-latest
     container:
-      image: devkitpro/devkitppc:latest
+      image: ghcr.io/zsrtp/zsrtp-tpgz:${{ matrix.container }}
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: GCN
+          - container: gcn_ntscu
+            platform: GCN
             region: NTSCU
-          - platform: GCN
+          - container: gcn_pal
+            platform: GCN
             region: PAL
-          - platform: GCN
+          - container: gcn_ntscj
+            platform: GCN
             region: NTSCJ
-          - platform: WII
+          - container: wii_ntscu_10
+            platform: WII
             region: NTSCU_10
-          - platform: WII
+          - container: wii_ntscu_12
+            platform: WII
             region: NTSCU_12
-          - platform: WII
+          - container: wii_pal
+            platform: WII
             region: PAL
 
     name: Build ${{ matrix.platform }}-${{ matrix.region }} Patch
@@ -57,11 +63,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Install build tools
-        run: |
-          apt-get update
-          apt-get install -y --no-install-recommends cmake build-essential python3
 
       - name: Configure and build patch
         run: |
