@@ -50,7 +50,7 @@ jobs:
           fi
           mkdir build
           cd build
-          cmake .. -DPLATFORM=${{ matrix.platform }} -DREGION=${{ matrix.region }} -DTPGZ_VERSION="$VERSION"
+          cmake .. -DPLATFORM=${{ matrix.platform }} -DREGION=${{ matrix.region }} -DTPGZ_BUILD_VERSION="$VERSION"
           make -j$(nproc) patch
 
       - name: Upload patch artifact
