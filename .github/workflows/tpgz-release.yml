@@ -9,53 +9,27 @@ on:
 
 permissions:
   contents: read
-  packages: read
 
 jobs:
-  version:
-    runs-on: ubuntu-latest
-    outputs:
-      version: ${{ steps.version.outputs.version }}
-      is_tag: ${{ steps.version.outputs.is_tag }}
-    steps:
-      - name: Determine version from tag or commit hash
-        id: version
-        run: |
-          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
-            VERSION="${GITHUB_REF_NAME#v}"
-            echo "is_tag=true" >> "$GITHUB_OUTPUT"
-          else
-            VERSION="$(echo "${GITHUB_SHA}" | cut -c1-7)"
-            echo "is_tag=false" >> "$GITHUB_OUTPUT"
-          fi
-          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-
   build-patches:
-    needs: version
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/zsrtp/zsrtp-tpgz:${{ matrix.container }}
+      image: devkitpro/devkitppc:20240702
     strategy:
       fail-fast: false
       matrix:
         include:
-          - container: gcn_ntscu
-            platform: GCN
+          - platform: GCN
             region: NTSCU
-          - container: gcn_pal
-            platform: GCN
+          - platform: GCN
             region: PAL
-          - container: gcn_ntscj
-            platform: GCN
+          - platform: GCN
             region: NTSCJ
-          - container: wii_ntscu_10
-            platform: WII
+          - platform: WII
             region: NTSCU_10
-          - container: wii_ntscu_12
-            platform: WII
+          - platform: WII
             region: NTSCU_12
-          - container: wii_pal
-            platform: WII
+          - platform: WII
             region: PAL
 
     name: Build ${{ matrix.platform }}-${{ matrix.region }} Patch
@@ -65,11 +39,21 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Install build tools
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends cmake build-essential python3
+
       - name: Configure and build patch
         run: |
+          if [[ "${GITHUB_REF}" == refs/tags/* ]]; then
+            VERSION="${GITHUB_REF_NAME#v}"
+          else
+            VERSION="$(echo "${GITHUB_SHA}" | cut -c1-7)"
+          fi
           mkdir build
           cd build
-          cmake .. -DPLATFORM=${{ matrix.platform }} -DREGION=${{ matrix.region }} -DTPGZ_VERSION=${{ needs.version.outputs.version }}
+          cmake .. -DPLATFORM=${{ matrix.platform }} -DREGION=${{ matrix.region }} -DTPGZ_VERSION="$VERSION"
           make -j$(nproc) patch
 
       - name: Upload patch artifact
@@ -80,8 +64,8 @@ jobs:
           if-no-files-found: error
 
   release:
-    needs: [version, build-patches]
-    if: needs.version.outputs.is_tag == 'true'
+    needs: build-patches
+    if: startsWith(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
     permissions:
       contents: write
