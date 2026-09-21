@@ -813,11 +813,6 @@ KEEP_FUNC void SaveMngSpecial_KittyClimb() {
     SaveMngSpecial_CenterCamera();
 }
 
-KEEP_FUNC void SaveMngSpecial_DMTPoe() {
-    g_dComIfG_gameInfo.info.mRestart.mRoomPos.x = 100; //1493172293
-    g_dComIfG_gameInfo.info.mRestart.mLastMode = 1493172293;
-}
-
 KEEP_FUNC void SaveMngSpecial_RemoveAreaBannerBefore_ZorasDomain() {
     char stageName[] = "F_SP113";
     g_dComIfG_gameInfo.play.setLastPlayStageName(stageName);
