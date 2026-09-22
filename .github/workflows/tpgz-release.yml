@@ -40,15 +40,11 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
       - name: Install Python dependencies
         shell: bash
         run: |
-          python3 -m pip install --quiet -r external/misc/requirements.txt
+          apt-get update
+          apt-get install -y --no-install-recommends python3-yaml
 
       - name: Configure and build patch
         shell: bash
