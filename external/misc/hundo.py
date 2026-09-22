@@ -326,7 +326,7 @@ def main(args=None):
     update_entry('dmt_poe', data = {
         'requirements': Requirements.POS,
         'pos': (-1221.2317, -1969.3409, 17314.1797),
-        'angle': 34005 
+        'angle': 0#34005 
     })
 
     update_entry('freezard_2', data = {
@@ -364,4 +364,3 @@ def main(args=None):
 
 if __name__ == "__main__":
     main(sys.argv)
-# a

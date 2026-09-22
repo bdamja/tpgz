@@ -451,7 +451,7 @@ update_entry("ct_mailman_skip", {
 update_entry("hfs_mailman_skip", {
     'requirements': Requirements.POS,
     'pos': (-46261.4805, -7473.17773, 98200.4141),
-    'angle': 31612,
+    'angle': 0#31612,
 })             
 
 file = open("any_bite.bin", "wb")
