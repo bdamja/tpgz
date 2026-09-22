@@ -43,7 +43,8 @@ jobs:
       - name: Install Python dependencies
         shell: bash
         run: |
-          curl -sS https://bootstrap.pypa.io/pip/3.9/get-pip.py | python3 -
+          apt-get update
+          apt-get install -y --no-install-recommends python3-pip
           python3 -m pip install --quiet -r external/misc/requirements.txt
 
       - name: Configure and build patch
