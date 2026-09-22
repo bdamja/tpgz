@@ -39,6 +39,27 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      
+      - name: Build practice save metadata
+        shell: bash
+        run: |
+          set -eo pipefail
+          cd external/misc
+
+          python3 any.py
+          python3 anyb.py
+          python3 hundo.py
+          python3 ad.py
+          python3 glitchless.py
+          python3 nosq.py
+
+          mv any.bin any_bite.bin hundo.bin ad.bin glitchless.bin nosq.bin ../../res/save_files
+
+          python3 anyb_wii.py -p wii
+          python3 wundo.py -p wii
+
+          mv any_bite.bin ../../res/save_files_wii
+          mv wundo.bin ../../res/save_files_wii/hundo.bin 
 
       - name: Configure and build patch
         shell: bash
