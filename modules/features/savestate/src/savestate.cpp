@@ -732,6 +732,8 @@ static void restoreState() {
         header->outsideModules[i].module->link.prev = header->outsideModules[i].prev;
     }
     OSRestoreInterrupts(enabled);
+    GXInvalidateTexAll();
+    GXInvalidateVtxCache();
 
     g_actorViewEnabled = false;
     g_moveLinkEnabled = false;
