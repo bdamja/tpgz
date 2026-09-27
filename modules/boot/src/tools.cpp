@@ -54,20 +54,21 @@ KEEP_FUNC void GZ_handleTools() {
                         GZCmd_resetTimer));
     }
 
-    if (GZStng_getData(STNG_TOOLS_TELEPORT, false || GZStng_getData(STNG_TOOLS_DISPLACEMENT, false)) && !GZCmd_getCmd(CMD_STORE_POSITION)) {
+    bool saveStatesActive = GZStng_getData(STNG_TOOLS_SAVE_STATES, false);
+    bool storePositionActive =
+        (GZStng_getData(STNG_TOOLS_TELEPORT, false) || GZStng_getData(STNG_TOOLS_DISPLACEMENT, false)) &&
+        !saveStatesActive;
+    if (storePositionActive && !GZCmd_getCmd(CMD_STORE_POSITION)) {
         GZCmd_addCmd(new Command(
             CMD_STORE_POSITION,
             GZStng_getData<uint16_t>(STNG_CMD_STORE_POSITION, STORE_POSITION_BUTTONS),
             GZCmd_storePosition));
-    } else if (!GZStng_getData(STNG_TOOLS_TELEPORT, false) && !GZStng_getData(STNG_TOOLS_DISPLACEMENT, false) &&
-               GZCmd_getCmd(CMD_STORE_POSITION)) {
+    } else if (!storePositionActive && GZCmd_getCmd(CMD_STORE_POSITION)) {
         Command* cmd = GZCmd_removeCmd(CMD_STORE_POSITION);
         delete cmd;
     }
 
-    // logic to prevent save states and teleport from conflicting
-    bool loadPositionActive =
-        GZStng_getData(STNG_TOOLS_TELEPORT, false) && !GZStng_getData(STNG_TOOLS_SAVE_STATES, false);
+    bool loadPositionActive = GZStng_getData(STNG_TOOLS_TELEPORT, false) && !saveStatesActive;
     if (loadPositionActive && !GZCmd_getCmd(CMD_LOAD_POSITION)) {
         GZCmd_addCmd(new Command(
             CMD_LOAD_POSITION,
