@@ -7,6 +7,7 @@
 #include "modules.h"
 #include "commands.h"
 #include "settings.h"
+#include "timer.h"
 #include "utils/mem2.h"
 #include "menus/utils/menu_mgr.h"
 #include "utils/texture.h"
@@ -738,6 +739,7 @@ static void restoreState() {
     g_actorViewEnabled = false;
     g_moveLinkEnabled = false;
     g_freeCamEnabled = false;
+    Timer::restartOnLoad(STNG_TIMER_RESET_ON_SAVE_STATE);
     pushTimedMessage("state loaded", header->totalSize, OSGetTime() - startTime);
 }
 

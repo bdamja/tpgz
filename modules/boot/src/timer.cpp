@@ -8,17 +8,34 @@
 #include "f_op/f_op_scene_req.h"
 #include "rels/include/defines.h"
 #include "game_state.h"
+#include "d/d_com_inf_game.h"
+
+static bool l_restartTimer = false;
+
+KEEP_FUNC void Timer::restartOnLoad(GZSettingID trigger) {
+    if (GZStng_getData(STNG_TOOLS_TIMER, false) && GZStng_getData(trigger, false)) {
+        l_restartTimer = true;
+    }
+}
 
 KEEP_FUNC void Timer::drawTimer() {
     static bool init_start_time = false;
     static OSTime timer = 0;
     static OSTime start_time = 0;
     static int frame_timer = 0;
-    static OSCalendarTime ctime;
 
     if (!GZStng_getData(STNG_TOOLS_TIMER, false)) {
         init_start_time = false;
+        l_restartTimer = false;
         return;
+    }
+
+    if (l_restartTimer) {
+        timer = 0;
+        frame_timer = 0;
+        init_start_time = false;
+        g_timerEnabled = !l_fopScnRq_IsUsingOfOverlap && dComIfGp_getPlayer(0) != NULL;
+        l_restartTimer = !g_timerEnabled;
     }
 
     if (g_timerEnabled) {
@@ -28,7 +45,6 @@ KEEP_FUNC void Timer::drawTimer() {
         }
 
         timer = (OSGetTime() - start_time);
-        OSTicksToCalendarTime(timer, &ctime);
         frame_timer++;
     }
 
@@ -41,16 +57,24 @@ KEEP_FUNC void Timer::drawTimer() {
         g_timerEnabled = false;
     }
 
-    char timerF[5] = {0};
-    char timerS[13] = {0};
+    OSCalendarTime ctime;
+    OSTicksToCalendarTime(timer, &ctime);
+    char timerF[12];
+    char timerS[16];
     snprintf(timerF, sizeof(timerF), "%d", frame_timer);
     snprintf(timerS, sizeof(timerS), "%02d:%02d:%02d.%03d", ctime.hour, ctime.min,
              ctime.sec, ctime.msec);
 
+    uint32_t display = GZStng_getData<uint32_t>(STNG_TIMER_DISPLAY, TIMER_DISPLAY_BOTH);
     Vec2 spriteOffset = GZ_getSpriteOffset(STNG_SPRITES_TIMER_SPR);
-    Font::GZ_drawStr(timerF, spriteOffset.x, spriteOffset.y, 0xFFFFFFFF, GZ_checkDropShadows());
-    Font::GZ_drawStr(timerS, spriteOffset.x, 15.0f + spriteOffset.y, 0xFFFFFFFF,
-                     GZ_checkDropShadows());
+    float y = spriteOffset.y;
+    if (display != TIMER_DISPLAY_REAL_TIME) {
+        Font::GZ_drawStr(timerF, spriteOffset.x, y, 0xFFFFFFFF, GZ_checkDropShadows());
+        y += 15.0f;
+    }
+    if (display != TIMER_DISPLAY_FRAMES) {
+        Font::GZ_drawStr(timerS, spriteOffset.x, y, 0xFFFFFFFF, GZ_checkDropShadows());
+    }
 }
 
 KEEP_FUNC void Timer::drawIGT() {
