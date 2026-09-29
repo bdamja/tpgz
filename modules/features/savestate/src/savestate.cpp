@@ -19,6 +19,9 @@
 #include "JSystem/JKernel/JKRExpHeap.h"
 #include "JSystem/JKernel/JKRThread.h"
 #include "JSystem/JKernel/JKRDisposer.h"
+#include "JSystem/J3DGraphBase/J3DDrawBuffer.h"
+#include "JSystem/J3DGraphBase/J3DPacket.h"
+#include "JSystem/JUtility/JUTXfb.h"
 #include "DynamicLink.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
 #include "JSystem/JAudio2/JASTaskThread.h"
@@ -63,6 +66,7 @@ extern Texture l_framePlayTex;
 #define JKRSOLIDHEAP_HEAD_OFFSET 0x70
 #define JKRSOLIDHEAP_TAIL_OFFSET 0x74
 #define MAX_HEAP_DEPTH 8
+#define JUTXFB_BUFFER_COUNT 3
 #define MIN_ZERO_RUN 32
 #define CHECK_SAVE_STATE_LOCATION 1
 #define ZERO_SEGMENT_FLAG 0x80000000
@@ -248,7 +252,26 @@ static bool isRestored(u32 addr, const RangeList& preserved) {
             return false;
         }
     }
-    return overlapsHeaps(addr, addr + 1);
+    return overlapsSnapshot(addr, addr + 1);
+}
+
+static void unlinkUnrestoredPackets(const RangeList& preserved) {
+    J3DDrawBuffer** buffers = reinterpret_cast<J3DDrawBuffer**>(&g_dComIfG_gameInfo.drawlist);
+    for (u32 i = 0; i < dDlst_list_c::DB_LIST_MAX; i++) {
+        J3DDrawBuffer* buffer = buffers[i];
+        for (u32 j = 0; buffer != NULL && j < buffer->getEntryTableSize(); j++) {
+            J3DPacket* prev = NULL;
+            for (J3DPacket* packet = buffer->mpBuffer[j]; packet != NULL; packet = packet->getNextPacket()) {
+                if (isRestored((u32)packet, preserved)) {
+                    prev = packet;
+                } else if (prev != NULL) {
+                    prev->setNextPacket(packet->getNextPacket());
+                } else {
+                    buffer->mpBuffer[j] = packet->getNextPacket();
+                }
+            }
+        }
+    }
 }
 
 static OSModuleInfo* moduleListHead() {
@@ -360,6 +383,22 @@ static bool collectPreserved(RangeList& list) {
             (messages != 0 && !pushPreserved(list, messages, messages + queue->msgCount * sizeof(OSMessage))))
         {
             return false;
+        }
+    }
+
+    JUTXfb* xfb = JUTXfb::getManager();
+    if (xfb != NULL) {
+        if (!pushPreserved(list, (u32)xfb, (u32)xfb + sizeof(JUTXfb))) {
+            return false;
+        }
+        u8** buffers = reinterpret_cast<u8**>(xfb);
+        for (u32 i = 0; i < JUTXFB_BUFFER_COUNT; i++) {
+            JKRExpHeap::CMemBlock* block = buffers[i] != NULL ? JKRExpHeap::CMemBlock::getBlock(buffers[i]) : NULL;
+            if (block != NULL && block->isValid() &&
+                !pushPreserved(list, (u32)buffers[i], (u32)buffers[i] + block->getSize()))
+            {
+                return false;
+            }
         }
     }
 
@@ -628,6 +667,7 @@ static void captureState() {
         pushMessage("save state failed: too many unrestored modules");
         return;
     }
+    unlinkUnrestoredPackets(preserved);
 
     Encoder estimate = {NULL, reinterpret_cast<u8*>(0xFFFFFFFF), 0, false, false};
     encodeSegments(estimate, segments);
