@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 3.16)
 
+if(DEFINED CACHE{TPGZ_CONFIGURED_VERSION} AND DEFINED PLATFORM AND DEFINED REGION
+   AND NOT "${PLATFORM}_${REGION}" STREQUAL TPGZ_CONFIGURED_VERSION)
+    message(FATAL_ERROR "This build directory is configured for ${TPGZ_CONFIGURED_VERSION}. "
+                        "Use a new build directory to build ${PLATFORM}_${REGION}.")
+endif()
+
 # Check if the platform is valid
 if(NOT DEFINED PLATFORM)
     set(PLATFORM "GCN" CACHE STRING "The platform of the version to be patched (GCN or WII).")
@@ -40,6 +46,7 @@ endif()
 
 # Start configuring the build directory
 message(STATUS "Configuring for ${PLATFORM}_${REGION}...")
+set(TPGZ_CONFIGURED_VERSION "${PLATFORM}_${REGION}" CACHE INTERNAL "")
 
 # These two lists are used as a map to get the right ISO file name for each version.
 set(TPGZ_ISO_VERSIONS GCN_NTSCU GCN_NTSCJ GCN_PAL WII_NTSCU_10 WII_NTSCU_12 WII_NTSCJ WII_PAL)
