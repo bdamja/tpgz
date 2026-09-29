@@ -141,6 +141,7 @@ void CheckersMenu::draw() {
                 }
                 *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
                 break;
+            #ifdef GCN_PLATFORM
             case STALLORD_L_SLIDE_INDEX:
                 stng = GZStng_get(STNG_TOOLS_STALLORD_L_SLIDE);
                 if (!stng) {
@@ -149,6 +150,7 @@ void CheckersMenu::draw() {
                 }
                 *static_cast<bool*>(stng->data) = !*static_cast<bool*>(stng->data);
                 break;
+            #endif
         }
     }
 
