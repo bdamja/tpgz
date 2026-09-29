@@ -44,5 +44,6 @@ bool freeze_actor_active();
 bool hide_actor_active();
 bool freeze_camera_active();
 bool fast_eel_regrab_active();
+bool stallord_l_slide_active();
 
 #endif

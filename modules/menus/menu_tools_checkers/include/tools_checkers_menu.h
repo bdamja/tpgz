@@ -35,6 +35,7 @@ enum CheckersIndex {
     ROLL_INDEX,
     UMD_INDEX,
     FAST_EEL_REGRAB_INDEX,
+    STALLORD_L_SLIDE_INDEX,
     GORGE_INDEX,
 
     CHECKERS_COUNT,
