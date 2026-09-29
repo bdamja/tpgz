@@ -1,3 +1,7 @@
+if(NOT PLATFORM STREQUAL "GCN")
+    return()
+endif()
+
 file(GLOB_RECURSE srcs CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE asms CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.s")
 list(APPEND srcs ${asms})
