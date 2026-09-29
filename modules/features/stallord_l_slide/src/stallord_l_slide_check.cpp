@@ -1,107 +1,93 @@
-#include "game_state.h"
-#include "defines.h"
-#include <cstdio>
 #include "stallord_l_slide_check.h"
+#include <cstdio>
 #include "controller.h"
+#include "defines.h"
 #include "fifo_queue.h"
+#include "game_state.h"
 #include "d/d_com_inf_game.h"
-#include "SSystem/SComponent/c_counter.h"
-#include "f_op/f_op_scene_req.h"
-#include "m_Do/m_Do_printf.h"
 
-#define X_HELD_CHECK !GZ_getButtonHold(X)
-#define X_DOWN_CHECK GZ_getButtonPressed(X)
-#define Y_HELD_CHECK !GZ_getButtonHold(Y)
-#define Y_DOWN_CHECK GZ_getButtonPressed(Y)
-#define L_HELD_CHECK !GZ_getButtonHold(L)
-#define L_DOWN_CHECK GZ_getButtonPressed(L)
+#define CLAWSHOT_SLOT 9
+#define FULL_LEFT_STICK_X -72
+#define CHECK_WINDOW 10
+#define STICK_CHECK_FRAME 2
+#define COLOR_EARLY 0x0000FF00
+#define COLOR_GOOD 0x00CC0000
+#define COLOR_NOT_LEFT 0x8300B300
+#define COLOR_LATE 0x99000000
 
-#define PAD Pad
+static bool sTimerStarted;
+static bool sClawTakenOut;
+static bool sLTooEarly;
+static bool sGoalHit;
+static bool sLOnFirstFrame;
+static uint32_t sFrameCount;
+
+static void reset() {
+    sTimerStarted = false;
+    sClawTakenOut = false;
+    sLTooEarly = false;
+    sGoalHit = false;
+    sLOnFirstFrame = false;
+    sFrameCount = 0;
+}
 
 KEEP_FUNC void StallordLSlideChecker::execute() {
-    static bool sTimerStarted = false;
-    static bool sClawTakenOut = false;
-    static bool sLTooEarly = false;
-    static bool sGoalHit = false;
-    static bool sFrame_1_L = false;
-    static uint32_t sFrameCount = 0;
-
-    // reset counters on load
     if (l_fopScnRq_IsUsingOfOverlap) {
-        sFrameCount = 0;
-        sGoalHit = false;
-        sTimerStarted = false;
+        reset();
     }
 
-    bool claw_on_x = dComIfGs_getSelectItemIndex(SELECT_ITEM_X) == 9; // claw on x
-    bool claw_on_y = dComIfGs_getSelectItemIndex(SELECT_ITEM_Y) == 9; // claw on y
-    char claw_button = claw_on_x ? 'X' : 'Y';
+    bool clawOnX = dComIfGs_getSelectItemIndex(SELECT_ITEM_X) == CLAWSHOT_SLOT;
+    bool clawOnY = dComIfGs_getSelectItemIndex(SELECT_ITEM_Y) == CLAWSHOT_SLOT;
+    bool xHeld = GZ_getButtonPressed(X);
+    bool yHeld = GZ_getButtonPressed(Y);
+    bool lHeld = GZ_getButtonPressed(L);
+    bool clawHeld = (clawOnX && xHeld) || (clawOnY && yHeld);
+    bool clawReleased = (clawOnX && !xHeld) || (clawOnY && !yHeld);
     char buf[32];
 
-    if (!sClawTakenOut){
-        if ((claw_on_x && X_DOWN_CHECK) || (claw_on_y && Y_DOWN_CHECK)) {
-            sClawTakenOut = true;
+    if (clawHeld) {
+        sClawTakenOut = true;
+        if (!sLTooEarly && lHeld) {
+            snprintf(buf, sizeof(buf), "L while %c still held", clawOnX ? 'X' : 'Y');
+            FIFOQueue::push(buf, Queue, COLOR_EARLY);
+            sClawTakenOut = false;
+            sLTooEarly = true;
         }
     }
 
-    if (!sLTooEarly && sClawTakenOut && L_DOWN_CHECK && ((claw_on_x && X_DOWN_CHECK) || (claw_on_y && Y_DOWN_CHECK))) {
-        snprintf(buf, sizeof(buf), "L while %c still held", claw_button);
-        FIFOQueue::push(buf, Queue, 0x0000FF00);
+    if (!sTimerStarted && sClawTakenOut && clawReleased) {
         sClawTakenOut = false;
-        sLTooEarly = true;
+        sTimerStarted = !sLTooEarly;
+        sLTooEarly = false;
     }
 
-    if (!sTimerStarted && sClawTakenOut){
-        if ((claw_on_x && !X_DOWN_CHECK) || (claw_on_y && !Y_DOWN_CHECK)) {
-            // player let go of claw button
-            sClawTakenOut = false;
-            sTimerStarted = true;        
-        }
+    if (!sTimerStarted) {
+        return;
     }
-
-    if (sTimerStarted) {
-        sFrameCount++;
-
-        if (sFrameCount < 10) {
-            if (L_DOWN_CHECK && !sGoalHit) {
-                int stickX = JUTGamePad::mPadStatus[0].stickX;
-                bool directly_left = stickX == -72;
-                
-                if (sFrameCount == 1) {
-                    sFrame_1_L = true;
-                    // need to do this because L slide checks stick angle 2 frames after letting go of claw
-                }
-            
-                if (sFrameCount == 2) {
-                    sGoalHit = true;
-                    if (sFrame_1_L) {
-                        if (directly_left) {
-                            FIFOQueue::push("1st frame L-slide", Queue, 0x00CC0000);
-                        } else {
-                            snprintf(buf, sizeof(buf), "not full left (%d, 1f on L)", stickX);
-                            FIFOQueue::push(buf, Queue, 0x8300B300);
-                        }
-                    } else {
-                        if (directly_left) {
-                            FIFOQueue::push("2nd frame L-slide", Queue, 0x00CC0000);
-                        } else {
-                            snprintf(buf, sizeof(buf), "not full left (%d, 2f on L)", stickX);
-                            FIFOQueue::push(buf, Queue, 0x8300B300);
-                        }
-                    }
-                } else if (sFrameCount > 2) {
-                    sGoalHit = true;
-                    snprintf(buf, sizeof(buf), "L-slide %df late", sFrameCount - 2);
-                    FIFOQueue::push(buf, Queue, 0x99000000);
-                }
-            }
-        } else {
-            sFrameCount = 0;
-            sGoalHit = false;
-            sTimerStarted = false;
-            sClawTakenOut = false;
-            sFrame_1_L = false; 
-            sLTooEarly = false;
-        }
+    if (++sFrameCount >= CHECK_WINDOW) {
+        reset();
+        return;
+    }
+    if (!lHeld || sGoalHit) {
+        return;
+    }
+    if (sFrameCount == 1) {
+        sLOnFirstFrame = true;
+        return;
+    }
+    sGoalHit = true;
+    if (sFrameCount > STICK_CHECK_FRAME) {
+        snprintf(buf, sizeof(buf), "L-slide %df late", sFrameCount - STICK_CHECK_FRAME);
+        FIFOQueue::push(buf, Queue, COLOR_LATE);
+        return;
+    }
+    int stickX = JUTGamePad::mPadStatus[0].stickX;
+    int frame = sLOnFirstFrame ? 1 : 2;
+    if (stickX == FULL_LEFT_STICK_X) {
+        snprintf(buf, sizeof(buf), "%s frame L-slide", frame == 1 ? "1st" : "2nd");
+        FIFOQueue::push(buf, Queue, COLOR_GOOD);
+    } else {
+        snprintf(buf, sizeof(buf), "not full left (%d, %df on L)", stickX, frame);
+        FIFOQueue::push(buf, Queue, COLOR_NOT_LEFT);
     }
 }

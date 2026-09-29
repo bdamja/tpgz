@@ -29,7 +29,7 @@ static Line lines[CHECKERS_COUNT] = {
                 {"fast eel regrab", FAST_EEL_REGRAB_INDEX, "show frame info when fast morpheel regrab (claw before boots)", true, ACTIVE_FUNC(STNG_TOOLS_FAST_EEL_REGRAB)},
     #ifdef GCN_PLATFORM
                 {"stallord skip L-slide", STALLORD_L_SLIDE_INDEX, "show frame info for cardinal left L-slide for stallord skip", true, ACTIVE_FUNC(STNG_TOOLS_STALLORD_L_SLIDE)},
-    #endif    
+    #endif
                 {
                     "gorge void", 
                     GORGE_INDEX, 
