@@ -8,6 +8,7 @@
 #include "os.h"
 #include "m_Do/m_Do_printf.h"
 #include "tpgz_math.h"
+#include "JSystem/J3DGraphBase/J3DShape.h"
 
 struct TPGZGXData {
     u8 pad_0x000[0x14];
@@ -25,15 +26,7 @@ extern "C" TPGZGXData* gxData;
 
 extern "C" {
 
-static GXVtxDescList vcd[27];
-static GXVtxAttrFmtList vat[27];
-
 static void GetVertState(void) {
-    // TODO: these cause the game to crash lol
-    // geometry still seems to draw fine though? are these necessary?
-    //GXGetVtxDescv(vcd);
-    //GXGetVtxAttrFmtv(GX_VTXFMT3, vat);
-
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
     GXSetVtxDesc(GX_VA_NRM, GX_DIRECT);
@@ -42,8 +35,7 @@ static void GetVertState(void) {
 }
 
 static void RestoreVertState(void) {
-    GXSetVtxDescv(vcd);
-    GXSetVtxAttrFmtv(GX_VTXFMT3, vat);
+    J3DShape::resetVcdVatCache();
 }
 
 #define GET_REG_FIELD(reg, size, shift) ((int)((reg) >> (shift)) & ((1 << (size)) - 1))
