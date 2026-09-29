@@ -1,5 +1,6 @@
 #include "d/actor/d_a_alink.h"
 #include "utils/hook.h"
+#include "global_data.h"
 #include <cstdio>
 #include "cheats.h"
 #include "controller.h"
@@ -16,6 +17,7 @@
 #include "rels/include/defines.h"
 #include "save_manager.h"
 #include "settings.h"
+#include "timer.h"
 #include "collision_view.h"
 #include "features/projection_view/include/projection_view.h"
 #include "m_Do/m_Do_printf.h"
@@ -77,7 +79,9 @@ HOOK_DEF(void, dScnLogo_c__warningInDraw, (dScnLogo_c*));
 namespace Hook {
 void gameLoopHook(void) {
     game_loop();
-    fapGm_Execute__FvTrampoline();
+    if (!g_skipGameFrame) {
+        fapGm_Execute__FvTrampoline();
+    }
     post_game_loop();
 }
 
@@ -215,6 +219,9 @@ int saveInjectHook(void* i_scene) {
 int endSaveInjectHook(void* i_scene) {
     int rt = dScnPly__phase_4Trampoline(i_scene);
 
+    if (SaveManager::s_injectSave) {
+        Timer::restartOnLoad(STNG_TIMER_RESET_ON_PRACTICE_SAVE);
+    }
     if (SaveManager::s_injectSave || SaveManager::s_injectMemfile) {
         SaveManager::s_injectSave = false;
         SaveManager::s_injectMemfile = false;

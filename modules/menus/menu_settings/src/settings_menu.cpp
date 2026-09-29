@@ -27,6 +27,7 @@ static Line lines[SETTINGS_COUNT] = {
     {"load card", LOAD_CARD_INDEX, "Load settings from memory card"},
     {"delete card", DELETE_CARD_INDEX, "Delete settings from memory card"},
     {"command combos", COMBO_INDEX, "view command combinations menu", false},
+    {"timer", TIMER_SETTINGS_INDEX, "Change when the timer resets and how it is displayed", false},
     {"menu positions", POS_SETTINGS_MENU_INDEX,
      "Change menu object positions (A to toggle selection, DPad to move)",
      false},
@@ -74,6 +75,9 @@ void SettingsMenu::draw() {
             return;
         case COMBO_INDEX:
             g_menuMgr->push(MN_COMBO_INDEX);
+            return;
+        case TIMER_SETTINGS_INDEX:
+            g_menuMgr->push(MN_TIMER_SETTINGS_INDEX);
             return;
         case SAVE_CARD_INDEX: {
             static Storage storage;

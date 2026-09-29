@@ -75,6 +75,7 @@ enum MenuIndex {
     MN_POS_SETTINGS_INDEX,
     MN_CREDITS_INDEX,
     MN_COMBO_INDEX,
+    MN_TIMER_SETTINGS_INDEX,
     // Tools menu's sub menus
     MN_TOOLS_CHECKERS_INDEX,
     MN_TOOLS_CONTROLLER_INDEX,
