@@ -1,5 +1,3 @@
-#ifdef GCN_PLATFORM
-
 #include "game_state.h"
 #include "defines.h"
 #include <cstdio>
@@ -107,5 +105,3 @@ KEEP_FUNC void StallordLSlideChecker::execute() {
         }
     }
 }
-
-#endif
