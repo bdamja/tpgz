@@ -17,7 +17,7 @@
 #define COLOR_NOT_LEFT 0x8300B300
 #define COLOR_LATE 0x99000000
 #define COLOR_ANGLE_CHANGE 0xFF670F00
-#define FIRST_PERSON_CLAW_PROC_ID 196
+#define FIRST_PERSON_CLAW_PROC_ID 196 
 
 static bool sTimerStarted;
 static bool sClawTakenOut;
