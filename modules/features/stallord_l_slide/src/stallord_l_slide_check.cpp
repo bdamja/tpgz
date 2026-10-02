@@ -17,6 +17,7 @@
 #define COLOR_NOT_LEFT 0x8300B300
 #define COLOR_LATE 0x99000000
 #define COLOR_ANGLE_CHANGE 0xFF670F00
+#define FIRST_PERSON_CLAW_PROC_ID 196
 
 static bool sTimerStarted;
 static bool sClawTakenOut;
@@ -50,14 +51,19 @@ KEEP_FUNC void StallordLSlideChecker::execute() {
     bool clawReleased = (clawOnX && !xHeld) || (clawOnY && !yHeld);
     char buf[32];
 
+    if (dComIfGp_getPlayer(0) != NULL && ((daAlink_c*)dComIfGp_getPlayer(0))->mProcID != FIRST_PERSON_CLAW_PROC_ID) {
+        return;
+    }
+
     if (clawHeld) {
         sClawTakenOut = true;
         sAngle = ((daAlink_c*)dComIfGp_getPlayer(0))->shape_angle.y;
-        if (!sLTooEarly && lHeld) {
+        bool firstPersonClaw = ((daAlink_c*)dComIfGp_getPlayer(0))->mProcID == FIRST_PERSON_CLAW_PROC_ID;
+        if (!sLTooEarly && lHeld && firstPersonClaw) {
             snprintf(buf, sizeof(buf), "L while %c still held", clawOnX ? 'X' : 'Y');
             FIFOQueue::push(buf, Queue, COLOR_EARLY);
-            sClawTakenOut = false;
-            sLTooEarly = true;
+            reset();
+            return;
         }
     }
 
@@ -70,17 +76,17 @@ KEEP_FUNC void StallordLSlideChecker::execute() {
     if (!sTimerStarted) {
         return;
     }
-    if (((daAlink_c*)dComIfGp_getPlayer(0))->shape_angle.y != sAngle) {
-        snprintf(buf, sizeof(buf), "Changed angle before releasing clawshot");
-        FIFOQueue::push(buf, Queue, COLOR_ANGLE_CHANGE);
-        reset();
-        return;
-    }
     if (++sFrameCount >= CHECK_WINDOW) {
         reset();
         return;
     }
     if (!lHeld || sGoalHit) {
+        return;
+    }
+    if (((daAlink_c*)dComIfGp_getPlayer(0))->shape_angle.y != sAngle) {
+        snprintf(buf, sizeof(buf), "Changed angle before releasing clawshot");
+        FIFOQueue::push(buf, Queue, COLOR_ANGLE_CHANGE);
+        reset();
         return;
     }
     if (sFrameCount == 1) {
