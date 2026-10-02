@@ -45,7 +45,7 @@ KEEP_FUNC void StallordLSlideChecker::execute() {
     bool clawOnY = dComIfGs_getSelectItemIndex(SELECT_ITEM_Y) == CLAWSHOT_SLOT;
     bool xHeld = GZ_getButtonPressed(X);
     bool yHeld = GZ_getButtonPressed(Y);
-    bool lHeld = GZ_getButtonPressed(L);
+    bool lHeld = mDoCPd_c::getHoldLockL(0);
     bool clawHeld = (clawOnX && xHeld) || (clawOnY && yHeld);
     bool clawReleased = (clawOnX && !xHeld) || (clawOnY && !yHeld);
     char buf[32];
